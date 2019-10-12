@@ -11,13 +11,12 @@ Email: coderthemes@gmail.com
 File: Menu
 */
 .logo {
-  color: #ffffff !important;
+  color: #333333 !important;
   margin-top: 17px;
   float: left;
   font-size: 18px;
   font-weight: 700;
-  letter-spacing: .05em;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 .logo i {
   color: #ec407a !important;
@@ -41,16 +40,16 @@ File: Menu
   box-shadow: 1px 0 3px 0 rgba(0, 0, 0, 0.2);
 }
 #topnav .active a:first-of-type {
-  color: #6e8cd7;
+  color: #ffffff;
 }
 #topnav .active a:first-of-type i {
-  color: #6e8cd7;
+  color: #ffffff;
 }
 #topnav .active .submenu li.active a {
-  color: #6e8cd7;
+  color: #ffffff;
 }
 #topnav .topbar-main {
-  background-color: #2f353f;
+  background-color: white;
   border-radius: 0;
 }
 #topnav .topbar-main .badge {
@@ -59,7 +58,7 @@ File: Menu
   right: 7px;
 }
 #topnav .topbar-main .nav > li > a {
-  color: #ffffff !important;
+  color: #333333 !important;
   line-height: 60px;
   padding: 0px 15px;
   position: relative;
@@ -164,7 +163,8 @@ File: Menu
   font-weight: normal;
 }
 #topnav .navbar-custom {
-  background-color: #ffffff;
+  background-color: #32AC63;
+  /*border-top: 2px solid #32CD32;*/
 }
 #topnav .navbar-toggle {
   border: 0;
@@ -292,10 +292,10 @@ File: Menu
     padding-left: 0px;
   }
   #topnav .navigation-menu > li:hover a {
-    color: #6e8cd7;
+    color: #eeeeee;
   }
   #topnav .navigation-menu > li:hover a i {
-    color: #6e8cd7;
+    color: #eeeeee;
   }
   #topnav .navigation-menu > li .submenu {
     position: absolute;

@@ -19,11 +19,21 @@ Route::get('/login', function () {
 	return view('login.login');
 });
 
-Route::get('/admin_1', function () {
-	return view('admin_1.layouts.master');
-});
-
-Route::get('/dashboard','DashboardController@index');
+// Route::get('/admin_1', function () {
+// 	return view('admin_1.layouts.master');
+// });
 
 // Route::group(['middleware' => ['auth', 'checkRole:1']], function(){
+
 // });
+
+// Route::get('/dashboard','DashboardController@index');
+
+Route::group(['middleware' => ['auth', 'checkRole:1,2']], function(){
+
+	// Dashboard
+	Route::get('/dashboard','DashboardController@index');
+
+});
+
+Auth::routes();

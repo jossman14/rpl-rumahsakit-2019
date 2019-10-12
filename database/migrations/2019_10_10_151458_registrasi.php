@@ -19,9 +19,9 @@ class Registrasi extends Migration
             $table->string('id_poli', 4)->nullable();
             $table->string('id_pasien', 4)->nullable();
             $table->date('tanggal_registrasi')->nullable();
-            $table->time('jam_registrasi', 1)->nullable();
+            $table->time('jam_registrasi')->nullable();
             $table->text('keluhan')->nullable();
-            $table->integer('biaya_cetak_kartu')->nullable();
+            $table->integer('biaya_registrasi')->nullable();
             $table->timestamps();
         });
     }

@@ -13,13 +13,24 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        // Schema::create('users', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('kode_user', 10)->nullable();
+        //     $table->string('id_peg', 10)->nullable();
+        //     $table->string('id_tipe_user', 10)->nullable();
+        //     $table->string('username', 50)->nullable();
+        //     $table->string('password', 50)->nullable();
+        //     $table->timestamps();
+        // });
+
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('kode_user', 10)->nullable();
-            $table->string('id_peg', 10)->nullable();
-            $table->string('id_tipe_user', 10)->nullable();
-            $table->string('username', 50)->nullable();
-            $table->string('password', 255)->nullable();
+            $table->string('role', 10)->nullable();
+            $table->string('nama');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
 
@@ -31,9 +42,11 @@ class CreateUsersTable extends Migration
 
         Schema::create('pegawai', function (Blueprint $table) {
             $table->string('id_pegawai', 4)->primary();
+            $table->string('kode_user', 10)->nullable();
+            $table->string('role', 10)->nullable();
             $table->string('id_jab', 4)->nullable();
             $table->string('nip', 30)->nullable();
-            $table->string('nama_pegawai', 30)->nullable();
+            $table->string('nama_pegawai', 40)->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('alamat', 100)->nullable();
             $table->string('jenis_kelamin', 1)->nullable();

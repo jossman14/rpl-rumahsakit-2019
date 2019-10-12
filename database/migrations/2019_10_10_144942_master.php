@@ -26,7 +26,7 @@ class Master extends Migration
             $table->string('alamat', 100)->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('jenis_kelamin', 1)->nullable();
-            $table->string('telpon', 13)->nullable();
+            $table->string('no_telp', 13)->nullable();
             $table->timestamps();
         });
 

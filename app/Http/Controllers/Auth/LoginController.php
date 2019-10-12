@@ -25,7 +25,17 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
+
+    /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLoginForm()
+    {
+        return view('login.login');
+    }
 
     /**
      * Create a new controller instance.

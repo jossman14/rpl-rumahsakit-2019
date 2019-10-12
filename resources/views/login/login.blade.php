@@ -9,7 +9,7 @@
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <link rel="shortcut icon" href="{{ asset('admin/assets/images/RMPTransparent.png') }}">
+        <!-- <link rel="shortcut icon" href="{{ asset('admin/assets/images/RMPTransparent.png') }}"> -->
 
         <title>Login | RSIA Bahagia</title>
 
@@ -39,7 +39,7 @@
             <div class="panel panel-color panel-primary panel-pages">
                 <div class="panel-heading bg-img"> 
                     <div class="bg-overlay"></div>
-                    <h3 class="text-center m-t-10 text-white">Login | <strong>RS Ibu dan Anak Bahagia</strong></h3>
+                    <h3 class="text-center m-t-10 text-white">Sistem Informasi Manajemen Layanan <strong>RSIA Bahagia</strong></h3>
                 </div> 
 
                 <div class="panel-body">
@@ -50,7 +50,7 @@
                             <div class="col-xs-12">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="md md-person"></i></span>
-                                    <input id="email" name="email" value="{{ old('email') }}" class="form-control input-lg  @error('email') is-invalid @enderror" autocomplete="email" type="email" placeholder="Email" required autofocus>
+                                    <input id="email" name="email" value="{{ old('email') }}" class="form-control input-lg  @error('email') is-invalid @enderror" autocomplete="off" type="email" placeholder="Email" required autofocus>
                                 </div>
 
                                 @error('email')
@@ -79,7 +79,7 @@
                         
                         <div class="form-group text-center">
                             <div class="col-xs-12">
-                                <button class="btn btn-primary btn-md w-lg waves-effect waves-light" type="submit" style="width: 100%;margin-top: 10px;">Log In</button>
+                                <button class="btn btn-primary btn-md w-lg waves-effect waves-light" type="submit" style="width: 100%;margin-top: 10px;">Login</button>
                             </div>
                         </div>
                     </form> 

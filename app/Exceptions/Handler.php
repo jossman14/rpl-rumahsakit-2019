@@ -1,17 +1,18 @@
 <?php
 
 namespace App\Exceptions;
-
+use Illuminate\Auth\AuthenticationException;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
-class Handler extends ExceptionHandler
-{
+class Handler extends ExceptionHandler {
+
     /**
      * A list of the exception types that are not reported.
      *
      * @var array
      */
+
     protected $dontReport = [
         //
     ];
@@ -21,6 +22,7 @@ class Handler extends ExceptionHandler
      *
      * @var array
      */
+
     protected $dontFlash = [
         'password',
         'password_confirmation',
@@ -32,6 +34,7 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return void
      */
+
     public function report(Exception $exception)
     {
         parent::report($exception);
@@ -44,8 +47,18 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
+
     public function render($request, Exception $exception)
     {
         return parent::render($request, $exception);
     }
+
+    protected function unauthenticated($request, \Illuminate\Auth\AuthenticationException $exception)
+    {
+      if($request->expectsJson()){
+        return response()->json(['error' => 'Unauthenticated.'], 401);
+      }
+      return redirect('/login');
+    }
+
 }

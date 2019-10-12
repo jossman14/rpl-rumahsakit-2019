@@ -1,8 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Validation\Rule;
+
 
 class m_pasien extends Model
 {
@@ -11,15 +13,13 @@ class m_pasien extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-    protected $dates = ['deleted_at'];
-
     protected $fillable = [
         'no_rekam_medis',
         'nama_pasien',
         'alamat',
         'tanggal_lahir',
         'jenis_kelamin',
-        'telpon',
+        'no_telp',
     ];
 
     protected $hidden = [
@@ -29,10 +29,10 @@ class m_pasien extends Model
 
     public static $rules = [
         'no_rekam_medis'		=> 'required|string|between:0,10',
-        'nama_pasien'	=> 'required|string|between:0,gg40',
+        'nama_pasien'	=> 'required|string|between:0,40',
         'alamat'	=> 'required|string|between:0,100',
         'tanggal_lahir'	=> 'required|date',
         'jenis_kelamin'	=> 'required|string|between:0,1',
-        'telpon'	=> 'required|string|between:0,13',
+        'no_telp'	=> 'required|string|between:0,13',
     ];
 }

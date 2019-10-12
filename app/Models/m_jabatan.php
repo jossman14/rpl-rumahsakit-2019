@@ -1,8 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Validation\Rule;
 
 class m_jabatan extends Model
 {
@@ -10,8 +11,6 @@ class m_jabatan extends Model
     protected $primaryKey = 'id_jab';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
-
-    protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'jabatan',
