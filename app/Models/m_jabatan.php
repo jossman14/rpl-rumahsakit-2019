@@ -9,11 +9,13 @@ class m_jabatan extends Model
 {
     protected $table = 'm_jabatan';
     protected $primaryKey = 'id_jab';
+    public $incrementing = false;
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
     protected $fillable = [
-        'jabatan',
+        'jabatan', 
+        // 'id_jab',
     ];
 
     protected $hidden = [
@@ -22,6 +24,7 @@ class m_jabatan extends Model
     ];
 
     public static $rules = [
+        // 'id_jab'   => 'required|string|between:0,4',
         'jabatan'	=> 'required|string|between:0,50',
     ];
 }

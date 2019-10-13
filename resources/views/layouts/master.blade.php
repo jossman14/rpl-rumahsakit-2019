@@ -12,7 +12,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <!-- <link rel="shortcut icon" href="assets/images/favicon_1.ico"> -->
-        <link rel="shortcut icon" href="{{ asset('admin/assets/images/RMPTransparent.png') }}">
+        <link rel="shortcut icon" href="{{ asset('admin/assets/images/RSIA.png') }}">
 
         <link href="assets/plugins/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
 
@@ -30,6 +30,8 @@
         <link href="{{asset('admin/assets/css/pages.css')}}" rel="stylesheet" type="text/css">
         <link href="{{asset('admin/assets/css/menu.css')}}" rel="stylesheet" type="text/css">
         <link href="{{asset('admin/assets/css/responsive.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('admin/assets/plugins/select2/dist/css/select2.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('admin/assets/plugins/select2/dist/css/select2-bootstrap.css')}}" rel="stylesheet" type="text/css">
 
         <script src="assets/js/modernizr.min.js"></script>
 
@@ -118,6 +120,7 @@
         <script src="{{asset('admin/assets/plugins/datatables/dataTables.responsive.min.js')}}"></script>
         <script src="{{asset('admin/assets/plugins/datatables/responsive.bootstrap.min.js')}}"></script>
         <script src="{{asset('admin/assets/plugins/datatables/dataTables.scroller.min.js')}}"></script>
+        <script src="{{asset('admin/assets/plugins/select2/dist/js/select2.min.js')}}"></script>
 
         <!-- Datatable init js -->
         <script src="{{asset('admin/assets/pages/datatables.init.js')}}"></script>
@@ -126,7 +129,15 @@
         <script src="{{asset('admin/assets/pages/jquery.dashboard.js')}}"></script>
 
         <script type="text/javascript">
-            $('#data-oli').dataTable();
+
+            $('#data-jabatan').dataTable();
+            $('#data-obat').dataTable();
+            $('#data-pasien').dataTable();
+            $('#data-poli').dataTable();
+            $('#data-dokter').dataTable();
+
+            $('#status_obat').select2();
+
             jQuery(document).ready(function($) {
                 $('.counter').counterUp({
                     delay: 100,

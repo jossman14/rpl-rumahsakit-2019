@@ -233,7 +233,7 @@ File: Menu
 }
 #topnav .navigation-menu > li > a {
   display: block;
-  color: #212121;
+  color: #ffffff;
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
   line-height: 20px;
@@ -261,7 +261,7 @@ File: Menu
 #topnav .navigation-menu > li > a i {
   font-size: 18px;
   margin-right: 5px;
-  color: rgba(33, 33, 33, 0.8);
+  color: #ffffff;
   vertical-align: middle;
 }
 #topnav .navigation-menu > li > a:hover,
