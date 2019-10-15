@@ -71,8 +71,8 @@
                             </li>
 
                             @if(auth()->user()->role == '1')
-                            <li class="{{ (request()->is('oli')) ? 'active' : '' }}">
-                                <a href="{{url('/oli')}}"><i class="md md-accessibility"></i> <span> Data User </span> </a>
+                            <li class="{{ (request()->is('dataPegawai')) ? 'active' : '' }}">
+                                <a href="{{url('/dataPegawai')}}"><i class="md md-accessibility"></i> <span> Data Pegawai </span> </a>
                             </li>
                             <li class="has-submenu">
                                 <a href="#"><i class="ion ion-gear-a"></i><span> Master Data </span></a>

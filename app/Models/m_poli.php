@@ -10,6 +10,7 @@ class m_poli extends Model
 {
     protected $table = 'm_poli';
     protected $primaryKey = 'id_poli';
+    public $incrementing = false;
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 

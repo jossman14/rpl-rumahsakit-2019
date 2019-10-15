@@ -130,6 +130,7 @@
 
         <script type="text/javascript">
 
+            $('#data-pegawai').dataTable();
             $('#data-jabatan').dataTable();
             $('#data-obat').dataTable();
             $('#data-pasien').dataTable();
@@ -137,6 +138,8 @@
             $('#data-dokter').dataTable();
 
             $('#status_obat').select2();
+            // $('#role').select2();
+            // $('#jenis_kelamin').select2();
 
             jQuery(document).ready(function($) {
                 $('.counter').counterUp({

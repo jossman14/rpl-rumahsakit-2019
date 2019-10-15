@@ -45,7 +45,21 @@
                                             <td>{{$dob->id_obat}}</td>
                                             <td>{{$dob->nama_obat}}</td>
                                             <td>{{$dob->harga_obat}}</td>
-                                            <td>{{$dob->status_obat}}</td>
+                                            @if($dob->status_obat == 1)
+                                            <td><span style="text-transform: capitalize;" class="badge badge-secondary">Obat Jamu Tradisional</span></td>
+                                            @elseif($dob->status_obat == 2)
+                                            <td><span style="text-transform: capitalize;" class="badge badge-primary">Obat Herbal Terstandar</span></td>
+                                            @elseif($dob->status_obat == 3)
+                                            <td><span style="text-transform: capitalize;" class="badge badge-success">Obat Fitofarmaka</span></td>
+                                            @elseif($dob->status_obat == 4)
+                                            <td><span style="text-transform: capitalize;" class="badge badge-info">Obat Bebas Umum</span></td>
+                                            @elseif($dob->status_obat == 5)
+                                            <td><span style="text-transform: capitalize;" class="badge badge-warning">Obat Bebas Terbatas</span></td>
+                                            @elseif($dob->status_obat == 6)
+                                            <td><span style="text-transform: capitalize;" class="badge badge-danger">Obat Keras</span></td>
+                                            @elseif($dob->status_obat == 7)
+                                            <td><span style="text-transform: capitalize;" class="badge badge-purple">Obat Narkotika</span></td>
+                                            @endif
                                             <td>
                                                 <a href="/dataObat/edit/{{ $dob->id_obat }}" class="btn btn-warning btn-sm">Edit</a>
 
@@ -67,8 +81,8 @@
         <div id="tambah-obat" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="tambah-obat" aria-hidden="true" style="display: none">
             <div class="modal-dialog"> 
                 <form action="/dataObat/create" method="post" autocomplete="off">
-                 {{csrf_field()}}
-                 <div class="modal-content"> 
+                   {{csrf_field()}}
+                   <div class="modal-content"> 
                     <div class="modal-header">
                         <h4 class="modal-title mt-0">Tambah Obat</h4>
                     </button>

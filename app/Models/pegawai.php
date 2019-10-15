@@ -10,6 +10,7 @@ class pegawai extends Model
 {
     protected $table = 'pegawai';
     protected $primaryKey = 'id_pegawai';
+    public $incrementing = false;
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -20,8 +21,8 @@ class pegawai extends Model
         'nip',
         'nama_pegawai',
         'tanggal_lahir',
-        'alamat',
         'jenis_kelamin',
+        'alamat',
     ];
 
     protected $hidden = [
@@ -36,7 +37,7 @@ class pegawai extends Model
         'nip' => 'required|string|between:0,30',
         'nama_pegawai' => 'required|string|between:0,40',
         'tanggal_lahir' => 'required|date',
-        'alamat' => 'required|string|between:0,100',
         'jenis_kelamin' => 'required|string|between:0,1',
+        'alamat' => 'required|string|between:0,100',
     ];
 }

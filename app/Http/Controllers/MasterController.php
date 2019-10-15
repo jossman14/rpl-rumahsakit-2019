@@ -81,7 +81,7 @@ class MasterController extends Controller
         return redirect('/dataJabatan')->with('message_delete', 'Data Berhasil dihapus!');
     }
 
-    // Data Jabatan
+    // Data Obat
     public function index_obat()
     {
 
@@ -145,5 +145,80 @@ class MasterController extends Controller
             
         // alihkan halaman ke halaman jabatan
         return redirect('/dataObat')->with('message_delete', 'Data Berhasil dihapus!');
+    }
+
+    // Data Poli
+    public function index_poli()
+    {
+
+        // get data
+        $DataPoli = m_poli::orderBy("id_poli", "asc")->get();
+ 
+        // mengirim data jabatan ke view index
+        // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
+        return view('admin.dataPoli.index', compact('DataPoli'));
+ 
+    }
+
+    public function create_poli(Request $request)
+    {
+
+        $prefix = 'PO';
+        $get_last_kode = m_poli::orderBy('id_poli','desc')->first();
+        $last_kode = ($get_last_kode) ? (int) substr($get_last_kode->id_poli, strlen($prefix), 2)+1 : 1;
+        $digit = 1;
+        $id_poli = $prefix.str_repeat("0", $digit-strlen($last_kode)).$last_kode;
+
+        $this->validate($request, m_poli::$rules);
+        $DataPoli = new m_poli;
+        $DataPoli->id_poli = $id_poli;
+        $DataPoli->nama_poli = request('nama_poli');
+        $DataPoli->save();
+
+        // dd($DataJabatan);
+
+        return redirect('/dataPoli')->with('message', 'Data Berhasil diinput!');
+    }   
+
+    public function edit_poli($id_poli)
+    {
+        $DataPoliEdit = m_poli::where('id_poli', $id_poli)->get();
+        // passing data jabatan yang didapat ke view edit.blade.php
+        return view('admin.dataPoli.edit', compact('DataPoliEdit'));
+    }
+
+    public function update_poli(Request $request)
+    {
+
+        $this->validate($request, m_poli::$rules);
+
+        m_poli::where('id_poli', $request->id_poli)->update([
+            'nama_poli' => $request->nama_poli,
+            'updated_at' => now()
+        ]);
+
+        return redirect('/dataPoli')->with('message', 'Data Berhasil diubah!');
+    }
+
+    public function delete_poli($id_poli)
+    {
+        // menghapus data jabatan berdasarkan id yang dipilih
+        m_poli::where('id_poli',$id_poli)->delete();
+            
+        // alihkan halaman ke halaman jabatan
+        return redirect('/dataPoli')->with('message_delete', 'Data Berhasil dihapus!');
+    }
+
+    // Data Poli
+    public function index_pasien()
+    {
+
+        // get data
+        $DataPasien = m_pasien::orderBy("created_at", "desc")->get();
+ 
+        // mengirim data jabatan ke view index
+        // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
+        return view('admin.dataPasien.index', compact('DataPasien'));
+ 
     }
 }
