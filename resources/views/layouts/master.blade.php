@@ -22,6 +22,7 @@
         <link href="{{asset('admin/assets/plugins/datatables/fixedHeader.bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('admin/assets/plugins/datatables/responsive.bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('admin/assets/plugins/datatables/scroller.bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset('admin/assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
 
         <link href="{{asset('admin/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
         <link href="{{asset('admin/assets/css/core.css')}}" rel="stylesheet" type="text/css">
@@ -121,6 +122,7 @@
         <script src="{{asset('admin/assets/plugins/datatables/responsive.bootstrap.min.js')}}"></script>
         <script src="{{asset('admin/assets/plugins/datatables/dataTables.scroller.min.js')}}"></script>
         <script src="{{asset('admin/assets/plugins/select2/dist/js/select2.min.js')}}"></script>
+        <script src="{{asset('admin/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>
 
         <!-- Datatable init js -->
         <script src="{{asset('admin/assets/pages/datatables.init.js')}}"></script>
@@ -138,6 +140,10 @@
             $('#data-dokter').dataTable();
 
             $('#status_obat').select2();
+
+            $('#tanggal_lahir').datepicker({
+                format: 'yyyy-mm-dd',
+            });
             // $('#role').select2();
             // $('#jenis_kelamin').select2();
 
@@ -148,17 +154,27 @@
                 });
             });
 
-            // Get current date in stockOli
-            var today = new Date();
-            var dd = String(today.getDate()).padStart(2, '0');
-            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-            var yyyy = today.getFullYear();
+            // jQuery(document).ready(function(){
+            //   $("#role").change(function() {
+            //       if($(this).val() == 2){
 
-            today = dd + '/' + mm + '/' + yyyy;
+            //           $("#row-poli").css('display', 'block');
 
-            // Set value tanggal
-            // document.getElementById("tanggal").value = today;
-            $("#tanggal-stock-oli").val(today);
+            //       }else{
+            //           $("#row-poli").css('display', 'none');
+            //       }
+            //   });
+            // });
+
+            $("#role").change(function() {
+              if ($(this).val() == 2) {
+                $("#row-poli").css('display', 'block');
+
+              } else {
+                $("#row-poli").css('display', 'none');
+              }
+            });
+            
         </script>
 
     </body>

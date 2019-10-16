@@ -497,7 +497,7 @@ a:focus {
   border-color: #DDDDDD;
   border-radius: 2px;
   box-shadow: none;
-  padding: 30px;
+  padding: 15px 30px;
 }
 .modal .modal-dialog .modal-content .modal-header {
   border-bottom-width: 2px;

@@ -50,6 +50,7 @@ class CreateUsersTable extends Migration
             $table->date('tanggal_lahir')->nullable();
             $table->string('alamat', 100)->nullable();
             $table->string('jenis_kelamin', 1)->nullable();
+            $table->string('poli', 3)->nullable();
             $table->timestamps();
         });
     }

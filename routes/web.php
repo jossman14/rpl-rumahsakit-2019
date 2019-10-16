@@ -38,6 +38,13 @@ Route::group(['middleware' => ['auth', 'checkRole:1']], function(){
 	Route::post('/dataPegawai/update/{id_pegawai}','PegawaiController@update_pegawai');
 	Route::get('/dataPegawai/delete/{id_pegawai}','PegawaiController@delete_pegawai');
 
+	// Dokter
+	Route::get('/dataDokter','PegawaiController@index_dokter');
+	Route::post('/dataDokter/create','PegawaiController@create_dokter');
+	Route::get('/dataDokter/edit/{id_pegawai}','PegawaiController@edit_dokter');
+	Route::post('/dataDokter/update/{id_pegawai}','PegawaiController@update_dokter');
+	Route::get('/dataDokter/delete/{id_pegawai}','PegawaiController@delete_dokter');
+
 	// Jabatan
 	Route::get('/dataJabatan','MasterController@index_jabatan');
 	Route::post('/dataJabatan/create','MasterController@create_jabatan');
@@ -65,13 +72,6 @@ Route::group(['middleware' => ['auth', 'checkRole:1']], function(){
 	Route::get('/dataPoli/edit/{id_poli}','MasterController@edit_poli');
 	Route::post('/dataPoli/update/{id_poli}','MasterController@update_poli');
 	Route::get('/dataPoli/delete/{id_poli}','MasterController@delete_poli');
-
-	// Dokter = Pegawai
-	Route::get('/dataDokter','MasterController@index_pegawai');
-	Route::post('/dataDokter/create','MasterController@create_pegawai');
-	Route::get('/dataDokter/edit/{id_pegawai}','MasterController@edit_pegawai');
-	Route::post('/dataDokter/update/{id_pegawai}','MasterController@update_pegawai');
-	Route::get('/dataDokter/delete/{id_pegawai}','MasterController@delete_pegawai');
 
 });
 

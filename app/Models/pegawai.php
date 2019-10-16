@@ -23,6 +23,7 @@ class pegawai extends Model
         'tanggal_lahir',
         'jenis_kelamin',
         'alamat',
+        'id_poli',
     ];
 
     protected $hidden = [

@@ -41,13 +41,33 @@
                                         @foreach($DataPegawai as $index => $dus)
                                         <tr>
                                             <td>{{$index +1}}</td>
-                                            <td>{{$dus->role}}</td>
+                                            @if($dus->role == 1)
+                                            <td>
+                                                <span style="text-transform: capitalize;" class="badge badge-secondary">Admin
+                                                </span>
+                                            </td>
+                                            @elseif($dus->role == 2)
+                                            <td>
+                                                <span style="text-transform: capitalize;" class="badge badge-primary">Dokter
+                                                </span>
+                                            </td>
+                                            @elseif($dus->role == 3)
+                                            <td>
+                                                <span style="text-transform: capitalize;" class="badge badge-success">Apoteker
+                                                </span>
+                                            </td>
+                                            @elseif($dus->role == 4)
+                                            <td>
+                                                <span style="text-transform: capitalize;" class="badge badge-info">Kasir
+                                                </span>
+                                            </td>
+                                            @endif
                                             <td>{{$dus->nama_pegawai}}</td>
                                             <td>{{$dus->alamat}}</td>
                                             <td>
-                                                <a href="/dataUser/edit/{{ $dus->id_pegawai }}" class="btn btn-warning btn-sm">Edit</a>
+                                                <!-- <a href="/dataPegawai/edit/{{ $dus->id_pegawai }}" class="btn btn-warning btn-sm">Edit</a> -->
 
-                                                <a href="/dataUser/delete/{{ $dus->id_pegawai }}" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin hapus data ini?')">Delete</a>
+                                                <a href="/dataPegawai/delete/{{ $dus->kode_user }}" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin hapus data ini?')">Delete</a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -100,7 +120,7 @@
                         </div> 
                         <div class="col-md-9"> 
                             <div class="form-group">
-                                <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" autocomplete="off"> 
+                                <input type="text" class="form-control" id="tanggal_lahir" name="tanggal_lahir" autocomplete="off">
                             </div> 
                         </div> 
                     </div>
@@ -131,12 +151,23 @@
                         </div> 
                         <div class="col-md-9"> 
                             <div class="form-group">
-                                <input type="text" class="form-control" id="alamat" name="alamat" autocomplete="off"> 
+                                <!-- <input type="text" class="form-control" id="alamat" name="alamat" autocomplete="off">  -->
+                                <textarea class="form-control" rows="3" id="alamat" name="alamat"></textarea>
                             </div> 
                         </div> 
                     </div>
                     <h4 class="mt-0">Data Akun</h4>
                     <hr />
+                    <div class="row" style="margin-top: 10px;"> 
+                        <div class="col-md-3" style="margin-top: 5px;"> 
+                            <label for="alamat" class="control-label">Email</label>
+                        </div> 
+                        <div class="col-md-9"> 
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="email" name="email" autocomplete="off"> 
+                            </div> 
+                        </div> 
+                    </div>
                     <div class="row"> 
                         <div class="col-md-3" style="margin-top: 5px;"> 
                             <label for="alamat" class="control-label">Role</label>
@@ -150,14 +181,16 @@
                             </select>
                         </div>
                     </div> 
-                    <div class="row" style="margin-top: 10px;"> 
+                    <div class="row" id="row-poli" style="display: none;margin-top: 10px;"> 
                         <div class="col-md-3" style="margin-top: 5px;"> 
-                            <label for="alamat" class="control-label">Email</label>
+                            <label for="poli" class="control-label">Poli</label>
                         </div> 
                         <div class="col-md-9"> 
-                            <div class="form-group">
-                                <input type="email" class="form-control" id="email" name="email" autocomplete="off"> 
-                            </div> 
+                            <select class="form-control" id="id_poli" name="id_poli">
+                                @foreach($DataPoli as $index => $dpo)
+                                    <option value="{{$dpo->id_poli}}">{{$dpo->nama_poli}}</option>
+                                @endforeach
+                            </select>
                         </div> 
                     </div>
                 </div> 
