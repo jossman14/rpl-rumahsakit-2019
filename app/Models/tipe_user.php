@@ -9,7 +9,7 @@ use Illuminate\Validation\Rule;
 class tipe_user extends Model
 {
     protected $table = 'tipe_user';
-    protected $primaryKey = 'id_tipe_user';
+    protected $primaryKey = 'id';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 

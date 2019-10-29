@@ -14,9 +14,10 @@ class HasilPemeriksaan extends Migration
     public function up()
     {
         Schema::create('hasil_pemeriksaan', function (Blueprint $table) {
-            $table->string('id_hasil_pemeriksaan', 5)->primary();
+            $table->increments('id');
+            $table->string('id_hasil_pemeriksaan', 5);
             $table->string('id_registrasi', 5)->nullable();
-            $table->string('id_surat', 4)->nullable();
+            $table->string('id_surat', 5)->nullable();
             $table->string('id_hasil_pemeriksaan_pen', 5)->nullable();
             $table->dateTime('tanggal_waktu')->nullable();
             $table->integer('biaya')->nullable();
@@ -28,7 +29,8 @@ class HasilPemeriksaan extends Migration
         }); 
 
         Schema::create('hasil_pemeriksaan_pen', function (Blueprint $table) {
-            $table->string('id_hasil_pemeriksaan_pen', 5)->primary();
+            $table->increments('id');
+            $table->string('id_hasil_pemeriksaan_pen', 5);
             $table->dateTime('tanggal_waktu')->nullable();
             $table->integer('biaya')->nullable();
             $table->text('catatan')->nullable();
@@ -36,7 +38,8 @@ class HasilPemeriksaan extends Migration
         }); 
 
         Schema::create('surat', function (Blueprint $table) {
-            $table->string('id_surat', 4)->primary();
+            $table->increments('id');
+            $table->string('id_surat', 5);
             $table->string('id_hasil_pemeriksaan', 5)->nullable();
             $table->string('no_surat', 15)->nullable();
             $table->date('tanggal')->nullable();

@@ -8,7 +8,7 @@ use Illuminate\Validation\Rule;
 class surat extends Model
 {
     protected $table = 'surat';
-    protected $primaryKey = 'id_surat';
+    protected $primaryKey = 'id';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 

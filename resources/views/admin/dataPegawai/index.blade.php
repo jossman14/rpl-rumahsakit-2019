@@ -61,6 +61,26 @@
                                                 <span style="text-transform: capitalize;" class="badge badge-info">Kasir
                                                 </span>
                                             </td>
+                                            @elseif($dus->role == 5)
+                                            <td>
+                                                <span style="text-transform: capitalize;" class="badge badge-purple">Petugas Medis Penunjang
+                                                </span>
+                                            </td>
+                                            @elseif($dus->role == 6)
+                                            <td>
+                                                <span style="text-transform: capitalize;" class="badge badge-purple">Petugas Pendaftaran
+                                                </span>
+                                            </td>
+                                            @elseif($dus->role == 7)
+                                            <td>
+                                                <span style="text-transform: capitalize;" class="badge badge-purple">Petugas Perawatan
+                                                </span>
+                                            </td>
+                                            @elseif($dus->role == 8)
+                                            <td>
+                                                <span style="text-transform: capitalize;" class="badge badge-purple">Petugas Rekam Medis
+                                                </span>
+                                            </td>
                                             @endif
                                             <td>{{$dus->nama_pegawai}}</td>
                                             <td>{{$dus->alamat}}</td>
@@ -178,6 +198,10 @@
                                 <option value="2">Dokter</option>
                                 <option value="3">Apoteker</option>
                                 <option value="4">Kasir</option>
+                                <option value="5">Petugas Medis Penunjang</option>
+                                <option value="6">Petugas Pendaftaran</option>
+                                <option value="7">Petugas Perawatan</option>
+                                <option value="8">Petugas Rekam Medis</option>
                             </select>
                         </div>
                     </div> 

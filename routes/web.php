@@ -75,7 +75,18 @@ Route::group(['middleware' => ['auth', 'checkRole:1']], function(){
 
 });
 
-Route::group(['middleware' => ['auth', 'checkRole:1,2,3,4,5']], function(){
+Route::group(['middleware' => ['auth', 'checkRole:6']], function(){
+
+	// Pasien
+	Route::get('/RegistrasiPasien','PetugasPendaftaranController@index_pasien');
+	Route::post('/RegistrasiPasien/create','PetugasPendaftaranController@create_pasien');
+	Route::get('/RegistrasiPasien/edit/{id_pasien}','PetugasPendaftaranController@edit_pasien');
+	Route::post('/RegistrasiPasien/update/{id_pasien}','PetugasPendaftaranController@update_pasien');
+	Route::get('/RegistrasiPasien/delete/{id_pasien}','PetugasPendaftaranController@delete_pasien');
+
+});
+
+Route::group(['middleware' => ['auth', 'checkRole:1,2,3,4,5,6,7,8']], function(){
 
 	// Dashboard
 	Route::get('/dashboard','DashboardController@index');

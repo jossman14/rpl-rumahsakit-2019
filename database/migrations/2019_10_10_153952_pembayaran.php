@@ -14,7 +14,8 @@ class Pembayaran extends Migration
     public function up()
     {
         Schema::create('pembayaran', function (Blueprint $table) {
-            $table->string('id_pembayaran', 5)->primary();
+            $table->increments('id');
+            $table->string('id_pembayaran', 5);
             $table->string('id_hasil_pemeriksaan', 5)->nullable();
             $table->string('id_rawat_inap', 5)->nullable();
             $table->string('id_resep', 5)->nullable();

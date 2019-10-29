@@ -14,8 +14,9 @@ class Resep extends Migration
     public function up()
     {
         Schema::create('resep', function (Blueprint $table) {
-            $table->string('id_resep', 5)->primary();
-            $table->string('id_obat', 4)->nullable();
+            $table->increments('id');
+            $table->string('id_resep', 5);
+            $table->string('id_obat', 5)->nullable();
             $table->string('dosis', 10)->nullable();
             $table->string('biaya', 10)->nullable();
             $table->string('status', 10)->nullable();
@@ -23,9 +24,10 @@ class Resep extends Migration
         }); 
 
         Schema::create('jenis_resep', function (Blueprint $table) {
-            $table->string('id_jenis_resep', 5)->primary();
+            $table->increments('id');
+            $table->string('id_jenis_resep', 5);
             $table->string('id_resep', 5)->nullable();
-            $table->string('id_obat', 4)->nullable();
+            $table->string('id_obat', 5)->nullable();
             $table->string('jenis', 20)->nullable();
             $table->timestamps();
         }); 

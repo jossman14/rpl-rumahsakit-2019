@@ -14,10 +14,11 @@ class Registrasi extends Migration
     public function up()
     {
         Schema::create('registrasi_pasien', function (Blueprint $table) {
-            $table->string('id_registrasi', 5)->primary();
+            $table->increments('id');
+            $table->string('id_registrasi', 5);
             $table->string('kode_user', 10)->nullable();
-            $table->string('id_poli', 4)->nullable();
-            $table->string('id_pasien', 4)->nullable();
+            $table->string('id_poli', 5)->nullable();
+            $table->string('id_pasien', 5)->nullable();
             $table->date('tanggal_registrasi')->nullable();
             $table->time('jam_registrasi')->nullable();
             $table->text('keluhan')->nullable();

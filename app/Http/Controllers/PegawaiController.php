@@ -18,7 +18,7 @@ class PegawaiController extends Controller
     {
 
         // get data
-        $DataPegawai = pegawai::orderBy("id_pegawai", "asc")->get();
+        $DataPegawai = pegawai::orderBy("role", "asc")->get();
         $DataPoli = m_poli::orderBy("nama_poli", "asc")->get();
  
         // mengirim data jabatan ke view index
@@ -38,7 +38,7 @@ class PegawaiController extends Controller
         $prefix = 'PG';
         $get_last_kode = pegawai::orderBy('id_pegawai','desc')->first();
         $last_kode = ($get_last_kode) ? (int) substr($get_last_kode->id_pegawai, strlen($prefix), 2)+1 : 1;
-        $digit = 1;
+        $digit = 2;
         $id_pegawai = $prefix.str_repeat("0", $digit-strlen($last_kode)).$last_kode;
 
         // $this->validate($request);
@@ -52,7 +52,11 @@ class PegawaiController extends Controller
         $DataPegawai->tanggal_lahir = request('tanggal_lahir');
         $DataPegawai->jenis_kelamin = request('jenis_kelamin');
         $DataPegawai->alamat = request('alamat');
-        $DataPegawai->id_poli = request('id_poli');
+        if(request('role') == '2'){
+            $DataPegawai->id_poli = request('id_poli');
+        } else {
+            $DataPegawai->id_poli = null;
+        }   
         $DataPegawai->created_at = now();
         $DataPegawai->save();
 
@@ -86,7 +90,7 @@ class PegawaiController extends Controller
     {
 
         // get data
-        $DataDokter = pegawai::where('role', 2)->orderBy("id_pegawai", "asc")->get();
+        $DataDokter = pegawai::with('poli')->where('role', 2)->orderBy("id_pegawai", "asc")->get();
         $DataPoli = m_poli::orderBy("nama_poli", "asc")->get();
  
         // mengirim data jabatan ke view index

@@ -8,7 +8,7 @@ use Illuminate\Validation\Rule;
 class rawat_jalan extends Model
 {
     protected $table = 'rawat_jalan';
-    protected $primaryKey = 'id_rawat_jalan';
+    protected $primaryKey = 'id';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 

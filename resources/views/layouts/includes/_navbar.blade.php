@@ -102,15 +102,21 @@
                             @endif
 
                             @if(auth()->user()->role == '2')
-                            <li class="has-submenu">
+                            <!-- <li class="has-submenu">
                                 <a href="#"><i class="fa fa-stethoscope"></i><span> Pemeriksaan </span></a>
                                 <ul class="submenu">
                                     <li><a href="typography.html">Buat Pemeriksaan</a></li>
                                     <li><a href="buttons.html">Buat Pemeriksaan Penunjang</a></li>
                                 </ul>
+                            </li> -->
+                            <li class="{{ (request()->is('PemeriksaanPasien')) ? 'active' : '' }}">
+                                <a href="{{url('/PemeriksaanPasien')}}"><i class="fa fa-stethoscope"></i> <span> Pemeriksaan Pasien </span> </a>
                             </li>
-                            <li class="{{ (request()->is('oli')) ? 'active' : '' }}">
-                                <a href="{{url('/oli')}}"><i class="md md-email"></i> <span> Buat Rujukan </span> </a>
+                            <li class="{{ (request()->is('emeriksaanPenunjang')) ? 'active' : '' }}">
+                                <a href="{{url('/emeriksaanPenunjang')}}"><i class="fa fa-stethoscope"></i> <span> Pemeriksaan Penunjang </span> </a>
+                            </li>
+                            <li class="{{ (request()->is('Rujukan')) ? 'active' : '' }}">
+                                <a href="{{url('/Rujukan')}}"><i class="md md-email"></i> <span> Buat Rujukan </span> </a>
                             </li>
                             @endif
 
@@ -134,10 +140,10 @@
 
                             @if(auth()->user()->role == '6')
                             <li class="{{ (request()->is('oli')) ? 'active' : '' }}">
-                                <a href="{{url('/oli')}}"><i class="md md-person-add"></i> <span> Registrasi Pasien </span> </a>
+                                <a href="{{url('/RegistrasiPasien')}}"><i class="md md-person-add"></i> <span> Registrasi Pasien </span> </a>
                             </li>
                             <li class="{{ (request()->is('oli')) ? 'active' : '' }}">
-                                <a href="{{url('/oli')}}"><i class="fa fa-stethoscope"></i> <span> Pemeriksaan </span> </a>
+                                <a href="{{url('/PemeriksaanPasien')}}"><i class="fa fa-stethoscope"></i> <span> Pemeriksaan </span> </a>
                             </li>
                             @endif
 

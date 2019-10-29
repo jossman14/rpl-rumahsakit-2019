@@ -35,7 +35,7 @@
                                             <th>Tanggal Lahir</th>
                                             <th>Alamat</th>
                                             <th>Gender</th>
-                                            <th>Spesialis</th>
+                                            <!-- <th>Spesialis</th> -->
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -59,7 +59,6 @@
                                                 </span>
                                             </td>
                                             @endif
-                                            <td>{{$dok->id_poli}}</td>
                                             <td>
                                                 <!-- <a href="/dataPegawai/edit/{{ $dok->id_pegawai }}" class="btn btn-warning btn-sm">Edit</a> -->
 

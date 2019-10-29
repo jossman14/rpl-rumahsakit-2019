@@ -14,7 +14,8 @@ class Perawatan extends Migration
     public function up()
     {
         Schema::create('rawat_inap', function (Blueprint $table) {
-            $table->string('id_rawat_inap', 5)->primary();
+            $table->increments('id');
+            $table->string('id_rawat_inap', 5);
             $table->string('id_hasil_pemeriksaan', 5)->nullable();
             $table->dateTime('tanggal_masuk')->nullable();
             $table->dateTime('tanggal_keluar')->nullable();
@@ -24,7 +25,8 @@ class Perawatan extends Migration
         }); 
 
         Schema::create('rawat_jalan', function (Blueprint $table) {
-            $table->string('id_rawat_jalan', 5)->primary();
+            $table->increments('id');
+            $table->string('id_rawat_jalan', 5);
             $table->string('id_hasil_pemeriksaan', 5)->nullable();
             $table->dateTime('tanggal')->nullable();
             $table->integer('durasi')->nullable();

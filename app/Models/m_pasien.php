@@ -9,8 +9,7 @@ use Illuminate\Validation\Rule;
 class m_pasien extends Model
 {
     protected $table = 'm_pasien';
-    protected $primaryKey = 'id_pasien';
-    public $incrementing = false;
+    protected $primaryKey = 'id';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 

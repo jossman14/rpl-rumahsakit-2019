@@ -9,8 +9,7 @@ use Illuminate\Validation\Rule;
 class pegawai extends Model
 {
     protected $table = 'pegawai';
-    protected $primaryKey = 'id_pegawai';
-    public $incrementing = false;
+    protected $primaryKey = 'id';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -41,4 +40,9 @@ class pegawai extends Model
         'jenis_kelamin' => 'required|string|between:0,1',
         'alamat' => 'required|string|between:0,100',
     ];
+
+    public function poli()
+    {
+        return $this->belongsTo('App\Models\m_poli','id_poli');
+    }
 }

@@ -8,7 +8,7 @@ use Illuminate\Validation\Rule;
 class resep extends Model
 {
     protected $table = 'resep';
-    protected $primaryKey = 'id_resep';
+    protected $primaryKey = 'id';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 

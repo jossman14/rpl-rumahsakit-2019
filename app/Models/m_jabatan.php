@@ -8,8 +8,7 @@ use Illuminate\Validation\Rule;
 class m_jabatan extends Model
 {
     protected $table = 'm_jabatan';
-    protected $primaryKey = 'id_jab';
-    public $incrementing = false;
+    protected $primaryKey = 'id';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
