@@ -56,6 +56,7 @@ class PetugasPendaftaranController extends Controller
         // $DataPasien->id_jab = 1;
         $DataPasien->alamat = request('alamat');
         $DataPasien->tanggal_lahir = request('tanggal_lahir');
+        $DataPasien->umur = request('umur');
         $DataPasien->jenis_kelamin = request('jenis_kelamin');
         $DataPasien->no_telp = request('no_telp');
         // if(request('role') == '2'){
@@ -86,7 +87,7 @@ class PetugasPendaftaranController extends Controller
 
         // dd($DataJabatan);
 
-        return redirect('/RegistrasiPasien')->with('message', 'Data Berhasil diinput!');
+        return redirect('/dataPasien')->with('message', 'Data Berhasil diinput!');
     }   
 
     public function delete_pasien($id_pasien)
@@ -96,5 +97,17 @@ class PetugasPendaftaranController extends Controller
             
         // alihkan halaman ke halaman jabatan
         return redirect('/RegistrasiPasien')->with('message_delete', 'Data Berhasil dihapus!');
+    }
+
+    public function index_data_pasien()
+    {
+
+        // get data
+        $DataPasien = m_pasien::orderBy("created_at", "desc")->get();
+ 
+        // mengirim data jabatan ke view index
+        // return view('admin.DataPegawai.index',['jabatan' => $DataPegawai]);
+        return view('petugas.petugasPendaftaran.dataPasien.view', compact('DataPasien'));
+ 
     }
 }

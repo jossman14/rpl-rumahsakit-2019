@@ -1,16 +1,6 @@
         @extends('layouts.master')
 
         @section('content')
-        @if(session()->has('message'))
-        <div class="alert alert-success">
-            {{ session()->get('message') }}
-        </div>
-        @endif
-        @if(session()->has('message_delete'))
-        <div class="alert alert-danger">
-            {{ session()->get('message_delete') }}
-        </div>
-        @endif
 
         <div class="row">
             <div class="col-md-12">
@@ -57,6 +47,18 @@
                                                     @if($errors->has('tanggal_lahir'))
                                                         <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
                                                             {{ $errors->first('tanggal_lahir')}}
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Umur</label>
+                                                <div class="col-md-7">
+                                                    <input type="text" class="form-control" id="umur" name="umur" autocomplete="off">
+
+                                                    @if($errors->has('umur'))
+                                                        <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
+                                                            {{ $errors->first('umur')}}
                                                         </div>
                                                     @endif
                                                 </div>

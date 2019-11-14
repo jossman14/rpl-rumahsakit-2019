@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 use App\Models\pegawai;
+use App\Models\vw_dokter;
 use App\Models\m_poli;
 use App\User;
 
@@ -90,7 +91,7 @@ class PegawaiController extends Controller
     {
 
         // get data
-        $DataDokter = pegawai::with('poli')->where('role', 2)->orderBy("id_pegawai", "asc")->get();
+        $DataDokter = vw_dokter::orderBy("id_pegawai", "asc")->get();
         $DataPoli = m_poli::orderBy("nama_poli", "asc")->get();
  
         // mengirim data jabatan ke view index

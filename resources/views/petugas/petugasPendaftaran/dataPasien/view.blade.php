@@ -18,6 +18,11 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Data Pasien</h3>
                     </div>
+                    <div> 
+                        <a type="button" class="btn btn-success btn-sm" style="float: left;margin:20px;" href="/RegistrasiPasien">
+                            <i class="fa fa-plus"></i> Tambah Data Pasien
+                        </a>
+                    </div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -25,13 +30,13 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th width="200px">No Rekam Medis</th>
+                                            <th>No Rekam Medis</th>
                                             <th>Nama</th>
-                                            <th width="100px">Gender</th>
                                             <th>Umur</th>
                                             <th>Tanggal Lahir</th>
                                             <th>Alamat</th>
-                                            <th>No Telp</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
 
@@ -41,15 +46,25 @@
                                             <td>{{$index +1}}</td>
                                             <td>{{$dps->no_rekam_medis}}</td>
                                             <td>{{$dps->nama_pasien}}</td>
-                                            @if($dps->jenis_kelamin == 1)
-                                            <td><span class="badge badge-pill badge-primary" style="margin: 5px;">L</span></td>
-                                            @else
-                                            <td><span class="badge badge-pill badge-pink" style="margin: 5px;">P</span></td>
-                                            @endif
                                             <td>{{$dps->umur}} Tahun</td>
                                             <td>{{Carbon\Carbon::parse($dps->tanggal_lahir)->formatLocalized('%d %B %Y')}}</td>
                                             <td>{{$dps->alamat}}</td>
-                                            <td>{{$dps->no_telp}}</td>
+                                            @if($dps->jenis_kelamin == 1)
+                                            <td>
+                                                <span style="text-transform: capitalize;" class="badge badge-primary">Pria
+                                                </span>
+                                            </td>
+                                            @elseif($dps->jenis_kelamin == 2)
+                                            <td>
+                                                <span style="text-transform: capitalize;" class="badge badge-pink">Wanita
+                                                </span>
+                                            </td>
+                                            @endif
+                                            <td>
+                                                <a href="/dataPegawai/cetak/{{ $dps->id_pasien }}" class="btn btn-warning btn-sm">Cetak Kartu Pasien</a>
+
+                                                <a href="/dataPasien/delete/{{ $dps->id_pasien }}" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin hapus data ini?')">Delete</a>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -67,4 +82,3 @@
 <!-- /.modal -->
 <!-- End Row -->
 @endsection
-

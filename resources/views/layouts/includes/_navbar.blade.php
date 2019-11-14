@@ -139,11 +139,14 @@
                             @endif
 
                             @if(auth()->user()->role == '6')
-                            <li class="{{ (request()->is('oli')) ? 'active' : '' }}">
+                            <li class="{{ (request()->is('RegistrasiPasien')) ? 'active' : '' }}">
                                 <a href="{{url('/RegistrasiPasien')}}"><i class="md md-person-add"></i> <span> Registrasi Pasien </span> </a>
                             </li>
-                            <li class="{{ (request()->is('oli')) ? 'active' : '' }}">
-                                <a href="{{url('/PemeriksaanPasien')}}"><i class="fa fa-stethoscope"></i> <span> Pemeriksaan </span> </a>
+                            <li class="{{ (request()->is('dataPasienPendaftaran')) ? 'active' : '' }}">
+                                <a href="{{url('/dataPasienPendaftaran')}}"><i class="md md-person"></i> <span> Data Pasien </span> </a>
+                            </li>
+                            <li class="{{ (request()->is('PemeriksaanPasien')) ? 'active' : '' }}">
+                                <a href="{{url('/PemeriksaanPasien')}}"><i class="fa fa-calendar"></i> <span> Jadwal Dokter </span> </a>
                             </li>
                             @endif
 

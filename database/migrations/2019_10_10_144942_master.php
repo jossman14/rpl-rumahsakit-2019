@@ -28,6 +28,7 @@ class Master extends Migration
             $table->string('alamat', 100)->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('jenis_kelamin', 1)->nullable();
+            $table->integer('umur')->nullable();
             $table->string('no_telp', 13)->nullable();
             $table->timestamps();
         });
@@ -47,6 +48,22 @@ class Master extends Migration
             $table->string('nama_poli', 30)->nullable();
             $table->timestamps();
         });
+
+        // pegawai bisa dokter
+        Schema::create('pegawai', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('id_pegawai', 5);
+            $table->string('kode_user', 10)->nullable();
+            $table->string('role', 10)->nullable();
+            $table->string('id_jab', 4)->nullable();
+            $table->string('nip', 30)->nullable();
+            $table->string('nama_pegawai', 40)->nullable();
+            $table->date('tanggal_lahir')->nullable();
+            $table->string('alamat', 100)->nullable();
+            $table->string('jenis_kelamin', 1)->nullable();
+            $table->string('id_poli', 5)->nullable();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -60,5 +77,6 @@ class Master extends Migration
         Schema::dropIfExists('m_pasien');
         Schema::dropIfExists('m_obat');
         Schema::dropIfExists('m_poli');
+        Schema::dropIfExists('pegawai');
     }
 }

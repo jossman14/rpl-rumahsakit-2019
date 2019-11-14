@@ -59,13 +59,6 @@ Route::group(['middleware' => ['auth', 'checkRole:1']], function(){
 	Route::post('/dataObat/update/{id_obat}','MasterController@update_obat');
 	Route::get('/dataObat/delete/{id_obat}','MasterController@delete_obat');
 
-	// Pasien
-	Route::get('/dataPasien','MasterController@index_pasien');
-	Route::post('/dataPasien/create','MasterController@create_pasien');
-	Route::get('/dataPasien/edit/{id_pasien}','MasterController@edit_pasien');
-	Route::post('/dataPasien/update/{id_pasien}','MasterController@update_pasien');
-	Route::get('/dataPasien/delete/{id_pasien}','MasterController@delete_pasien');
-
 	// Poli
 	Route::get('/dataPoli','MasterController@index_poli');
 	Route::post('/dataPoli/create','MasterController@create_poli');
@@ -83,6 +76,20 @@ Route::group(['middleware' => ['auth', 'checkRole:6']], function(){
 	Route::get('/RegistrasiPasien/edit/{id_pasien}','PetugasPendaftaranController@edit_pasien');
 	Route::post('/RegistrasiPasien/update/{id_pasien}','PetugasPendaftaranController@update_pasien');
 	Route::get('/RegistrasiPasien/delete/{id_pasien}','PetugasPendaftaranController@delete_pasien');
+
+});
+
+Route::group(['middleware' => ['auth', 'checkRole:1,6']], function(){
+
+	// Pasien Admin
+	Route::get('/dataPasien','MasterController@index_pasien');
+	Route::post('/dataPasien/create','MasterController@create_pasien');
+	Route::get('/dataPasien/edit/{id_pasien}','MasterController@edit_pasien');
+	Route::post('/dataPasien/update/{id_pasien}','MasterController@update_pasien');
+	Route::get('/dataPasien/delete/{id_pasien}','MasterController@delete_pasien');
+
+	// Pasien
+	Route::get('/dataPasienPendaftaran','PetugasPendaftaranController@index_data_pasien');
 
 });
 

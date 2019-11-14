@@ -138,6 +138,7 @@
             $('#data-pasien').dataTable();
             $('#data-poli').dataTable();
             $('#data-dokter').dataTable();
+            $('#data-jadwal-dokter').dataTable();
 
             $('#status_obat').select2();
 

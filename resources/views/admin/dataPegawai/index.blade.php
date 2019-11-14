@@ -31,6 +31,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Role</th>
+                                            <th>NIP</th>
                                             <th>Nama</th>
                                             <th>Alamat</th>
                                             <th>Aksi</th>
@@ -82,6 +83,7 @@
                                                 </span>
                                             </td>
                                             @endif
+                                            <td>{{$dus->nip}}</td>
                                             <td>{{$dus->nama_pegawai}}</td>
                                             <td>{{$dus->alamat}}</td>
                                             <td>

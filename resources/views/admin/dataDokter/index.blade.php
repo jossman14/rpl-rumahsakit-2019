@@ -35,7 +35,7 @@
                                             <th>Tanggal Lahir</th>
                                             <th>Alamat</th>
                                             <th>Gender</th>
-                                            <!-- <th>Spesialis</th> -->
+                                            <th>Spesialis</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -46,7 +46,7 @@
                                             <td>{{$index +1}}</td>
                                             <td>{{$dok->nip}}</td>
                                             <td>{{$dok->nama_pegawai}}</td>
-                                            <td>{{$dok->tanggal_lahir}}</td>
+                                            <td>{{Carbon\Carbon::parse($dok->tanggal_lahir)->formatLocalized('%d %B %Y')}}</td>
                                             <td>{{$dok->alamat}}</td>
                                             @if($dok->jenis_kelamin == 1)
                                             <td>
@@ -59,6 +59,7 @@
                                                 </span>
                                             </td>
                                             @endif
+                                            <td>{{$dok->poli}}</td>
                                             <td>
                                                 <!-- <a href="/dataPegawai/edit/{{ $dok->id_pegawai }}" class="btn btn-warning btn-sm">Edit</a> -->
 
@@ -74,8 +75,6 @@
                     </div>
                 </div>
             </div>
-
-        </div> 
 
         <div id="tambah-dokter" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="tambah-dokter" aria-hidden="true" style="display: none">
             <div class="modal-dialog"> 

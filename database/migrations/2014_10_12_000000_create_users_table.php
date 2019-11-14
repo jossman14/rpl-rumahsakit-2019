@@ -40,21 +40,6 @@ class CreateUsersTable extends Migration
             $table->string('tipe_user', 50)->nullable();
             $table->timestamps();
         });
-
-        Schema::create('pegawai', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('id_pegawai', 5);
-            $table->string('kode_user', 10)->nullable();
-            $table->string('role', 10)->nullable();
-            $table->string('id_jab', 4)->nullable();
-            $table->string('nip', 30)->nullable();
-            $table->string('nama_pegawai', 40)->nullable();
-            $table->date('tanggal_lahir')->nullable();
-            $table->string('alamat', 100)->nullable();
-            $table->string('jenis_kelamin', 1)->nullable();
-            $table->string('id_poli', 5)->nullable();
-            $table->timestamps();
-        });
     }
 
     /**
@@ -66,6 +51,5 @@ class CreateUsersTable extends Migration
     {
         Schema::dropIfExists('users');
         Schema::dropIfExists('tipe_user');
-        Schema::dropIfExists('pegawai');
     }
 }
