@@ -45,6 +45,13 @@ Route::group(['middleware' => ['auth', 'checkRole:1']], function(){
 	Route::post('/dataDokter/update/{id_pegawai}','PegawaiController@update_dokter');
 	Route::get('/dataDokter/delete/{id_pegawai}','PegawaiController@delete_dokter');
 
+	// Jadwal Dokter
+	Route::get('/dataJadwalDokter','PegawaiController@index_jadwal_dokter');
+	Route::post('/dataJadwalDokter/create','PegawaiController@create_jadwal_dokter');
+	Route::get('/dataJadwalDokter/edit/{id_pegawai}','PegawaiController@edit_jadwal_dokter');
+	Route::post('/dataJadwalDokter/update/{id_pegawai}','PegawaiController@update_jadwal_dokter');
+	Route::get('/dataJadwalDokter/delete/{id_pegawai}','PegawaiController@delete_jadwal_dokter');
+
 	// Jabatan
 	Route::get('/dataJabatan','MasterController@index_jabatan');
 	Route::post('/dataJabatan/create','MasterController@create_jabatan');
@@ -76,6 +83,10 @@ Route::group(['middleware' => ['auth', 'checkRole:6']], function(){
 	Route::get('/RegistrasiPasien/edit/{id_pasien}','PetugasPendaftaranController@edit_pasien');
 	Route::post('/RegistrasiPasien/update/{id_pasien}','PetugasPendaftaranController@update_pasien');
 	Route::get('/RegistrasiPasien/delete/{id_pasien}','PetugasPendaftaranController@delete_pasien');
+
+	// Jadwal Dokter
+	Route::get('/JadwalDokter','PetugasPendaftaranController@index_jadwal_dokter');
+	Route::get('/JadwalDokter/view','PetugasPendaftaranController@view_jadwal_dokter');
 
 });
 

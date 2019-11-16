@@ -12,6 +12,8 @@ use App\Models\pegawai;
 use App\Models\m_pasien;
 use App\Models\m_poli;
 use App\Models\registrasi_pasien;
+use App\Models\vw_jadwal_dokter;
+use App\Models\vw_dokter;
 
 class PetugasPendaftaranController extends Controller
 {
@@ -108,6 +110,36 @@ class PetugasPendaftaranController extends Controller
         // mengirim data jabatan ke view index
         // return view('admin.DataPegawai.index',['jabatan' => $DataPegawai]);
         return view('petugas.petugasPendaftaran.dataPasien.view', compact('DataPasien'));
+ 
+    }
+
+    // Data Jadwal Dokter
+    public function index_jadwal_dokter()
+    {
+
+        // get data
+        $DataJadwalDokter = vw_jadwal_dokter::orderBy('hari', 'asc')->get();
+ 
+        // mengirim data jabatan ke view index
+        // return view('admin.DataPegawai.index',['jabatan' => $DataPegawai]);
+        return view('petugas.petugasPendaftaran.dataJadwalDokter.index', compact('DataJadwalDokter'));
+ 
+    }
+
+    public function view_jadwal_dokter(Request $request)
+    {
+        if(request('nama_dokter') == null ){
+            $hari = request('hari');
+            $DataJadwalDokter = vw_jadwal_dokter::where('hari', $hari)->get();
+        } 
+        if(request('hari') == null ){
+            $nama_dokter = request('nama_dokter');
+            $DataJadwalDokter = vw_jadwal_dokter::where('nama_pegawai', 'like', '%' . $nama_dokter . '%')->get();
+        }
+ 
+        // mengirim data jabatan ke view index
+        // return view('admin.DataPegawai.index',['jabatan' => $DataPegawai]);
+        return view('petugas.petugasPendaftaran.dataJadwalDokter.view', compact('DataJadwalDokter'));
  
     }
 }

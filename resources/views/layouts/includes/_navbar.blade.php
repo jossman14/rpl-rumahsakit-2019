@@ -79,6 +79,7 @@
                                 <ul class="submenu">
                                     <li><a href="{{url('/dataPasien')}}">Data Pasien</a></li>
                                     <li><a href="{{url('/dataDokter')}}">Data Dokter</a></li>
+                                    <li><a href="{{url('/dataJadwalDokter')}}">Data Jadwal Dokter</a></li>
                                     <li><a href="{{url('/dataObat')}}">Data Obat</a></li>
                                     <li><a href="{{url('/dataPoli')}}">Data Poli</a></li>
                                     <li class="{{ (request()->is('dataJabatan')) ? 'active' : '' }}"><a href="{{url('/dataJabatan')}}">Data Jabatan</a></li>
@@ -145,8 +146,8 @@
                             <li class="{{ (request()->is('dataPasienPendaftaran')) ? 'active' : '' }}">
                                 <a href="{{url('/dataPasienPendaftaran')}}"><i class="md md-person"></i> <span> Data Pasien </span> </a>
                             </li>
-                            <li class="{{ (request()->is('PemeriksaanPasien')) ? 'active' : '' }}">
-                                <a href="{{url('/PemeriksaanPasien')}}"><i class="fa fa-calendar"></i> <span> Jadwal Dokter </span> </a>
+                            <li class="{{ (request()->is('JadwalDokter')) ? 'active' : '' }}">
+                                <a href="{{url('/JadwalDokter')}}"><i class="fa fa-calendar"></i> <span> Jadwal Dokter </span> </a>
                             </li>
                             @endif
 

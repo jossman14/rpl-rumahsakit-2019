@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 use App\Models\pegawai;
+use App\Models\jadwal_dokter;
+use App\Models\vw_jadwal_dokter;
 use App\Models\vw_dokter;
 use App\Models\m_poli;
 use App\User;
@@ -152,5 +154,45 @@ class PegawaiController extends Controller
             
         // alihkan halaman ke halaman jabatan
         return redirect('/dataDokter')->with('message_delete', 'Data Berhasil dihapus!');
+    }
+
+    // Data Jadwal Dokter
+    public function index_jadwal_dokter()
+    {
+
+        // get data
+        $DataDokter = vw_dokter::get();
+        $DataJadwalDokter = vw_jadwal_dokter::get();
+ 
+        // mengirim data jabatan ke view index
+        // return view('admin.DataPegawai.index',['jabatan' => $DataPegawai]);
+        return view('admin.dataJadwalDokter.index', compact('DataJadwalDokter','DataDokter'));
+ 
+    }
+
+    public function create_jadwal_dokter(Request $request)
+    {
+
+
+        // $this->validate($request);
+        $DataJadwalDokter = new jadwal_dokter;
+        $DataJadwalDokter->id_pegawai = request('id_pegawai');
+        $DataJadwalDokter->hari = request('hari');
+        $DataJadwalDokter->jam_mulai = request('jam_mulai');
+        $DataJadwalDokter->jam_selesai = request('jam_selesai');
+        $DataJadwalDokter->created_at = now();
+        $DataJadwalDokter->save();
+        // dd($DataJabatan);
+
+        return redirect('/dataJadwalDokter')->with('message', 'Data Berhasil diinput!');
+    }   
+
+    public function delete_jadwal_dokter($id)
+    {
+        // menghapus data jabatan berdasarkan id yang dipilih
+        jadwal_dokter::where('id', $id)->delete();
+            
+        // alihkan halaman ke halaman jabatan
+        return redirect('/dataJadwalDokter')->with('message_delete', 'Data Berhasil dihapus!');
     }
 }
