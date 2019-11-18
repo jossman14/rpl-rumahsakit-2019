@@ -23,6 +23,7 @@ class Registrasi extends Migration
             $table->time('jam_registrasi')->nullable();
             $table->text('keluhan')->nullable();
             $table->integer('biaya_registrasi')->nullable();
+            $table->string('status', 2)->nullable();
             $table->timestamps();
         });
     }

@@ -22,7 +22,8 @@
         <link href="{{asset('admin/assets/plugins/datatables/fixedHeader.bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('admin/assets/plugins/datatables/responsive.bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('admin/assets/plugins/datatables/scroller.bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{asset('admin/assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
+        <!-- <link href="{{asset('admin/assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}" rel="stylesheet"> -->
+        <link href="{{asset('admin/assets/plugins/air-datepicker/css/datepicker.min.css')}}" rel="stylesheet">
 
         <link href="{{asset('admin/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
         <link href="{{asset('admin/assets/css/core.css')}}" rel="stylesheet" type="text/css">
@@ -122,7 +123,9 @@
         <script src="{{asset('admin/assets/plugins/datatables/responsive.bootstrap.min.js')}}"></script>
         <script src="{{asset('admin/assets/plugins/datatables/dataTables.scroller.min.js')}}"></script>
         <script src="{{asset('admin/assets/plugins/select2/dist/js/select2.min.js')}}"></script>
-        <script src="{{asset('admin/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>
+        <!-- <script src="{{asset('admin/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script> -->
+        <script src="{{asset('admin/assets/plugins/air-datepicker/js/datepicker.min.js')}}"></script>
+        <script src="{{asset('admin/assets/plugins/air-datepicker/js/i18n/datepicker.en.js')}}"></script>
 
         <!-- Datatable init js -->
         <script src="{{asset('admin/assets/pages/datatables.init.js')}}"></script>
@@ -139,12 +142,27 @@
             $('#data-poli').dataTable();
             $('#data-dokter').dataTable();
             $('#jadwal-dokter').dataTable();
+            $('#data-pemeriksaan').dataTable();
 
             $('#status_obat').select2();
 
             $('#tanggal_lahir').datepicker({
-                format: 'yyyy-mm-dd',
+                dateFormat: 'yyyy-mm-dd',
             });
+            $('#tanggal_masuk').datepicker({
+                dateFormat: 'yyyy-mm-dd',
+                minDate: new Date(),
+            });
+            $('#tanggal_keluar').datepicker({
+                dateFormat: 'yyyy-mm-dd',
+                minDate: new Date(),
+            });
+
+            // $('#tanggal_masuk_jalan').datepicker({
+            //     dateFormat: 'yyyy-mm-dd',
+            //     minDate: new Date(),
+            // });
+
             // $('#role').select2();
             // $('#jenis_kelamin').select2();
 
@@ -167,6 +185,40 @@
             //   });
             // });
 
+            var bulan = [
+                'Januari',
+                'Februari',
+                'Maret',
+                'April',
+                'Mei',
+                'Juni',
+                'Juli',
+                'Agustus',
+                'September',
+                'Oktober',
+                'November',
+                'Desember',
+            ];
+
+            // var today = new Date();
+            // var dd = String(today.getDate()).padStart(2, '0');
+            // var mm = String(today.getMonth() + 1).padStart(2, '0');
+            // var yyyy = today.getFullYear();
+
+            // today = dd + '/' + mm + '/' + yyyy;
+
+            var tanggal = new Date().getDate();
+            var _bulan = new Date().getMonth();
+            var _tahun = new Date().getYear();
+
+            var bulan = bulan[_bulan];
+            var tahun = (_tahun < 1000) ? _tahun + 1900 : _tahun;
+            var today = tanggal + ' ' + bulan + ' ' + tahun;
+
+            // Set value tanggal
+            // document.getElementById("tanggal").value = today;
+            $("#tanggal_masuk_jalan").val(today);
+
             $("#role").change(function() {
               if ($(this).val() == 2) {
                 $("#row-poli").css('display', 'block');
@@ -175,7 +227,19 @@
                 $("#row-poli").css('display', 'none');
               }
             });
-            
+
+            $("#rawat-inap").css('display', 'block');
+            $("#rawat-jalan").css('display', 'none');
+
+            $("#jenis").change(function() {
+              if ($(this).val() == 1) {
+                $("#rawat-inap").css('display', 'block');
+                $("#rawat-jalan").css('display', 'none');
+              } else {
+                $("#rawat-inap").css('display', 'none');
+                $("#rawat-jalan").css('display', 'block');
+              }
+            });
         </script>
 
     </body>

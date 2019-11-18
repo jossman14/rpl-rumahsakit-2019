@@ -66,6 +66,11 @@ class PegawaiController extends Controller
         $DataUser = new User;
         $DataUser->kode_user = $DataPegawai->kode_user;
         $DataUser->role = $DataPegawai->role;
+        if(request('role') == '2'){
+            $DataUser->id_poli = request('id_poli');
+        } else {
+            $DataUser->id_poli = null;
+        }   
         $DataUser->nama = $DataPegawai->nama_pegawai;
         $DataUser->email = request('email');
         $DataUser->password = bcrypt('123456');

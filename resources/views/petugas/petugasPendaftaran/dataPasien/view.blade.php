@@ -33,9 +33,10 @@
                                             <th>No Rekam Medis</th>
                                             <th>Nama</th>
                                             <th>Umur</th>
-                                            <th>Tanggal Lahir</th>
-                                            <th>Alamat</th>
-                                            <th>Jenis Kelamin</th>
+                                            <!-- <th>Tanggal Lahir</th> -->
+                                            <!-- <th>Alamat</th> -->
+                                            <th>Gender</th>
+                                            <th>Poli</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -44,11 +45,11 @@
                                         @foreach($DataPasien as $index => $dps)
                                         <tr>
                                             <td>{{$index +1}}</td>
-                                            <td>{{$dps->no_rekam_medis}}</td>
+                                            <td style="text-transform: uppercase;">{{$dps->no_rekam_medis}}</td>
                                             <td>{{$dps->nama_pasien}}</td>
                                             <td>{{$dps->umur}} Tahun</td>
-                                            <td>{{Carbon\Carbon::parse($dps->tanggal_lahir)->formatLocalized('%d %B %Y')}}</td>
-                                            <td>{{$dps->alamat}}</td>
+                                            <!-- <td>{{Carbon\Carbon::parse($dps->tanggal_lahir)->formatLocalized('%d %B %Y')}}</td> -->
+                                            <!-- <td>{{$dps->alamat}}</td> -->
                                             @if($dps->jenis_kelamin == 1)
                                             <td>
                                                 <span style="text-transform: capitalize;" class="badge badge-primary">Pria
@@ -60,10 +61,13 @@
                                                 </span>
                                             </td>
                                             @endif
+                                            <td>{{$dps->nama_poli}}</td>
                                             <td>
-                                                <a href="/dataPegawai/cetak/{{ $dps->id_pasien }}" class="btn btn-warning btn-sm">Cetak Kartu Pasien</a>
+                                                <a href="/dataPegawai/cetak/{{ $dps->id_pasien }}" class="btn btn-warning btn-sm"><i class="fa fa-print"></i> Cetak</a>
 
-                                                <a href="/dataPasien/delete/{{ $dps->id_pasien }}" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin hapus data ini?')">Delete</a>
+                                                <a href="/dataPegawai/edit/{{ $dps->id_pasien }}" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i> Edit</a>
+
+                                                <a href="/dataPasien/delete/{{ $dps->id_pasien }}" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin hapus data ini?')"><i class="fa fa-trash"></i> Delete</a>
                                             </td>
                                         </tr>
                                         @endforeach

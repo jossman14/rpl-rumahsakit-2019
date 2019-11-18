@@ -42,7 +42,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">Tanggal Lahir</label>
                                                 <div class="col-md-7">
-                                                    <input type="text" class="form-control" id="tanggal_lahir" name="tanggal_lahir" autocomplete="off">
+                                                    <input type="text" class="form-control" id="tanggal_lahir" name="tanggal_lahir" data-language='en' autocomplete="off">
 
                                                     @if($errors->has('tanggal_lahir'))
                                                         <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
@@ -125,7 +125,7 @@
                                                 <div class="col-md-7">
                                                     <select class="form-control" id="id_pegawai" name="id_pegawai">
                                                         @foreach($DataDokter as $index => $dpo)
-                                                            <option value="{{$dpo->id_pegawai}}">{{$dpo->nama_pegawai}}</option>
+                                                            <option value="{{$dpo->id_pegawai}}">{{$dpo->nama_pegawai}} - Poli {{$dpo->poli}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>

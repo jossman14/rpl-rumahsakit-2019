@@ -15,7 +15,8 @@ class VwJadwalDokter extends Migration
     {
         DB::statement("
             CREATE OR REPLACE VIEW " . env('DB_PREFIX', '') . "vw_jadwal_dokter AS
-            SELECT a.id_pegawai,
+            SELECT a.id, 
+            a.id_pegawai,
             b.nip,
             b.nama_pegawai,
             b.poli,

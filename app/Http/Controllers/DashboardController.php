@@ -21,6 +21,5 @@ class DashboardController extends Controller
     	$jmlPoli = m_poli::count();
 
     	return view('dashboard.index', ['jmlPasien' => $jmlPasien, 'jmlPegawai' => $jmlPegawai, 'jmlDokter' => $jmlDokter, 'jmlPoli' => $jmlPoli]);
- 
     }
 }

@@ -16,9 +16,10 @@ class Perawatan extends Migration
         Schema::create('rawat_inap', function (Blueprint $table) {
             $table->increments('id');
             $table->string('id_rawat_inap', 5);
+            $table->string('id_registrasi', 5)->nullable();
             $table->string('id_hasil_pemeriksaan', 5)->nullable();
-            $table->dateTime('tanggal_masuk')->nullable();
-            $table->dateTime('tanggal_keluar')->nullable();
+            $table->date('tanggal_masuk')->nullable();
+            $table->date('tanggal_keluar')->nullable();
             $table->integer('biaya_rawat_inap')->nullable();
             $table->string('ruang', 15)->nullable();
             $table->timestamps();
@@ -27,8 +28,9 @@ class Perawatan extends Migration
         Schema::create('rawat_jalan', function (Blueprint $table) {
             $table->increments('id');
             $table->string('id_rawat_jalan', 5);
+            $table->string('id_registrasi', 5)->nullable();
             $table->string('id_hasil_pemeriksaan', 5)->nullable();
-            $table->dateTime('tanggal')->nullable();
+            $table->date('tanggal')->nullable();
             $table->integer('durasi')->nullable();
             $table->timestamps();
         }); 

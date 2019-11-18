@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Carbon;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Input;
+use Request;
 use Auth;
 
 use App\Models\pegawai;
@@ -14,6 +16,7 @@ use App\Models\m_poli;
 use App\Models\registrasi_pasien;
 use App\Models\vw_jadwal_dokter;
 use App\Models\vw_dokter;
+use App\Models\vw_pemeriksaan;
 
 class PetugasPendaftaranController extends Controller
 {
@@ -21,17 +24,19 @@ class PetugasPendaftaranController extends Controller
     public function index_pasien()
     {
 
-        $dokter = request('id_poli');
+        // $dokter = request('id_poli');
         // var_dump($dokter);
 
         // get data
+        $id_poli = Request::input('id_poli');
+
         $DataPasien = m_pasien::orderBy("created_at", "desc")->get();
         $DataPoli = m_poli::orderBy("nama_poli", "asc")->get();
-        $DataDokter = pegawai::where([["role", 2],["id_poli", $dokter]])->get();
+        $DataDokter = vw_dokter::get();
  
         // mengirim data jabatan ke view index
         // return view('admin.DataPegawai.index',['jabatan' => $DataPegawai]);
-        return view('petugas.petugasPendaftaran.dataPasien.index', compact('DataPasien', 'DataPoli','DataDokter'));
+        return view('petugas.petugasPendaftaran.dataPasien.index', compact('DataPasien','DataPoli','DataDokter'));
  
     }
 
@@ -84,12 +89,13 @@ class PetugasPendaftaranController extends Controller
         $DataRegistrasiPasien->jam_registrasi = now();
         $DataRegistrasiPasien->keluhan = request('keluhan');
         $DataRegistrasiPasien->biaya_registrasi = request('biaya_registrasi');
+        $DataRegistrasiPasien->status = 0;
         $DataRegistrasiPasien->created_at = now();
         $DataRegistrasiPasien->save();
 
         // dd($DataJabatan);
 
-        return redirect('/dataPasien')->with('message', 'Data Berhasil diinput!');
+        return redirect('/dataPasienPendaftaran')->with('message', 'Data Berhasil diinput!');
     }   
 
     public function delete_pasien($id_pasien)
@@ -105,7 +111,7 @@ class PetugasPendaftaranController extends Controller
     {
 
         // get data
-        $DataPasien = m_pasien::orderBy("created_at", "desc")->get();
+        $DataPasien = vw_pemeriksaan::get();
  
         // mengirim data jabatan ke view index
         // return view('admin.DataPegawai.index',['jabatan' => $DataPegawai]);

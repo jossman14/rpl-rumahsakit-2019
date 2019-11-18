@@ -75,6 +75,28 @@ Route::group(['middleware' => ['auth', 'checkRole:1']], function(){
 
 });
 
+Route::group(['middleware' => ['auth', 'checkRole:2']], function(){
+
+	// Pemeriksaan
+	Route::get('/pemeriksaanPasien','DokterController@index_pemeriksaan');
+	Route::post('/pemeriksaanPasien/create','DokterController@create_pemeriksaan');
+	Route::get('/pemeriksaanPasien/pemeriksaan/{id_pemeriksaan}','DokterController@buat_pemeriksaan');
+	Route::get('/pemeriksaanPasien/editPemeriksaan/{id_pemeriksaan}','DokterController@ubah_pemeriksaan');
+	Route::get('/pemeriksaanPasien/rujukan/{id_pemeriksaan}','DokterController@buat_rujukan');
+	Route::post('/pemeriksaanPasien/update/{id_pemeriksaan}','DokterController@update_pemeriksaan');
+	Route::get('/pemeriksaanPasien/delete/{id_pemeriksaan}','DokterController@delete_pemeriksaan');
+	// Route::post('/pemeriksaanPasien/update/{id_pemeriksaan}','DokterController@update_pemeriksaan');
+	// Route::get('/pemeriksaanPasien/delete/{id_pemeriksaan}','DokterController@delete_pemeriksaan');
+
+	// Pemeriksaan Penunjang
+	Route::get('/pemeriksaanPenunjang','DokterController@index_pemeriksaan_penunjang');
+	Route::post('/pemeriksaanPenunjang/create','DokterController@create_pemeriksaan_penunjang');
+	Route::get('/pemeriksaanPenunjang/edit/{id_pemeriksaan}','DokterController@edit_pemeriksaan_penunjang');
+	// Route::post('/pemeriksaanPenunjang/update/{id_pemeriksaan}','DokterController@update_pemeriksaan_penunjang');
+	// Route::get('/pemeriksaanPenunjang/delete/{id_pemeriksaan}','DokterController@delete_pemeriksaan_penunjang');
+
+});
+
 Route::group(['middleware' => ['auth', 'checkRole:6']], function(){
 
 	// Pasien

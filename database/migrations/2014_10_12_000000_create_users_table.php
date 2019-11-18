@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('kode_user', 10)->nullable();
             $table->string('role', 10)->nullable();
+            $table->string('id_poli', 5)->nullable();
             $table->string('nama');
             $table->string('email')->unique();
             $table->string('password');

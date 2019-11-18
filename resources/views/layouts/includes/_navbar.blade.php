@@ -110,14 +110,14 @@
                                     <li><a href="buttons.html">Buat Pemeriksaan Penunjang</a></li>
                                 </ul>
                             </li> -->
-                            <li class="{{ (request()->is('PemeriksaanPasien')) ? 'active' : '' }}">
-                                <a href="{{url('/PemeriksaanPasien')}}"><i class="fa fa-stethoscope"></i> <span> Pemeriksaan Pasien </span> </a>
-                            </li>
-                            <li class="{{ (request()->is('emeriksaanPenunjang')) ? 'active' : '' }}">
-                                <a href="{{url('/emeriksaanPenunjang')}}"><i class="fa fa-stethoscope"></i> <span> Pemeriksaan Penunjang </span> </a>
+                            <li class="{{ (request()->is('pemeriksaanPasien')) ? 'active' : '' }}">
+                                <a href="{{url('/pemeriksaanPasien')}}"><i class="fa fa-stethoscope"></i> <span> Pemeriksaan Pasien </span> </a>
                             </li>
                             <li class="{{ (request()->is('Rujukan')) ? 'active' : '' }}">
-                                <a href="{{url('/Rujukan')}}"><i class="md md-email"></i> <span> Buat Rujukan </span> </a>
+                                <a href="{{url('/Rujukan')}}"><i class="md md-email"></i> <span> Rujukan </span> </a>
+                            </li>
+                            <li class="{{ (request()->is('pemeriksaanPenunjang')) ? 'active' : '' }}">
+                                <a href="{{url('/pemeriksaanPenunjang')}}"><i class="fa fa-stethoscope"></i> <span> Pemeriksaan Penunjang </span> </a>
                             </li>
                             @endif
 
