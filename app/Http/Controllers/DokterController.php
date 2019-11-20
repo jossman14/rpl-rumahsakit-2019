@@ -14,6 +14,8 @@ use App\Models\rawat_inap;
 use App\Models\rawat_jalan;
 use App\Models\registrasi_pasien;
 
+use App\Models\m_ruang;
+
 class DokterController extends Controller
 {
     // Data Pemeriksaan
@@ -36,8 +38,9 @@ class DokterController extends Controller
     public function buat_pemeriksaan($id_registrasi)
     {
         $dataPemeriksaan = vw_pemeriksaan::where('id_registrasi', $id_registrasi)->get();
+        $dataRuang = m_ruang::where('status', 0)->get();
         // passing data jabatan yang didapat ke view edit.blade.php
-        return view('dokter.dataPemeriksaan.pemeriksaan', compact('dataPemeriksaan'));
+        return view('dokter.dataPemeriksaan.pemeriksaan', compact('dataPemeriksaan', 'dataRuang'));
     }
 
     public function ubah_pemeriksaan($id_registrasi)
@@ -66,7 +69,8 @@ class DokterController extends Controller
                 'tanggal_masuk' => $request->tanggal_masuk,
                 'tanggal_keluar' => $request->tanggal_keluar,
                 'hari' => $request->hari,
-                'biaya' => $request->biaya,
+                'biaya_rawat_inap' => $request->biaya_rawat_inap,
+                'total_biaya_rawat_inap' => $request->total_biaya_rawat_inap,
                 'ruang' => $request->ruang,
                 'updated_at' => now()
             ]);
@@ -121,8 +125,10 @@ class DokterController extends Controller
             $RawatInap->id_hasil_pemeriksaan = $id_hasil_pemeriksaan;
             $RawatInap->tanggal_masuk = request('tanggal_masuk');
             $RawatInap->tanggal_keluar = request('tanggal_keluar');
+            $RawatInap->hari = request('hari');
             $RawatInap->biaya_rawat_inap = request('biaya_rawat_inap');
-            $RawatInap->ruang = request('ruang');
+            $RawatInap->total_biaya_rawat_inap = request('total_biaya_rawat_inap');
+            $RawatInap->ruang = request('id_ruang');
             $RawatInap->created_at = now();
             $RawatInap->save();
         } else {
@@ -137,6 +143,10 @@ class DokterController extends Controller
         }
 
         registrasi_pasien::where('id_registrasi', request('id_registrasi'))->update([
+            'status' => 1
+        ]);
+
+        m_ruang::where('id_ruang', request('id_ruang'))->update([
             'status' => 1
         ]);
 

@@ -20,6 +20,15 @@ class Master extends Migration
             $table->timestamps();
         });
 
+        Schema::create('m_ruang', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('id_ruang', 5);
+            $table->string('tipe_kamar', 30)->nullable();
+            $table->string('kamar', 50)->nullable();
+            $table->string('integer')->nullable();
+            $table->timestamps();
+        });
+
         Schema::create('m_pasien', function (Blueprint $table) {
             $table->increments('id');
             $table->string('id_pasien', 5);
@@ -74,6 +83,7 @@ class Master extends Migration
     public function down()
     {
         Schema::dropIfExists('m_jabatan');
+        Schema::dropIfExists('m_ruang');
         Schema::dropIfExists('m_pasien');
         Schema::dropIfExists('m_obat');
         Schema::dropIfExists('m_poli');

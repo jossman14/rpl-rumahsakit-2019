@@ -66,6 +66,13 @@ Route::group(['middleware' => ['auth', 'checkRole:1']], function(){
 	Route::post('/dataObat/update/{id_obat}','MasterController@update_obat');
 	Route::get('/dataObat/delete/{id_obat}','MasterController@delete_obat');
 
+	// Kamar
+	Route::get('/dataKamar','MasterController@index_kamar');
+	Route::post('/dataKamar/create','MasterController@create_kamar');
+	Route::get('/dataKamar/edit/{id_kamar}','MasterController@edit_kamar');
+	Route::post('/dataKamar/update/{id_kamar}','MasterController@update_kamar');
+	Route::get('/dataKamar/delete/{id_kamar}','MasterController@delete_kamar');
+
 	// Poli
 	Route::get('/dataPoli','MasterController@index_poli');
 	Route::post('/dataPoli/create','MasterController@create_poli');

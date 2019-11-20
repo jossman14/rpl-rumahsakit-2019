@@ -80,6 +80,7 @@
                                     <li><a href="{{url('/dataPasien')}}">Data Pasien</a></li>
                                     <li><a href="{{url('/dataDokter')}}">Data Dokter</a></li>
                                     <li><a href="{{url('/dataJadwalDokter')}}">Data Jadwal Dokter</a></li>
+                                    <li><a href="{{url('/dataKamar')}}">Data Ruangan</a></li>
                                     <li><a href="{{url('/dataObat')}}">Data Obat</a></li>
                                     <li><a href="{{url('/dataPoli')}}">Data Poli</a></li>
                                     <li class="{{ (request()->is('dataJabatan')) ? 'active' : '' }}"><a href="{{url('/dataJabatan')}}">Data Jabatan</a></li>

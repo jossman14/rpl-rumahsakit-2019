@@ -90,19 +90,32 @@
                                             <div id="rawat-inap">
                                                 <div class="form-group"> 
                                                     <div class="col-md-2 control-label" style="margin-top: -5px;"> 
-                                                        <label for="jenis" class="control-label">Tanggal Masuk</label>
+                                                        <label for="jenis" class="control-label">Tanggal</label>
                                                     </div> 
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" name="tanggal_masuk" id="tanggal_masuk" data-language='en' autocomplete="off">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control" name="tanggal_masuk" id="tanggal_masuk" data-language='en' autocomplete="off">
 
-                                                        @if($errors->has('tanggal_masuk'))
-                                                            <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
-                                                                {{ $errors->first('tanggal_masuk')}}
+                                                                @if($errors->has('tanggal_masuk'))
+                                                                    <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
+                                                                        {{ $errors->first('tanggal_masuk')}}
+                                                                    </div>
+                                                                @endif
                                                             </div>
-                                                        @endif
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control" name="tanggal_keluar" id="tanggal_keluar" data-language='en' autocomplete="off">
+
+                                                                @if($errors->has('tanggal_keluar'))
+                                                                    <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
+                                                                        {{ $errors->first('tanggal_keluar')}}
+                                                                    </div>
+                                                                @endif
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div> 
-                                                <div class="form-group"> 
+                                                <!-- <div class="form-group"> 
                                                     <div class="col-md-2 control-label" style="margin-top: -5px;"> 
                                                         <label for="jenis" class="control-label">Tanggal Keluar</label>
                                                     </div>
@@ -115,21 +128,30 @@
                                                             </div>
                                                         @endif
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <div class="form-group"> 
                                                     <div class="col-md-2 control-label" style="margin-top: -5px;"> 
-                                                        <label for="jenis" class="control-label">Hari</label>
+                                                        <label for="jenis" class="control-label">Total Hari</label>
                                                     </div> 
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" id="hari" autocomplete="off">
+                                                        <input type="number" class="form-control" id="hari" name="hari" autocomplete="off">
                                                     </div>
                                                 </div> 
                                                 <div class="form-group"> 
                                                     <div class="col-md-2 control-label" style="margin-top: -5px;"> 
-                                                        <label for="jenis" class="control-label">Biaya Perawatan</label>
+                                                        <label for="jenis" class="control-label">Biaya Harian</label>
                                                     </div>
                                                     <div class="col-md-8">
                                                         <input type="number" class="form-control" id="biaya_rawat_inap" name="biaya_rawat_inap" autocomplete="off">
+                                                    </div>
+                                                </div> 
+
+                                                <div class="form-group"> 
+                                                    <div class="col-md-2 control-label" style="margin-top: -5px;"> 
+                                                        <label for="jenis" class="control-label">Total Biaya</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <input type="number" class="form-control" id="total_biaya_rawat_inap" name="total_biaya_rawat_inap" autocomplete="off" readonly="readonly">
                                                     </div>
                                                 </div> 
                                                 <!-- <div class="form-group"> 
@@ -143,7 +165,11 @@
                                                         <label for="jenis" class="control-label">Ruang</label>
                                                     </div> 
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" id="ruang" name="ruang" autocomplete="off">
+                                                        <select class="form-control" id="id_ruang" name="id_ruang">
+                                                            @foreach($dataRuang as $index => $dpo)
+                                                                <option value="{{$dpo->id_ruang}}">{{$dpo->kamar}}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div>   
                                             </div>

@@ -20,8 +20,10 @@ class Perawatan extends Migration
             $table->string('id_hasil_pemeriksaan', 5)->nullable();
             $table->date('tanggal_masuk')->nullable();
             $table->date('tanggal_keluar')->nullable();
+            $table->integer('hari')->nullable();
             $table->integer('biaya_rawat_inap')->nullable();
-            $table->string('ruang', 15)->nullable();
+            $table->integer('total_biaya_rawat_inap')->nullable();
+            $table->string('id_ruang', 5)->nullable();
             $table->timestamps();
         }); 
 

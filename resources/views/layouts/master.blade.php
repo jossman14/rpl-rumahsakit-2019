@@ -219,6 +219,19 @@
             // document.getElementById("tanggal").value = today;
             $("#tanggal_masuk_jalan").val(today);
 
+            // const oneDay = 24 * 60 * 60 * 1000;
+            // const tgl_masuk = $('#tanggal_masuk').val();
+            // const tgl_keluar = $('#tanggal_keluar').val();
+
+            // const jml_hari = Math.round(Math.abs((tgl_masuk - tgl_keluar) / oneDay));
+            $("#biaya_rawat_inap").change(function() {
+                var jml_hari = $('#hari').val();
+                var biaya_rawat_inap = $(this).val();
+                var biaya_perawatan = biaya_rawat_inap * jml_hari;
+                $("#total_biaya_rawat_inap").val(biaya_perawatan);
+                console.log(biaya_perawatan);
+            });
+
             $("#role").change(function() {
               if ($(this).val() == 2) {
                 $("#row-poli").css('display', 'block');
