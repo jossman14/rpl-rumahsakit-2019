@@ -119,6 +119,24 @@ Route::group(['middleware' => ['auth', 'checkRole:6']], function(){
 
 });
 
+Route::group(['middleware' => ['auth', 'checkRole:7']], function(){
+
+	// Rawat Inap
+	Route::get('/perawatanRawatInap','PetugasPerawatanController@index_rawat');
+	Route::post('/perawatanRawatInap/create','PetugasPerawatanController@create_rawat');
+	Route::get('/perawatanRawatInap/edit/{id_rawat_inap}','PetugasPerawatanController@edit_rawat');
+	Route::post('/perawatanRawatInap/update/{id_rawat_inap}','PetugasPerawatanController@update_rawat');
+	Route::get('/perawatanRawatInap/delete/{id_rawat_inap}','PetugasPerawatanController@delete_rawat');
+
+	// Ketersediaan Ruangan
+	Route::get('/ketersediaanRuangan','PetugasPerawatanController@index_ruangan');
+	Route::post('/ketersediaanRuangan/create','PetugasPerawatanController@create_ruangan');
+	Route::get('/ketersediaanRuangan/edit/{id_ruang}','PetugasPerawatanController@edit_ruangan');
+	Route::post('/ketersediaanRuangan/update/{id_ruang}','PetugasPerawatanController@update_ruangan');
+	Route::get('/ketersediaanRuangan/delete/{id_ruang}','PetugasPerawatanController@delete_ruangan');
+
+});
+
 Route::group(['middleware' => ['auth', 'checkRole:1,6']], function(){
 
 	// Pasien Admin

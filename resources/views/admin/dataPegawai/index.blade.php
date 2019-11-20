@@ -142,7 +142,7 @@
                         </div> 
                         <div class="col-md-9"> 
                             <div class="form-group">
-                                <input type="text" class="form-control" id="tanggal_lahir" name="tanggal_lahir" autocomplete="off">
+                                <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" data-language='en' autocomplete="off">
                             </div> 
                         </div> 
                     </div>

@@ -7,8 +7,8 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading"><h3 class="panel-title">Form Pemeriksaan</h3></div>
                                     <div class="panel-body">
-                                        <h4 class="mt-0">Data Pemeriksaan</h4>
-                                        <hr />
+                                        <!-- <h4 class="mt-0">Data Pemeriksaan</h4>
+                                        <hr /> -->
                                         @foreach($dataHasilPemeriksaan as $dob)
                                         <form class="form-horizontal" action="/pemeriksaanPasien/update/{{$dob->id_registrasi}}" role="form" method="post">
                                             {{csrf_field()}}
@@ -74,10 +74,21 @@
                                                     @endif
                                                 </div>
                                             </div>
+                                            <div class="form-group"> 
+                                                <div class="col-md-2 control-label"> 
+                                                    <label for="jenis_perawatan" class="control-label">Jenis Perawatan</label>
+                                                </div> 
+                                                <div class="col-sm-8">
+                                                    <select class="form-control" id="jenis_perawatan" name="jenis_perawatan">
+                                                        <option value="1" {{ $dob->jenis_perawatan == 1 ? 'selected' : '' }}>Rawat Inap</option>
+                                                        <option value="2" {{ $dob->jenis_perawatan == 2 ? 'selected' : '' }}>Rawat Jalan</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                             @endforeach
-                                            @foreach($dataRawatInap as $dob)
+                                            <!-- @foreach($dataRawatInap as $dob)
                                             <h4 class="mt-0">Data Perawatan</h4>
-                                            <hr />
+                                            <hr /> -->
                                             <!-- <div class="form-group"> 
                                                 <div class="col-md-2 control-label"> 
                                                     <label for="jenis" class="control-label">Jenis Perawatan</label>
@@ -90,7 +101,7 @@
                                                 </div>
                                             </div> -->
                                             <!-- <div id="rawat-inap"> -->
-                                                <div class="form-group"> 
+                                               <!--  <div class="form-group"> 
                                                     <div class="col-md-2 control-label" style="margin-top: -5px;"> 
                                                         <label for="jenis" class="control-label">Tanggal Masuk</label>
                                                     </div> 
@@ -117,7 +128,7 @@
                                                             </div>
                                                         @endif
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <!-- <div class="form-group"> 
                                                     <div class="col-md-2 control-label" style="margin-top: -5px;"> 
                                                         <label for="jenis" class="control-label">Hari</label>
@@ -126,33 +137,33 @@
                                                         <input type="text" class="form-control" id="hari" autocomplete="off">
                                                     </div>
                                                 </div>  -->
-                                                <div class="form-group"> 
+                                                <!-- <div class="form-group"> 
                                                     <div class="col-md-2 control-label" style="margin-top: -5px;"> 
                                                         <label for="jenis" class="control-label">Biaya Perawatan</label>
                                                     </div>
                                                     <div class="col-md-8">
                                                         <input type="number" class="form-control" id="biaya_rawat_inap" name="biaya_rawat_inap" value="{{$dob->biaya_rawat_inap}}" autocomplete="off" readonly="readonly">
                                                     </div>
-                                                </div> 
+                                                </div>  -->
                                                 <!-- <div class="form-group"> 
                                                     <div class="col-md-2 control-label" style="margin-top: -5px;"> 
                                                         <label for="jenis" class="control-label">Biaya</label>
                                                     </div> 
                                                     
                                                 </div> -->
-                                                <div class="form-group"> 
+                                                <!-- <div class="form-group"> 
                                                     <div class="col-md-2 control-label" style="margin-top: -5px;"> 
                                                         <label for="jenis" class="control-label">Ruang</label>
                                                     </div> 
                                                     <div class="col-md-8">
                                                         <input type="text" class="form-control" id="ruang" name="ruang" value="{{$dob->ruang}}"autocomplete="off">
                                                     </div>
-                                                </div>   
+                                                </div>    -->
                                             <!-- </div> -->
-                                            @endforeach
+                                            <!-- @endforeach
                                             @foreach($dataRawatJalan as $dob)
                                             <h4 class="mt-0">Data Perawatan</h4>
-                                            <hr />
+                                            <hr /> -->
                                             <!-- <div class="form-group"> 
                                                 <div class="col-md-2 control-label"> 
                                                     <label for="jenis" class="control-label">Jenis Perawatan</label>
@@ -165,7 +176,7 @@
                                                 </div>
                                             </div> -->
                                             <!-- <div id="rawat-jalan"> -->
-                                                <div class="form-group"> 
+                                                <!-- <div class="form-group"> 
                                                     <div class="col-md-2 control-label" style="margin-top: -5px;"> 
                                                         <label for="tanggal" class="control-label">Mulai Perawatan</label>
                                                     </div> 
@@ -186,9 +197,9 @@
                                                     <div class="col-md-8">
                                                         <input type="number" class="form-control" id="durasi" name="durasi" value="{{$dob->durasi}}" autocomplete="off">
                                                     </div>
-                                                </div>  
+                                                </div>   -->
                                             <!-- </div> -->
-                                            @endforeach
+                                            <!-- @endforeach -->
                                             <hr />
                                             <div style="float:right;">
                                                 <a href={{url('/pemeriksaanPasien')}} class="btn btn-primary waves-effect waves-light">Kembali</a>

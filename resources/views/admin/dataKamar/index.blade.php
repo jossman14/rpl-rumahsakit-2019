@@ -31,7 +31,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Tipe Kamar</th>
-                                            <th>Nama Kamar</th>
+                                            <th>Nama</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -42,15 +42,7 @@
                                         <tr>
                                             <td>{{$index +1}}</td>
                                             <!-- <td>{{$dk->id_obat}}</td> -->
-                                            @if($dk->tipe_kamar == 'vip')
-                                            <td><span style="text-transform: capitalize;" class="badge badge-primary">VIP</span></td>
-                                            @elseif($dk->tipe_kamar == 'kelas1')
-                                            <td><span style="text-transform: capitalize;" class="badge badge-primary">Kelas 1</span></td>
-                                            @elseif($dk->tipe_kamar == 'kelas2')
-                                            <td><span style="text-transform: capitalize;" class="badge badge-primary">Kelas 2</span></td>
-                                            @elseif($dk->tipe_kamar == 'kelas3')
-                                            <td><span style="text-transform: capitalize;" class="badge badge-primary">Kelas 3</span></td>
-                                            @endif
+                                            <td><span style="text-transform: capitalize;" class="badge badge-primary">{{$dk->tipe_kamar}}</span></td>
                                             <!-- <td>{{$dk->tipe_kamar}}</td> -->
                                             <td>{{$dk->kamar}}</td>
                                             @if($dk->status == 0)
@@ -92,10 +84,10 @@
                         </div> 
                         <div class="col-md-9"> 
                             <select class="form-control" id="tipe_kamar" name="tipe_kamar">
-                                <option value="vip">VIP</option>
-                                <option value="kelas1">Kelas 1</option>
-                                <option value="kelas2">Kelas 2</option>
-                                <option value="kelas3">Kelas 3</option>
+                                <option value="VIP">VIP</option>
+                                <option value="Kelas 1">Kelas 1</option>
+                                <option value="Kelas 2">Kelas 2</option>
+                                <option value="Kelas 3">Kelas 3</option>
                             </select>
                         </div> 
                     </div> 
@@ -118,7 +110,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="number" class="form-control" id="no" name="no" autocomplete="off"> 
+                                        <input type="text" class="form-control" id="no" name="no" autocomplete="off"> 
                                     </div> 
                                 </div>
                             </div>

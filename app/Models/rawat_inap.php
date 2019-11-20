@@ -13,10 +13,13 @@ class rawat_inap extends Model
     const UPDATED_AT = 'updated_at';
 
     protected $fillable = [
+        'id_registrasi',
         'id_hasil_pemeriksaan',
         'tanggal_masuk',
         'tanggal_keluar',
+        'hari',
         'biaya_rawat_inap',
+        'total_biaya_rawat_inap',
         'ruang',
     ];
 

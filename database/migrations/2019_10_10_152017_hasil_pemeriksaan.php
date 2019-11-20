@@ -19,6 +19,7 @@ class HasilPemeriksaan extends Migration
             $table->string('id_registrasi', 5)->nullable();
             $table->string('id_surat', 5)->nullable();
             $table->string('id_hasil_pemeriksaan_pen', 5)->nullable();
+            $table->integer('jenis_perawatan')->nullable();
             $table->dateTime('tanggal_waktu')->nullable();
             $table->integer('biaya')->nullable();
             $table->string('diagnosis', 50)->nullable();

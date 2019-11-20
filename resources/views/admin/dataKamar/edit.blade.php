@@ -16,10 +16,10 @@
                                                     <input type="text" style="display: none;" class="form-control" name="id_ruang" value="{{ $dob->id_ruang }}" autocomplete="off">
 
                                                     <select class="form-control" id="tipe_kamar" name="tipe_kamar">
-                                                        <option value="vip" {{ $dob->tipe_kamar == 'vip' ? 'selected' : '' }}>VIP</option>
-                                                        <option value="kelas1" {{ $dob->tipe_kamar == 'kelas1' ? 'selected' : '' }}>Kelas 1</option>
-                                                        <option value="kelas2" {{ $dob->tipe_kamar == 'kelas2' ? 'selected' : '' }}>Kelas 2</option>
-                                                        <option value="kelas3" {{ $dob->tipe_kamar == 'kelas3' ? 'selected' : '' }}>Kelas 3</option>
+                                                        <option value="VIP" {{ $dob->tipe_kamar == 'VIP' ? 'selected' : '' }}>VIP</option>
+                                                        <option value="Kelas 1" {{ $dob->tipe_kamar == 'Kelas 1' ? 'selected' : '' }}>Kelas 1</option>
+                                                        <option value="Kelas 2" {{ $dob->tipe_kamar == 'Kelas 2' ? 'selected' : '' }}>Kelas 2</option>
+                                                        <option value="Kelas 3" {{ $dob->tipe_kamar == 'Kelas 3' ? 'selected' : '' }}>Kelas 3</option>
                                                     </select>
                                                 </div>
                                             </div>

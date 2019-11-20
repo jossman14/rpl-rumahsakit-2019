@@ -149,6 +149,7 @@
             $('#tanggal_lahir').datepicker({
                 dateFormat: 'yyyy-mm-dd',
             });
+            
             $('#tanggal_masuk').datepicker({
                 dateFormat: 'yyyy-mm-dd',
                 minDate: new Date(),

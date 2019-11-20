@@ -153,11 +153,14 @@
                             @endif
 
                             @if(auth()->user()->role == '7')
-                            <li class="{{ (request()->is('oli')) ? 'active' : '' }}">
-                                <a href="{{url('/oli')}}"><i class="fa fa-stethoscope"></i> <span> Data Perawatan </span> </a>
+                            <li class="{{ (request()->is('ketersediaanRuangan')) ? 'active' : '' }}">
+                                <a href="{{url('/ketersediaanRuangan')}}"><i class="fa fa-home"></i> <span> Ketersediaan Ruangan </span> </a>
                             </li>
-                            <li class="{{ (request()->is('oli')) ? 'active' : '' }}">
-                                <a href="{{url('/oli')}}"><i class="fa fa-home"></i> <span> Ketersediaan Ruangan </span> </a>
+                            <li class="{{ (request()->is('perawatanRawatInap')) ? 'active' : '' }}">
+                                <a href="{{url('/perawatanRawatInap')}}"><i class="fa fa-search"></i> <span> Pilih Ruangan </span> </a>
+                            </li>
+                            <li class="{{ (request()->is('dataRawatInap')) ? 'active' : '' }}">
+                                <a href="{{url('/dataRawatInap')}}"><i class="fa fa-stethoscope"></i> <span> Data Rawat Inap </span> </a>
                             </li>
                             @endif
 
