@@ -16,7 +16,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Pemeriksaan Pasien</h3>
+                        <h3 class="panel-title">Data Rawat Inap</h3>
                     </div>
                     <!-- <div> 
                         <a type="button" class="btn btn-success btn-sm" style="float: left;margin:20px;" href="/RegistrasiPasien">
@@ -29,34 +29,38 @@
                                 <table id="data-pasien" class="table table-striped dt-responsive nowrap" cellspacing="0" width="100%">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
+                                            <!-- <th>No</th> -->
                                             <th>No Rekam Medis</th>
-                                            <th>Nama</th>
-                                            <th>Umur</th>
-                                            <th>Poli</th>
+                                            <th>Nama Pasien</th>
+                                            <th>Dari</th>
+                                            <th>Sampai</th>
+                                            <!-- <th>Durasi</th> -->
                                             <!-- <th>Tanggal Lahir</th> -->
                                             <!-- <th>Alamat</th> -->
-                                            <th>Perawatan</th>
+                                            <th>Ruang</th>
+                                            <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        @foreach($DataRawat as $index => $dps)
+                                        @foreach($DataRawatInap as $index => $dps)
                                         <tr>
-                                            <td>{{$index +1}}</td>
+                                            <!-- <td>{{$index +1}}</td> -->
                                             <td style="text-transform: uppercase;">{{$dps->no_rekam_medis}}</td>
                                             <td>{{$dps->nama_pasien}}</td>
-                                            <td>{{$dps->umur}} Tahun</td>
-                                            <td>{{$dps->nama_poli}}</td>
-                                            @if($dps->jenis_perawatan == 1)
-                                            <td>
-                                                <span style="text-transform: capitalize;" class="badge badge-primary">Rawat Inap
-                                                </span>
-                                            </td>
+                                            <td>{{Carbon\Carbon::parse($dps->tanggal_masuk)->formatLocalized('%d %B %Y')}}</td> 
+                                            <td>{{Carbon\Carbon::parse($dps->tanggal_keluar)->formatLocalized('%d %B %Y')}}</td>
+                                            <!-- <td>{{$dps->hari}} Hari</td> -->
+                                            <td>{{$dps->kamar}}</td>
+                                            @if($dps->status_rawat_inap == 0)
+                                            <td><span style="text-transform: capitalize;" class="badge badge-info">Sedang dirawat</span></td>
+                                            @elseif($dps->status_rawat_inap == 1)
+                                            <td><span style="text-transform: capitalize;" class="badge badge-danger">Selesai</span></td>
                                             @endif
                                             <td>
-                                                <a href="/perawatanRawatInap/edit/{{ $dps->id_hasil_pemeriksaan }}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Informasi Rawat Inap</a>
+                                                <a href="/dataRawatInap/monitoringPasien/{{ $dps->no_rekam_medis }}" class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Monitoring Pasien</a>
+                                                <a href="/dataRawatInap/perawatanSelesai/{{ $dps->id_rawat_inap }}/{{$dps->id_ruang}}" class="btn btn-danger btn-sm"><i class="fa fa-stethoscope"></i> Perawatan Selesai</a>
                                             </td>
                                         </tr>
                                         @endforeach

@@ -24,6 +24,7 @@ class Perawatan extends Migration
             $table->integer('biaya_rawat_inap')->nullable();
             $table->integer('total_biaya_rawat_inap')->nullable();
             $table->string('id_ruang', 5)->nullable();
+            $table->integer('status_rawat_inap')->nullable();
             $table->timestamps();
         }); 
 
@@ -34,6 +35,20 @@ class Perawatan extends Migration
             $table->string('id_hasil_pemeriksaan', 5)->nullable();
             $table->date('tanggal')->nullable();
             $table->integer('durasi')->nullable();
+            $table->timestamps();
+        }); 
+
+        Schema::create('monitoring_pasien', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('id_rawat_inap', 5)->nullable();
+            $table->string('no_rekam_medis', 10)->nullable();
+            $table->timestamps('waktu')->nullable();
+            $table->text('keluhan_pasien')->nullable();
+            $table->string('tensi', 100)->nullable();
+            $table->string('frekuensi_pernapasan', 100)->nullable();
+            $table->string('nadi', 100)->nullable();
+            $table->string('suhu', 100)->nullable();
+            $table->text('tindakan')->nullable();
             $table->timestamps();
         }); 
     }

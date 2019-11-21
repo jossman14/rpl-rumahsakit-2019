@@ -86,7 +86,7 @@
                                     <li class="{{ (request()->is('dataJabatan')) ? 'active' : '' }}"><a href="{{url('/dataJabatan')}}">Data Jabatan</a></li>
                                 </ul>
                             </li>
-                            <li class="has-submenu">
+                            <!-- <li class="has-submenu">
                                 <a href="#"><i class="fa fa-stethoscope"></i><span> Pemeriksaan </span></a>
                                 <ul class="submenu">
                                     <li><a href="typography.html">Data Pemeriksaan</a></li>
@@ -100,7 +100,7 @@
                                     <li><a href="typography.html">Data Perawatan</a></li>
                                     <li><a href="buttons.html">Data Rujukan Pasien</a></li>
                                 </ul>
-                            </li>
+                            </li> -->
                             @endif
 
                             @if(auth()->user()->role == '2')
@@ -153,14 +153,14 @@
                             @endif
 
                             @if(auth()->user()->role == '7')
-                            <li class="{{ (request()->is('ketersediaanRuangan')) ? 'active' : '' }}">
-                                <a href="{{url('/ketersediaanRuangan')}}"><i class="fa fa-home"></i> <span> Ketersediaan Ruangan </span> </a>
-                            </li>
                             <li class="{{ (request()->is('perawatanRawatInap')) ? 'active' : '' }}">
-                                <a href="{{url('/perawatanRawatInap')}}"><i class="fa fa-search"></i> <span> Pilih Ruangan </span> </a>
+                                <a href="{{url('/perawatanRawatInap')}}"><i class="fa fa-plus"></i> <span> Informasi Rawat Inap </span> </a>
                             </li>
                             <li class="{{ (request()->is('dataRawatInap')) ? 'active' : '' }}">
                                 <a href="{{url('/dataRawatInap')}}"><i class="fa fa-stethoscope"></i> <span> Data Rawat Inap </span> </a>
+                            </li>
+                            <li class="{{ (request()->is('ketersediaanRuangan')) ? 'active' : '' }}">
+                                <a href="{{url('/ketersediaanRuangan')}}"><i class="fa fa-info"></i> <span> Informasi Ruangan </span> </a>
                             </li>
                             @endif
 

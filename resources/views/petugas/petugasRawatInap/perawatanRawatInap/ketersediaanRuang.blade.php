@@ -46,14 +46,18 @@
                                             <!-- <td>{{$dk->tipe_kamar}}</td> -->
                                             <td>{{$dk->kamar}}</td>
                                             @if($dk->status == 0)
-                                            <td><span style="text-transform: capitalize;" class="badge badge-primary">Tersedia</span></td>
+                                            <td><span style="text-transform: capitalize;" class="badge badge-info">Kosong</span></td>
                                             @elseif($dk->status == 1)
                                             <td><span style="text-transform: capitalize;" class="badge badge-danger">Sudah terisi</span></td>
                                             @endif
                                             <td>
                                                 <!-- <a href="/dataKamar/edit/{{ $dk->id_ruang }}" class="btn btn-warning btn-sm">Edit</a> -->
 
-                                                <a href="/dataKamar/delete/{{ $dk->id_ruang }}" class="btn btn-danger btn-sm" onclick="return confirm('Ubah status kamar?')">Delete</a>
+                                                @if($dk->status == 0)
+                                                <a href="/ketersediaanRuangan/delete/{{ $dk->id_ruang }}" class="btn btn-warning btn-sm" onclick="return confirm('Ubah status kamar?')" style="display: none;">Update Status Kamar</a>
+                                                @else
+                                                <a href="/ketersediaanRuangan/delete/{{ $dk->id_ruang }}" class="btn btn-warning btn-sm" onclick="return confirm('Ubah status kamar?')">Update Status Kamar</a>
+                                                @endif
                                             </td>
                                         </tr>
                                         @endforeach

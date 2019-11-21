@@ -12,6 +12,8 @@ use App\Models\vw_pemeriksaan;
 use App\Models\hasil_pemeriksaan;
 use App\Models\m_ruang;
 use App\Models\rawat_inap;
+use App\Models\m_pasien;
+use App\Models\monitoring_pasien;
 
 class PetugasPerawatanController extends Controller
 {
@@ -63,8 +65,8 @@ class PetugasPerawatanController extends Controller
         // $DataPemeriksaan->save();
 
         $prefix = 'RI';
-        $get_last_kode = rawat_inap::orderBy('id','desc')->first();
-        $last_kode = ($get_last_kode) ? (int) substr($get_last_kode->id, strlen($prefix), 2)+1 : 1;
+        $get_last_kode = rawat_inap::orderBy('id_rawat_inap','desc')->first();
+        $last_kode = ($get_last_kode) ? (int) substr($get_last_kode->id_rawat_inap, strlen($prefix), 2)+1 : 1;
         $digit = 2;
         $id_rawat_inap = $prefix.str_repeat("0", $digit-strlen($last_kode)).$last_kode;
 
@@ -78,6 +80,7 @@ class PetugasPerawatanController extends Controller
         $RawatInap->biaya_rawat_inap = request('biaya_rawat_inap');
         $RawatInap->total_biaya_rawat_inap = request('total_biaya_rawat_inap');
         $RawatInap->ruang = request('id_ruang');
+        $RawatInap->status_rawat_inap = 0;
         $RawatInap->created_at = now();
         $RawatInap->save();
 
@@ -108,7 +111,7 @@ class PetugasPerawatanController extends Controller
             'status' => 1
         ]);
 
-        return redirect('/perawatanRawatInap')->with('message', 'Data perawatan berhasil diinput!');
+        return redirect('/dataRawatInap')->with('message', 'Data perawatan berhasil diinput!');
 
     }
 
@@ -125,5 +128,72 @@ class PetugasPerawatanController extends Controller
             
         // alihkan halaman ke halaman jabatan
         return redirect('/perawatanRawatInap')->with('message_delete', 'Data pemeriksaan berhasil direset!');
+    }
+
+    public function index_rawat_inap(){
+        
+        // get data
+        // $DataRawatInap = rawat_inap::orderBy("created_at", "asc")->get();
+        // get data
+        $DataRawatInap = DB::table('rawat_inap')
+            ->join('vw_pemeriksaan', 'rawat_inap.id_registrasi', '=', 'vw_pemeriksaan.id_registrasi')
+            ->join('m_ruang', 'rawat_inap.ruang', '=', 'm_ruang.id_ruang')
+            ->select('rawat_inap.*', 'vw_pemeriksaan.*', 'm_ruang.*')
+            ->where('rawat_inap.status_rawat_inap', 0)
+            // ->orderBy('rawat_inap.status_rawat_inap', 'asc')
+            ->get();
+ 
+        // mengirim data jabatan ke view index
+        // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
+        return view('petugas.petugasRawatInap.perawatanRawatInap.dataRawatInap', compact('DataRawatInap'));
+
+    }
+
+    public function delete_rawat_inap($id_rawat_inap, $id_ruang){
+
+        // menghapus data rawat inap berdasarkan id yang dipilih
+        rawat_inap::where('id_rawat_inap', $id_rawat_inap)->update([
+            'status_rawat_inap' => 1
+        ]);
+
+        m_ruang::where('id_ruang', $id_ruang)->update([
+            'status' => 0
+        ]);
+            
+        // alihkan halaman ke halaman jabatan
+        return redirect('/dataRawatInap')->with('message_delete', 'Data berhasil diubah!');
+    }
+
+    public function monitoring_rawat_inap($no_rekam_medis){
+        // get data
+        $DataPasien = m_pasien::where("no_rekam_medis", $no_rekam_medis)->get();
+
+        $DataMonitoring = monitoring_pasien::where("no_rekam_medis", $no_rekam_medis)->get();
+ 
+        // mengirim data jabatan ke view index
+        // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
+        return view('petugas.petugasRawatInap.perawatanRawatInap.monitoringPasien', compact('DataPasien', 'DataMonitoring'));
+    }
+
+    public function index_ruangan(){
+        
+        // get data
+        $DataKamar = m_ruang::orderBy("status", "asc")->get();
+ 
+        // mengirim data jabatan ke view index
+        // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
+        return view('petugas.petugasRawatInap.perawatanRawatInap.ketersediaanRuang', compact('DataKamar'));
+
+    }
+
+    public function delete_ruangan($id_ruang)
+    {
+        // menghapus data jabatan berdasarkan id yang dipilih
+        m_ruang::where('id_ruang', $id_ruang)->update([
+            'status' => 0
+        ]);
+            
+        // alihkan halaman ke halaman jabatan
+        return redirect('/ketersediaanRuangan')->with('message_delete', 'Data berhasil diubah!');
     }
 }
