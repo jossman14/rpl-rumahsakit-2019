@@ -16,7 +16,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Data Kamar</h3>
+                        <h3 class="panel-title" style="color: #32AC63;">Data Kamar</h3>
                     </div>
                     <!-- <div> 
                         <a type="button" class="btn btn-success btn-sm" style="float: left;margin:20px;" data-toggle="modal" data-target="#tambah-kamar">
@@ -32,8 +32,9 @@
                                             <th>No</th>
                                             <th>Tipe Kamar</th>
                                             <th>Nama</th>
-                                            <th>Status</th>
-                                            <th>Aksi</th>
+                                            <th>Kuota</th>
+                                            <th>Keterangan</th>
+                                            <!-- <th>Aksi</th> -->
                                         </tr>
                                     </thead>
 
@@ -45,20 +46,29 @@
                                             <td><span style="text-transform: capitalize;" class="badge badge-primary">{{$dk->tipe_kamar}}</span></td>
                                             <!-- <td>{{$dk->tipe_kamar}}</td> -->
                                             <td>{{$dk->kamar}}</td>
-                                            @if($dk->status == 0)
-                                            <td><span style="text-transform: capitalize;" class="badge badge-info">Kosong</span></td>
-                                            @elseif($dk->status == 1)
-                                            <td><span style="text-transform: capitalize;" class="badge badge-danger">Sudah terisi</span></td>
+                                            @if($dk->kuota == 0)
+                                            <td><span style="text-transform: capitalize;" class="badge badge-warning">Penuh</span></td>
+                                            @elseif($dk->kuota > 0)
+                                            <td><span style="text-transform: capitalize;" class="badge badge-info">{{$dk->kuota}} Pasien</span></td>
                                             @endif
-                                            <td>
+                                            @if($dk->tipe_kamar == 'VIP')
+                                            <td style="font-style: italic;">Tipe Kamar VIP Diperuntukan untuk 1 pasien</td>
+                                            @elseif($dk->tipe_kamar == 'Kelas 1')
+                                            <td style="font-style: italic;">Tipe Kamar Kelas 1 Diperuntukan untuk 2 pasien</td>
+                                            @elseif($dk->tipe_kamar == 'Kelas 2')
+                                            <td style="font-style: italic;">Tipe Kamar Kelas 2 Diperuntukan untuk 3 pasien</td>
+                                            @elseif($dk->tipe_kamar == 'Kelas 3')
+                                            <td style="font-style: italic;">Tipe Kamar Kelas 3 Diperuntukan untuk 5 pasien</td>
+                                            @endif
+                                            <!-- <td> -->
                                                 <!-- <a href="/dataKamar/edit/{{ $dk->id_ruang }}" class="btn btn-warning btn-sm">Edit</a> -->
 
-                                                @if($dk->status == 0)
+                                                <!-- @if($dk->kuota > 0)
                                                 <a href="/ketersediaanRuangan/delete/{{ $dk->id_ruang }}" class="btn btn-warning btn-sm" onclick="return confirm('Ubah status kamar?')" style="display: none;">Update Status Kamar</a>
                                                 @else
                                                 <a href="/ketersediaanRuangan/delete/{{ $dk->id_ruang }}" class="btn btn-warning btn-sm" onclick="return confirm('Ubah status kamar?')">Update Status Kamar</a>
                                                 @endif
-                                            </td>
+                                            </td> -->
                                         </tr>
                                         @endforeach
                                     </tbody>

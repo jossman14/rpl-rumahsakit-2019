@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Monitoring Pasien</h3>
+                        <h3 class="panel-title" style="color: #32AC63;">Monitoring Pasien</h3>
                     </div>
                     <!-- <div> 
                         <a type="button" class="btn btn-success btn-sm" style="float: left;margin:20px;" href="/RegistrasiPasien">
@@ -108,14 +108,14 @@
                    {{csrf_field()}}
                 <div class="modal-content"> 
                 <div class="modal-header">
-                    <h4 class="modal-title mt-0">Tambah Monitoring</h4>
+                    <h4 class="modal-title">Monitoring Pasien</h4>
                 </div> 
                 <div class="modal-body"> 
                     <div class="row"> 
                         <div class="col-md-3" style="margin-top: 5px;"> 
                             <label for="keluhan_pasien" class="control-label">Keluhan dan <br>Pemeriksaan Fisik</label>
                         </div> 
-                        <div class="col-md-9"> 
+                        <div class="col-md-8"> 
                             <div class="form-group">
                                 <!-- <input type="text" class="form-control" id="keluhan_pasien" name="keluhan_pasien" autocomplete="off">  -->
                                 <textarea class="form-control" rows="3" id="keluhan_pasien" name="keluhan_pasien"></textarea>
@@ -126,7 +126,7 @@
                         <div class="col-md-3" style="margin-top: 5px;"> 
                             <label for="tensi" class="control-label">Tensi</label>
                         </div> 
-                        <div class="col-md-9"> 
+                        <div class="col-md-8"> 
                             <div class="form-group">
                                 <input type="text" class="form-control" id="tensi" name="tensi" autocomplete="off"> 
                             </div> 
@@ -136,7 +136,7 @@
                         <div class="col-md-3" style="margin-top: 5px;"> 
                             <label for="frekuensi_pernapasan" class="control-label">Frekuensi Pernapasan</label>
                         </div> 
-                        <div class="col-md-9"> 
+                        <div class="col-md-8"> 
                             <div class="form-group">
                                 <input type="text" class="form-control" id="frekuensi_pernapasan" name="frekuensi_pernapasan" autocomplete="off"> 
                             </div> 
@@ -146,7 +146,7 @@
                         <div class="col-md-3" style="margin-top: 5px;"> 
                             <label for="nadi" class="control-label">Denyut Nadi</label>
                         </div> 
-                        <div class="col-md-9"> 
+                        <div class="col-md-8"> 
                             <div class="form-group">
                                 <input type="text" class="form-control" id="nadi" name="nadi" autocomplete="off"> 
                             </div> 
@@ -156,7 +156,7 @@
                         <div class="col-md-3" style="margin-top: 5px;"> 
                             <label for="suhu" class="control-label">Suhu Badan</label>
                         </div> 
-                        <div class="col-md-9"> 
+                        <div class="col-md-8"> 
                             <div class="form-group">
                                 <input type="text" class="form-control" id="suhu" name="suhu" autocomplete="off"> 
                             </div> 
@@ -166,7 +166,7 @@
                         <div class="col-md-3" style="margin-top: 5px;"> 
                             <label for="tindakan" class="control-label">Pengobatan dan Tindakan</label>
                         </div> 
-                        <div class="col-md-9"> 
+                        <div class="col-md-8"> 
                             <div class="form-group">
                                 <!-- <input type="text" class="form-control" id="tindakan" name="tindakan" autocomplete="off">  -->
                                 <textarea class="form-control" rows="3" id="tindakan" name="tindakan"></textarea>

@@ -38,7 +38,7 @@ class DokterController extends Controller
     public function buat_pemeriksaan($id_registrasi)
     {
         $dataPemeriksaan = vw_pemeriksaan::where('id_registrasi', $id_registrasi)->get();
-        $dataRuang = m_ruang::where('status', 0)->get();
+        $dataRuang = m_ruang::where('kuota', '>', 0)->get();
         // passing data jabatan yang didapat ke view edit.blade.php
         return view('dokter.dataPemeriksaan.pemeriksaan', compact('dataPemeriksaan', 'dataRuang'));
     }
@@ -62,6 +62,7 @@ class DokterController extends Controller
             'tindakan' => $request->tindakan,
             'biaya' => $request->biaya,
             'jenis_perawatan' => $request->jenis_perawatan,
+            'medis_penunjang' => $request->medis_penunjang,
             'updated_at' => now()
         ]);
 
@@ -86,7 +87,7 @@ class DokterController extends Controller
         return redirect('/pemeriksaanPasien')->with('message', 'Data pemeriksaan berhasil diubah!');
     }
 
-    public function create_pemeriksaan()
+    public function create_pemeriksaan(Request $request)
     {
 
         $prefix = 'HP';
@@ -94,6 +95,24 @@ class DokterController extends Controller
         $last_kode = ($get_last_kode) ? (int) substr($get_last_kode->id_hasil_pemeriksaan, strlen($prefix), 2)+1 : 1;
         $digit = 2;
         $id_hasil_pemeriksaan = $prefix.str_repeat("0", $digit-strlen($last_kode)).$last_kode;
+
+        $rules = [
+            'diagnosis' => 'required',
+            'anamnesis' => 'required',
+            'pemeriksaan_fisik' => 'required',
+            'tindakan' => 'required',
+            'biaya' => 'required',
+        ];
+
+        $validasi = [
+            'diagnosis.required' => 'Diagnosis Pasien harus diisi!',
+            'anamnesis.required'  => 'Anamnesis Pasien harus diisi!',
+            'pemeriksaan_fisik.required' => 'Pemeriksaan Fisik Pasien harus diisi!',
+            'tindakan.required'  => 'Tindakan Pasien harus diisi!',
+            'biaya.required'  => 'Biaya harus diisi!',
+         ];
+
+        $this->validate($request, $rules, $validasi);
 
         $DataPemeriksaan = new hasil_pemeriksaan;
         $DataPemeriksaan->id_hasil_pemeriksaan = $id_hasil_pemeriksaan;
@@ -105,6 +124,13 @@ class DokterController extends Controller
         $DataPemeriksaan->anamnesis = request('anamnesis');
         $DataPemeriksaan->pemeriksaan_fisik = request('pemeriksaan_fisik');
         $DataPemeriksaan->tindakan = request('tindakan');
+        $DataPemeriksaan->medis_penunjang = request('medis_penunjang');
+        // if($request->get('medis_penunjang') == null){
+        //   $DataPemeriksaan->medis_penunjang = 0;
+        // } else {
+        //   $DataPemeriksaan->medis_penunjang = request('medis_penunjang');
+        // }
+        $DataPemeriksaan->status = 0;
         $DataPemeriksaan->created_at = now();
         $DataPemeriksaan->save();
 

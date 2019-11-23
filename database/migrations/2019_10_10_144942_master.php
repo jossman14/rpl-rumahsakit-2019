@@ -25,7 +25,8 @@ class Master extends Migration
             $table->string('id_ruang', 5);
             $table->string('tipe_kamar', 30)->nullable();
             $table->string('kamar', 50)->nullable();
-            $table->string('integer')->nullable();
+            $table->integer('biaya')->nullable();
+            $table->integer('kuota')->nullable();
             $table->timestamps();
         });
 

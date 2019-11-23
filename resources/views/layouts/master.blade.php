@@ -133,6 +133,8 @@
         <!-- jQuery  -->
         <script src="{{asset('admin/assets/pages/jquery.dashboard.js')}}"></script>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+
         <script type="text/javascript">
 
             $('#data-pegawai').dataTable();
@@ -148,6 +150,14 @@
 
             $('#tanggal_lahir').datepicker({
                 dateFormat: 'yyyy-mm-dd',
+                onSelect: function(value, ui) {
+                    var today = new Date(),
+                    dob = new Date(value),
+                    age = new Date(today - dob).getFullYear() - 1970;
+                    console.log(age);
+                    $('#umur').val(age);
+                    // $(".umur").val(age);
+                },
             });
             
             $('#tanggal_masuk').datepicker({

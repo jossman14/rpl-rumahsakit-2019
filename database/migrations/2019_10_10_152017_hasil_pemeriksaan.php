@@ -26,6 +26,8 @@ class HasilPemeriksaan extends Migration
             $table->string('anamnesis', 50)->nullable();
             $table->string('pemeriksaan_fisik', 100)->nullable();
             $table->string('tindakan', 100)->nullable();
+            $table->boolean('medis_penunjang')->nullable();
+            $table->string('status', 2)->nullable();
             $table->timestamps();
         }); 
 

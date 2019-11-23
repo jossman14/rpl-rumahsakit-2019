@@ -21,6 +21,7 @@ class rawat_inap extends Model
         'biaya_rawat_inap',
         'total_biaya_rawat_inap',
         'ruang',
+        'status_rawat_inap'
     ];
 
     protected $hidden = [

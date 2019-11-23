@@ -175,7 +175,25 @@ class MasterController extends Controller
         $DataRuang->id_ruang = $id_ruang;
         $DataRuang->tipe_kamar = request('tipe_kamar');
         $DataRuang->kamar = request('nama').' '.request('no');
-        $DataRuang->status = 0;
+        if(request('tipe_kamar') == 'VIP'){
+            $DataRuang->biaya = 150000;
+        }elseif(request('tipe_kamar') == 'Kelas 1'){
+            $DataRuang->biaya = 100000;
+        }elseif(request('tipe_kamar') == 'Kelas 2'){
+            $DataRuang->biaya = 75000;
+        }else {
+            $DataRuang->biaya = 50000;
+        }
+        // $DataRuang->status = 0;
+        if(request('tipe_kamar') == 'VIP'){
+            $DataRuang->kuota = 1;
+        }elseif(request('tipe_kamar') == 'Kelas 1'){
+            $DataRuang->kuota = 2;
+        }elseif(request('tipe_kamar') == 'Kelas 2'){
+            $DataRuang->kuota = 3;
+        }else {
+            $DataRuang->kuota = 5;
+        }
         $DataRuang->save();
 
         // dd($DataJabatan);

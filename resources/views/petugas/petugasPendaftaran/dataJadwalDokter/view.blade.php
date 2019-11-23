@@ -16,7 +16,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Pencarian Jadwal Dokter</h3>
+                        <h3 class="panel-title" style="color: #32AC63;">Pencarian Jadwal Dokter</h3>
                     </div>
                     <div> 
                         <a href="/JadwalDokter" type="button" class="btn btn-success btn-sm" style="float: left;margin:20px;" data-toggle="modal">

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Carbon;
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Input;
@@ -26,6 +26,7 @@ class PetugasPerawatanController extends Controller
             ->join('vw_pemeriksaan', 'hasil_pemeriksaan.id_registrasi', '=', 'vw_pemeriksaan.id_registrasi')
             ->select('hasil_pemeriksaan.*', 'vw_pemeriksaan.*')
             ->where('hasil_pemeriksaan.jenis_perawatan', 1)
+            ->where('hasil_pemeriksaan.status', 0)
             ->orderBy('hasil_pemeriksaan.created_at', 'asc')
             ->get();
  
@@ -37,7 +38,7 @@ class PetugasPerawatanController extends Controller
 
     public function edit_rawat($id_hasil_pemeriksaan){
         $dataHasilPemeriksaanRuangan = hasil_pemeriksaan::where('id_hasil_pemeriksaan', $id_hasil_pemeriksaan)->get();
-        $dataRuang = m_ruang::where('status', 0)->get();
+        $dataRuang = m_ruang::where('kuota', '>', 0)->orderBy('tipe_kamar', 'desc')->get();
         // passing data jabatan yang didapat ke view edit.blade.php
         return view('petugas.petugasRawatInap.perawatanRawatInap.cariRuangan', compact('dataHasilPemeriksaanRuangan', 'dataRuang'));
     }
@@ -70,19 +71,40 @@ class PetugasPerawatanController extends Controller
         $digit = 2;
         $id_rawat_inap = $prefix.str_repeat("0", $digit-strlen($last_kode)).$last_kode;
 
+        // $rules = [
+        //     'tanggal_masuk' => 'required',
+        //     'tanggal_keluar' => 'required',
+        //     'hari' => 'required',
+        //     'biaya_rawat_inap' => 'required',
+        // ];
+
+        // $validasi = [
+        //     'tanggal_masuk.required' => 'Tanggal Masuk harus diisi!',
+        //     'tanggal_keluar.required'  => 'Tanggal Keluar harus diisi!',
+        //     'hari.required' => 'Hari harus diisi!',
+        //     'biaya_rawat_inap.required'  => 'Biaya harus diisi!',
+        //  ];
+
+        // $this->validate($request, $rules, $validasi);
+
         $RawatInap = new rawat_inap;
         $RawatInap->id_rawat_inap = $id_rawat_inap;
         $RawatInap->id_registrasi = request('id_registrasi');
         $RawatInap->id_hasil_pemeriksaan = request('id_hasil_pemeriksaan');
         $RawatInap->tanggal_masuk = request('tanggal_masuk');
         $RawatInap->tanggal_keluar = request('tanggal_keluar');
-        $RawatInap->hari = request('hari');
+        // $RawatInap->hari = request('hari');
+        $RawatInap->hari = Carbon::parse(request('tanggal_masuk'))->diff(Carbon::parse(request('tanggal_keluar')))->format("%a");
         $RawatInap->biaya_rawat_inap = request('biaya_rawat_inap');
-        $RawatInap->total_biaya_rawat_inap = request('total_biaya_rawat_inap');
+        $RawatInap->total_biaya_rawat_inap = request('biaya_rawat_inap') * Carbon::parse(request('tanggal_masuk'))->diff(Carbon::parse(request('tanggal_keluar')))->format("%a");
         $RawatInap->ruang = request('id_ruang');
         $RawatInap->status_rawat_inap = 0;
         $RawatInap->created_at = now();
         $RawatInap->save();
+
+        hasil_pemeriksaan::where('id_hasil_pemeriksaan', request('id_hasil_pemeriksaan'))->update([
+            'status' => 1
+        ]);
 
         // $prefix = 'RJ';
         // $get_last_kode = rawat_jalan::orderBy('id','desc')->first();
@@ -107,9 +129,11 @@ class PetugasPerawatanController extends Controller
         //     'status' => 1
         // ]);
 
-        m_ruang::where('id_ruang', request('id_ruang'))->update([
-            'status' => 1
-        ]);
+        // m_ruang::where('id_ruang', request('id_ruang'))->update([
+        //     'kuota' => 1
+        // ]);
+
+        DB::table('m_ruang')->where('id_ruang', request('id_ruang'))->decrement('kuota');
 
         return redirect('/dataRawatInap')->with('message', 'Data perawatan berhasil diinput!');
 
@@ -156,12 +180,14 @@ class PetugasPerawatanController extends Controller
             'status_rawat_inap' => 1
         ]);
 
-        m_ruang::where('id_ruang', $id_ruang)->update([
-            'status' => 0
-        ]);
+        // m_ruang::where('id_ruang', $id_ruang)->update([
+        //     'status' => 0
+        // ]);
+
+        DB::table('m_ruang')->where('id_ruang', request('id_ruang'))->increment('kuota');
             
         // alihkan halaman ke halaman jabatan
-        return redirect('/dataRawatInap')->with('message_delete', 'Data berhasil diubah!');
+        return redirect('/dataRawatInap')->with('message_delete', 'Perawatan Pasien telah selesai!');
     }
 
     public function monitoring_rawat_inap($no_rekam_medis){
@@ -178,7 +204,7 @@ class PetugasPerawatanController extends Controller
     public function index_ruangan(){
         
         // get data
-        $DataKamar = m_ruang::orderBy("status", "asc")->get();
+        $DataKamar = m_ruang::orderBy("tipe_kamar", "desc")->get();
  
         // mengirim data jabatan ke view index
         // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
@@ -189,9 +215,11 @@ class PetugasPerawatanController extends Controller
     public function delete_ruangan($id_ruang)
     {
         // menghapus data jabatan berdasarkan id yang dipilih
-        m_ruang::where('id_ruang', $id_ruang)->update([
-            'status' => 0
-        ]);
+        // m_ruang::where('id_ruang', $id_ruang)->update([
+        //     'status' => 0
+        // ]);
+
+        DB::table('m_ruang')->where('id_ruang', request('id_ruang'))->increment('kuota');
             
         // alihkan halaman ke halaman jabatan
         return redirect('/ketersediaanRuangan')->with('message_delete', 'Data berhasil diubah!');

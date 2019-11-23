@@ -114,11 +114,11 @@
                             <li class="{{ (request()->is('pemeriksaanPasien')) ? 'active' : '' }}">
                                 <a href="{{url('/pemeriksaanPasien')}}"><i class="fa fa-stethoscope"></i> <span> Pemeriksaan Pasien </span> </a>
                             </li>
-                            <li class="{{ (request()->is('Rujukan')) ? 'active' : '' }}">
-                                <a href="{{url('/Rujukan')}}"><i class="md md-email"></i> <span> Rujukan </span> </a>
-                            </li>
                             <li class="{{ (request()->is('pemeriksaanPenunjang')) ? 'active' : '' }}">
                                 <a href="{{url('/pemeriksaanPenunjang')}}"><i class="fa fa-stethoscope"></i> <span> Pemeriksaan Penunjang </span> </a>
+                            </li>
+                            <li class="{{ (request()->is('Rujukan')) ? 'active' : '' }}">
+                                <a href="{{url('/Rujukan')}}"><i class="md md-email"></i> <span> Rujukan </span> </a>
                             </li>
                             @endif
 

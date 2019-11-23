@@ -16,7 +16,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Data Rawat Inap</h3>
+                        <h3 class="panel-title" style="color: #32AC63;">Data Rawat Inap</h3>
                     </div>
                     <!-- <div> 
                         <a type="button" class="btn btn-success btn-sm" style="float: left;margin:20px;" href="/RegistrasiPasien">

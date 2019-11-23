@@ -16,7 +16,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Data Pasien</h3>
+                        <h3 class="panel-title" style="color: #32AC63;">Data Pasien</h3>
                     </div>
                     <div> 
                         <a type="button" class="btn btn-success btn-sm" style="float: left;margin:20px;" href="/RegistrasiPasien">
@@ -63,11 +63,11 @@
                                             @endif
                                             <td>{{$dps->nama_poli}}</td>
                                             <td>
-                                                <a href="/dataPegawai/cetak/{{ $dps->id_pasien }}" class="btn btn-warning btn-sm"><i class="fa fa-print"></i> Cetak</a>
+                                                <a href="/dataPasienPendaftaran/cetak/{{ $dps->id_pasien }}" class="btn btn-warning btn-sm"><i class="fa fa-print"></i> Cetak</a>
 
-                                                <a href="/dataPegawai/edit/{{ $dps->id_pasien }}" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i> Edit</a>
+                                                <a href="/dataPasienPendaftaran/edit/{{ $dps->id_pasien }}" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i> Edit</a>
 
-                                                <a href="/dataPasien/delete/{{ $dps->id_pasien }}" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin hapus data ini?')"><i class="fa fa-trash"></i> Delete</a>
+                                                <!-- <a href="/dataPasien/delete/{{ $dps->id_pasien }}" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin hapus data ini?')"><i class="fa fa-trash"></i> Delete</a> -->
                                             </td>
                                         </tr>
                                         @endforeach

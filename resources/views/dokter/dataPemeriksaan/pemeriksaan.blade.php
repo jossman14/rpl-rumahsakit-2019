@@ -5,7 +5,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="panel panel-default">
-                                    <div class="panel-heading"><h3 class="panel-title">Form Pemeriksaan</h3></div>
+                                    <div class="panel-heading"><h3 class="panel-title" style="color: #32AC63;">Form Pemeriksaan</h3></div>
                                     <div class="panel-body">
                                         <!-- <h4 class="mt-0">Data Pemeriksaan</h4>
                                         <hr /> -->
@@ -76,13 +76,27 @@
                                             </div>
                                             <div class="form-group"> 
                                                 <div class="col-md-2 control-label"> 
-                                                    <label for="jenis_perawatan" class="control-label">Jenis Perawatan</label>
+                                                    <label for="jenis_perawatan" class="control-label">Tipe Perawatan</label>
                                                 </div> 
-                                                <div class="col-sm-8">
+                                                <div class="col-sm-8" style="margin-top: 5px;">
                                                     <select class="form-control" id="jenis_perawatan" name="jenis_perawatan">
                                                         <option value="1">Rawat Inap</option>
                                                         <option value="2">Rawat Jalan</option>
                                                     </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group"> 
+                                                <div class="col-md-2 control-label"> 
+                                                    <!-- <label for="jenis_perawatan" class="control-label">Membutuhkan medis penunjang?</label> -->
+                                                </div> 
+                                                <div class="col-sm-8" style="margin-top: 5px;">
+                                                    <div class="checkbox checkbox-info checkbox-circle">
+                                                        <input type="hidden" name="medis_penunjang" value="0">
+                                                        <input id="medis_penunjang" name="medis_penunjang" type="checkbox" checked="checked" value="1">
+                                                        <label for="checkbox8">
+                                                            Butuh Medis Penunjang (Pemeriksaan Laboratorium)
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <!-- <h4 class="mt-0">Data Perawatan</h4>

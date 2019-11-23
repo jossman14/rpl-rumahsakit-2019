@@ -157,6 +157,8 @@ Route::group(['middleware' => ['auth', 'checkRole:1,6']], function(){
 
 	// Pasien
 	Route::get('/dataPasienPendaftaran','PetugasPendaftaranController@index_data_pasien');
+	Route::get('/dataPasienPendaftaran/edit/{id_pasien}','PetugasPendaftaranController@edit_data_pasien');
+	Route::post('/dataPasienPendaftaran/update/{id_pasien}','PetugasPendaftaranController@update_data_pasien');
 
 });
 

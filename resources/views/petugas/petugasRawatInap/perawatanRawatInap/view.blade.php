@@ -16,7 +16,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Pemeriksaan Pasien</h3>
+                        <h3 class="panel-title" style="color: #32AC63;">Pemeriksaan Pasien</h3>
                     </div>
                     <!-- <div> 
                         <a type="button" class="btn btn-success btn-sm" style="float: left;margin:20px;" href="/RegistrasiPasien">
@@ -29,14 +29,14 @@
                                 <table id="data-pasien" class="table table-striped dt-responsive nowrap" cellspacing="0" width="100%">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
+                                            <!-- <th>No</th> -->
                                             <th>No Rekam Medis</th>
-                                            <th>Nama</th>
+                                            <th>Nama Pasien</th>
                                             <th>Umur</th>
-                                            <th>Poli</th>
+                                            <th>Poliklinik</th>
                                             <!-- <th>Tanggal Lahir</th> -->
                                             <!-- <th>Alamat</th> -->
-                                            <th>Perawatan</th>
+                                            <th>Tipe Perawatan</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -44,7 +44,7 @@
                                     <tbody>
                                         @foreach($DataRawat as $index => $dps)
                                         <tr>
-                                            <td>{{$index +1}}</td>
+                                            <!-- <td>{{$index +1}}</td> -->
                                             <td style="text-transform: uppercase;">{{$dps->no_rekam_medis}}</td>
                                             <td>{{$dps->nama_pasien}}</td>
                                             <td>{{$dps->umur}} Tahun</td>
