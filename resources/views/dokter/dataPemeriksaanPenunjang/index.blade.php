@@ -26,9 +26,9 @@
                                                         <tr>
                                                             <th>No</th>
                                                             <th>No Rekam Medis</th>
-                                                            <th>Nama</th>
+                                                            <th>Nama Pasien</th>
                                                             <th>Umur</th>
-                                                            <th>Jam Registrasi</th>
+                                                            <!-- <th>Jam Registrasi</th> -->
                                                             <th>Poli</th>
                                                             <th>Keluhan</th>
                                                             <th>Aksi</th>
@@ -36,17 +36,17 @@
                                                     </thead>
 
                                                     <tbody>
-                                                        @foreach($DataPasien as $index => $pas)
+                                                        @foreach($DataMedisPenunjang as $index => $pas)
                                                         <tr>
                                                             <td>{{$index +1}}</td>
                                                             <td style="text-transform: uppercase;">{{$pas->no_rekam_medis}}</td>
                                                             <td>{{$pas->nama_pasien}}</td>
                                                             <td>{{$pas->umur}}</td>
-                                                            <td>{{Carbon\Carbon::parse($pas->jam_registrasi)->format('g:i:s A')}}</td>
+                                                            <!-- <td>{{Carbon\Carbon::parse($pas->jam_registrasi)->format('g:i:s A')}}</td> -->
                                                             <td>{{$pas->nama_poli}}</td>
                                                             <td>{{$pas->keluhan}}</td>
                                                             <td>
-                                                                <a href="/pemeriksaanPenunjang/edit/{{ $pas->id_registrasi }}" class="btn btn-info btn-sm"><i class="fa fa-stethoscope"></i> Lihat Pemeriksaan Penunjang</a>
+                                                                <a href="/pemeriksaanPenunjang/edit/{{ $pas->id_registrasi }}" class="btn btn-info btn-sm"><i class="fa fa-stethoscope" style="margin-right: 5px;"></i> Lihat Pemeriksaan</a>
                                                             </td>
                                                         </tr>
                                                         @endforeach

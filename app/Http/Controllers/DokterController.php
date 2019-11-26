@@ -15,6 +15,7 @@ use App\Models\rawat_jalan;
 use App\Models\registrasi_pasien;
 
 use App\Models\m_ruang;
+use App\Models\m_obat;
 
 class DokterController extends Controller
 {
@@ -39,8 +40,9 @@ class DokterController extends Controller
     {
         $dataPemeriksaan = vw_pemeriksaan::where('id_registrasi', $id_registrasi)->get();
         $dataRuang = m_ruang::where('kuota', '>', 0)->get();
+        $dataObat = m_obat::get();
         // passing data jabatan yang didapat ke view edit.blade.php
-        return view('dokter.dataPemeriksaan.pemeriksaan', compact('dataPemeriksaan', 'dataRuang'));
+        return view('dokter.dataPemeriksaan.pemeriksaan', compact('dataPemeriksaan', 'dataObat', 'dataRuang'));
     }
 
     public function ubah_pemeriksaan($id_registrasi)
@@ -206,11 +208,18 @@ class DokterController extends Controller
 
         // get data
         $tujuan_poli = Auth::user()->id_poli;
-        $DataPasien = vw_pemeriksaan::where('id_poli', $tujuan_poli)->orderBy("jam_registrasi", "asc")->get();
+        // $DataMedisPenunjang = hasil_pemeriksaan::where('medis_penunjang', 1)->orderBy("tanggal_waktu", "asc")->get();
+        $DataMedisPenunjang = DB::table('hasil_pemeriksaan')
+            ->join('vw_pemeriksaan', 'hasil_pemeriksaan.id_registrasi', '=', 'vw_pemeriksaan.id_registrasi')
+            ->select('hasil_pemeriksaan.*', 'vw_pemeriksaan.*')
+            ->where('hasil_pemeriksaan.medis_penunjang', 1)
+            ->where('vw_pemeriksaan.id_poli', $tujuan_poli)
+            ->orderBy('hasil_pemeriksaan.tanggal_waktu', 'asc')
+            ->get();
  
         // mengirim data jabatan ke view index
         // return view('admin.DataPegawai.index',['jabatan' => $DataPegawai]);
-        return view('dokter.dataPemeriksaanPenunjang.index', compact('DataPasien'));
+        return view('dokter.dataPemeriksaanPenunjang.index', compact('DataMedisPenunjang'));
  
     }
 }

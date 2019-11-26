@@ -47,6 +47,7 @@ class Master extends Migration
             $table->increments('id');
             $table->string('id_obat', 5);
             $table->string('nama_obat', 30)->nullable();
+            $table->string('tipe', 15)->nullable();
             $table->integer('harga_obat')->nullable();
             $table->integer('status_obat')->nullable();
             $table->timestamps();

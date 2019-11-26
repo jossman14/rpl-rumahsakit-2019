@@ -241,22 +241,22 @@ File: Menu
   padding-right: 25px;
 }
 #topnav .navigation-menu > li > a:hover {
-  color: #6e8cd7;
+  color: #ffffff;
 }
 #topnav .navigation-menu > li > a:hover i {
-  color: #6e8cd7;
+  color: #ffffff;
 }
 #topnav .navigation-menu > li > a:focus {
-  color: #6e8cd7;
+  color: #ffffff;
 }
 #topnav .navigation-menu > li > a:focus i {
-  color: #6e8cd7;
+  color: #ffffff;
 }
 #topnav .navigation-menu > li > a:active {
-  color: #6e8cd7;
+  color: #ffffff;
 }
 #topnav .navigation-menu > li > a:active i {
-  color: #6e8cd7;
+  color: #ffffff;
 }
 #topnav .navigation-menu > li > a i {
   font-size: 18px;

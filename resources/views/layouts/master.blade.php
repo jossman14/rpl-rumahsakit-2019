@@ -146,7 +146,11 @@
             $('#jadwal-dokter').dataTable();
             $('#data-pemeriksaan').dataTable();
 
-            $('#status_obat').select2();
+            $(document).ready(function() {
+                $('#id_pasien').select2();
+                $('#id_ruang').select2();
+                $('#id_obat').select2();
+            });
 
             $('#tanggal_lahir').datepicker({
                 dateFormat: 'yyyy-mm-dd',

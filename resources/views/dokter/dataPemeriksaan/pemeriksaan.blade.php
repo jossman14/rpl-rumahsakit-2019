@@ -99,6 +99,65 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <hr />
+                                            <h4><i class="fa fa-stethoscope" style="margin-right: 5px;"></i>Data Resep</h4>
+
+                                            <!-- <div class="form-group">
+                                                <label class="col-md-2 control-label">Nama Obat</label>
+                                                <div class="col-md-8">
+                                                    <textarea class="form-control" rows="3" id="diagnosis" name="diagnosis"></textarea>
+
+                                                    @if($errors->has('diagnosis'))
+                                                        <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
+                                                            {{ $errors->first('diagnosis')}}
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            </div> -->
+                                                <table class="table table-striped dt-responsive nowrap" cellspacing="0" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Obat</th>
+                                                            <th width="150px">Dosis</th>
+                                                            <th>Keterangan</th>
+                                                            <th>Aksi</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="form-group">
+                                                                    <div class="col-md-12">
+                                                                        <select class="form-control" id="id_obat" name="id_obat">
+                                                                            @foreach($dataObat as $index => $dpo)
+                                                                                <option value="{{$dpo->id_obat}}">{{$dpo->nama_obat}} {{$dpo->tipe}}</option>
+                                                                            @endforeach
+                                                                        </select>
+
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="form-group">
+                                                                    <div class="col-md-12">
+                                                                        <input type="text" class="form-control" name="dosis" autocomplete="off">
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="form-group">
+                                                                    <div class="col-md-12">
+                                                                        <input type="text" class="form-control" name="keterangan" autocomplete="off">
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                               <a class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Data</a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             <!-- <h4 class="mt-0">Data Perawatan</h4>
                                             <hr />
                                             <div class="form-group"> 

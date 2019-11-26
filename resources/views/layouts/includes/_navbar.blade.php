@@ -141,11 +141,21 @@
                             @endif
 
                             @if(auth()->user()->role == '6')
-                            <li class="{{ (request()->is('RegistrasiPasien')) ? 'active' : '' }}">
+                            <!-- <li class="{{ (request()->is('RegistrasiPasien')) ? 'active' : '' }}">
                                 <a href="{{url('/RegistrasiPasien')}}"><i class="md md-person-add"></i> <span> Registrasi Pasien </span> </a>
+                            </li> -->
+                            <li class="has-submenu">
+                                <a href=""><i class="md md-person-add"></i><span> Registrasi Pasien </span></a>
+                                <ul class="submenu">
+                                    <li><a href="{{url('/RegistrasiPasien')}}">Pasien Baru</a></li>
+                                    <li><a href="{{url('/RegistrasiPasienLama')}}">Pasien Lama</a></li>
+                                </ul>
                             </li>
                             <li class="{{ (request()->is('dataPasienPendaftaran')) ? 'active' : '' }}">
                                 <a href="{{url('/dataPasienPendaftaran')}}"><i class="md md-person"></i> <span> Data Pasien </span> </a>
+                            </li>
+                            <li class="{{ (request()->is('dataTujuanPoliklinik')) ? 'active' : '' }}">
+                                <a href="{{url('/dataTujuanPoliklinik')}}"><i class="fa fa-stethoscope"></i> <span> Data Tujuan Poliklinik </span> </a>
                             </li>
                             <li class="{{ (request()->is('JadwalDokter')) ? 'active' : '' }}">
                                 <a href="{{url('/JadwalDokter')}}"><i class="fa fa-calendar"></i> <span> Jadwal Dokter </span> </a>

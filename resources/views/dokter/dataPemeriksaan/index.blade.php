@@ -31,7 +31,7 @@
                                                             <!-- <th>Jam Registrasi</th> -->
                                                             <th>Poli</th>
                                                             <th>Keluhan</th>
-                                                            <th>Status</th>
+                                                            <th>Pemeriksaan</th>
                                                             <th>Rujukan</th>
                                                             <th>Aksi</th>
                                                         </tr>
@@ -50,12 +50,12 @@
                                                             <td>{{$pas->keluhan}}</td>
                                                             @if($pas->status == 0)
                                                             <td>
-                                                                <span style="text-transform: capitalize;" class="badge badge-danger">Belum diperiksa
+                                                                <span style="text-transform: capitalize;" class="badge badge-danger">Belum
                                                                 </span>
                                                             </td>
                                                             @elseif($pas->status == 1)
                                                             <td>
-                                                                <span style="text-transform: capitalize;" class="badge badge-info">Sudah diperiksa
+                                                                <span style="text-transform: capitalize;" class="badge badge-info">Sudah
                                                                 </span>
                                                             </td>
                                                             @endif

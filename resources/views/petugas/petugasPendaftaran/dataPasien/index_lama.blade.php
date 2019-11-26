@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title" style="color: #32AC63;">Registrasi Pasien</h3>
+                        <h3 class="panel-title" style="color: #32AC63;">Registrasi Pasien Lama</h3>
                     </div>
                     <!-- <div> 
                         <a type="button" class="btn btn-success btn-sm" style="float: left;margin:20px;" data-toggle="modal" data-target="#tambah-pegawai">
@@ -23,64 +23,18 @@
                             <div class="col-sm-12">
                                 <!-- <div class="panel panel-primary"> -->
                                     <div class="panel-body" style="padding: 0px 20px;">
-                                        <form class="form-horizontal" action="/RegistrasiPasien/create" role="form" method="post">
+                                        <form class="form-horizontal" action="/RegistrasiPasienLama/create" role="form" method="post">
                                             {{csrf_field()}}
                                             <h4><i class="md md-assignment" style="margin-right: 5px;"></i>Data Pasien</h4>
                                             <!-- <hr /> -->
                                             <div class="form-group">
-                                                <label class="col-md-2 control-label">Nama Pasien</label>
+                                                <label class="col-md-2 control-label">Pilih Pasien</label>
                                                 <div class="col-md-7">
-                                                    <input type="text" class="form-control" name="nama_pasien" autocomplete="off">
-
-                                                    @if($errors->has('nama_pasien'))
-                                                        <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
-                                                            {{ $errors->first('nama_pasien')}}
-                                                        </div>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-2 control-label">Jenis Kelamin</label>
-                                                <div class="col-md-7">
-                                                    <select class="form-control" id="jenis_kelamin" name="jenis_kelamin">
-                                                        <option value="1">Pria</option>
-                                                        <option value="2">Wanita</option>
+                                                    <select class="select2 form-control" id="id_pasien" name="id_pasien">
+                                                        @foreach($DataPasien as $index => $dpo)
+                                                            <option value="{{$dpo->id_pasien}}">[{{$dpo->no_rekam_medis}}] - Sdr. {{$dpo->nama_pasien}}</option>
+                                                        @endforeach
                                                     </select>
-
-                                                    @if($errors->has('jenis_kelamin'))
-                                                        <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
-                                                            {{ $errors->first('jenis_kelamin')}}
-                                                        </div>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-2 control-label">Tanggal Lahir</label>
-                                                <div class="col-md-7">
-                                                    <div class="row">
-                                                        <div class="col-md-8">
-                                                            <input type="text" class="form-control" id="tanggal_lahir" class="tanggal_lahir" name="tanggal_lahir" data-language='en' autocomplete="off">
-
-                                                            @if($errors->has('tanggal_lahir'))
-                                                                <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
-                                                                    {{ $errors->first('tanggal_lahir')}}
-                                                                </div>
-                                                            @endif
-                                                        </div>
-                                                        <div class="col-md-4" style="padding-left: 0;">
-                                                            <label class="col-md-4 control-label">Umur</label>
-                                                            <div class="col-md-8" style="padding-right: 0;">
-                                                                <input type="text" class="form-control" id="umur" name="umur" class="umur" autocomplete="off" readonly="readonly">
-
-                                                                @if($errors->has('umur'))
-                                                                    <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
-                                                                        {{ $errors->first('umur')}}
-                                                                    </div>
-                                                                @endif
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
                                             <!-- <div class="form-group">
@@ -107,49 +61,6 @@
                                                     @endif
                                                 </div>
                                             </div> -->
-                                            <div class="form-group">
-                                                <label class="col-md-2 control-label">Alamat</label>
-                                                <div class="col-md-7">
-                                                    <div class="row">
-                                                        <div class="col-md-8">
-                                                            <textarea class="form-control" rows="4" id="alamat" name="alamat"></textarea>
-
-                                                            @if($errors->has('alamat'))
-                                                                <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
-                                                                    {{ $errors->first('alamat')}}
-                                                                </div>
-                                                            @endif
-                                                        </div>
-                                                        <!-- <div class="col-md-5">
-                                                            <label class="col-md-12" style="padding: 0;">No Telfon</label>
-                                                            <input type="number" class="form-control" name="no_telp" autocomplete="off">
-
-                                                            @if($errors->has('no_telp'))
-                                                                <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
-                                                                    {{ $errors->first('no_telp')}}
-                                                                </div>
-                                                            @endif
-                                                        </div> -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-2 control-label">No Telfon</label>
-                                                <div class="col-md-7">
-                                                    <div class="row">
-                                                        <div class="col-md-8">
-                                                            <!-- <label class="col-md-12" style="padding: 0;">No Telfon</label> -->
-                                                            <input type="number" class="form-control" name="no_telp" autocomplete="off">
-
-                                                            @if($errors->has('no_telp'))
-                                                                <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
-                                                                    {{ $errors->first('no_telp')}}
-                                                                </div>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <hr />
                                             <h4><i class="fa fa-stethoscope" style="margin-right: 5px;"></i>Data Keluhan</h4>
                                             <!-- <hr /> -->

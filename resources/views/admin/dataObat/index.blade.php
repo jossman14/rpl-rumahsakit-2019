@@ -29,11 +29,12 @@
                                 <table id="data-obat" class="table table-striped dt-responsive nowrap" cellspacing="0" width="100%">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Kode Obat</th>
-                                            <th>Nama</th>
+                                            <!-- <th>No</th> -->
+                                            <!-- <th>Kode Obat</th> -->
+                                            <th width="200px">Nama</th>
                                             <th>Harga</th>
-                                            <th>Status</th>
+                                            <th>Tipe</th>
+                                            <th width="250px">Status</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -41,10 +42,11 @@
                                     <tbody>
                                         @foreach($DataObat as $index => $dob)
                                         <tr>
-                                            <td>{{$index +1}}</td>
-                                            <td>{{$dob->id_obat}}</td>
+                                            <!-- <td>{{$index +1}}</td> -->
+                                            <!-- <td>{{$dob->id_obat}}</td> -->
                                             <td>{{$dob->nama_obat}}</td>
-                                            <td>{{$dob->harga_obat}}</td>
+                                            <td>Rp. {{$dob->harga_obat}}</td>
+                                            <td><span style="text-transform: capitalize;" class="badge badge-info">{{$dob->tipe}}</span></td>
                                             @if($dob->status_obat == 1)
                                             <td><span style="text-transform: capitalize;" class="badge badge-secondary">Obat Jamu Tradisional</span></td>
                                             @elseif($dob->status_obat == 2)
@@ -93,14 +95,30 @@
                             <label for="nama_obat" class="control-label">Nama Obat</label>
                         </div> 
                         <div class="col-md-9"> 
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="nama_obat" name="nama_obat" autocomplete="off"> 
-                            </div> 
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="nama_obat" name="nama_obat" autocomplete="off"> 
+                                    </div> 
+                                </div>
+                                <div class="col-md-4">
+                                    <select class="form-control" id="tipe" name="tipe">
+                                        <option value="Tablet">Tablet</option>
+                                        <option value="Serbuk">Serbuk</option>
+                                        <option value="Pil">Pil</option>
+                                        <option value="Kapsul">Kapsul</option>
+                                        <option value="Kaplet">Kaplet</option>
+                                        <option value="Larutan">Larutan</option>
+                                        <option value="Salep">Salep</option>
+                                        <option value="Cair Tetes">Cair Tetes</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div> 
                     </div> 
                     <div class="row"> 
                         <div class="col-md-3" style="margin-top: 5px;"> 
-                            <label for="harga_obat" class="control-label">Harga Obat</label>
+                            <label for="harga_obat" class="control-label">Harga</label>
                         </div> 
                         <div class="col-md-9"> 
                             <div class="form-group">
@@ -109,7 +127,7 @@
                         </div> 
                     </div> 
                     <div class="row"> 
-                        <label class="col-sm-3 control-label">Status Obat</label>
+                        <label class="col-sm-3 control-label" style="margin-top: 10px;"></label>
                         <div class="col-sm-9">
                             <select class="form-control" id="status_obat" name="status_obat">
                                 <option value="1">Obat Jamu Tradisional</option>

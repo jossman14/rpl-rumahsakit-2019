@@ -40,6 +40,26 @@ class PetugasPendaftaranController extends Controller
  
     }
 
+    // Data Jabatan
+    public function index_pasien_lama()
+    {
+
+        // $dokter = request('id_poli');
+        // var_dump($dokter);
+
+        // get data
+        // $id_poli = Request::input('id_poli');
+
+        $DataPasien = m_pasien::orderBy("nama_pasien", "asc")->get();
+        $DataPoli = m_poli::orderBy("nama_poli", "asc")->get();
+        $DataDokter = vw_dokter::get();
+ 
+        // mengirim data jabatan ke view index
+        // return view('admin.DataPegawai.index',['jabatan' => $DataPegawai]);
+        return view('petugas.petugasPendaftaran.dataPasien.index_lama', compact('DataPasien','DataPoli','DataDokter'));
+ 
+    }
+
     public function create_pasien(Request $request)
     {
 
@@ -114,6 +134,49 @@ class PetugasPendaftaranController extends Controller
         // dd($DataJabatan);
 
         return redirect('/dataPasienPendaftaran')->with('message', 'Data Berhasil diinput!');
+    }
+
+    public function create_pasien_lama(Request $request)
+    {
+
+        // $DataJabatan = m_pegawai::create([
+        //     'id_jab' => $id_jab,
+        //     'jabatan' => $request->jabatan,
+        // ]);
+
+
+        $rules = [
+            'keluhan' => 'required',
+        ];
+
+        $validasi = [
+            'keluhan.required'  => 'Keluhan Pasien harus diisi!',
+         ];
+
+        $this->validate($request, $rules, $validasi);
+
+        $prefix = 'RG';
+        $get_last_kode = registrasi_pasien::orderBy('id_registrasi','desc')->first();
+        $last_kode = ($get_last_kode) ? (int) substr($get_last_kode->id_registrasi, strlen($prefix), 2)+1 : 1;
+        $digit = 2;
+        $id_registrasi = $prefix.str_repeat("0", $digit-strlen($last_kode)).$last_kode;
+
+        $DataRegistrasiPasien = new registrasi_pasien;
+        $DataRegistrasiPasien->id_pasien = request('id_pasien');
+        $DataRegistrasiPasien->id_registrasi = $id_registrasi;
+        $DataRegistrasiPasien->kode_user = Auth::user()->kode_user;
+        $DataRegistrasiPasien->id_poli = request('id_poli');
+        $DataRegistrasiPasien->tanggal_registrasi = now();
+        $DataRegistrasiPasien->jam_registrasi = now();
+        $DataRegistrasiPasien->keluhan = request('keluhan');
+        $DataRegistrasiPasien->biaya_registrasi = request('biaya_registrasi');
+        $DataRegistrasiPasien->status = 0;
+        $DataRegistrasiPasien->created_at = now();
+        $DataRegistrasiPasien->save();
+
+        // dd($DataJabatan);
+
+        return redirect('/dataTujuanPoliklinik')->with('message', 'Data Berhasil diinput!');
     }   
 
     public function delete_pasien($id_pasien)
@@ -129,11 +192,35 @@ class PetugasPendaftaranController extends Controller
     {
 
         // get data
-        $DataPasien = vw_pemeriksaan::get();
+        $DataPasien = m_pasien::orderBy('created_at', 'asc')->get();
  
         // mengirim data jabatan ke view index
         // return view('admin.DataPegawai.index',['jabatan' => $DataPegawai]);
         return view('petugas.petugasPendaftaran.dataPasien.view', compact('DataPasien'));
+ 
+    }
+
+    public function cetak_data_pasien($id_pasien)
+    {
+
+        // get data
+        $DataPasien = m_pasien::where('id_pasien', $id_pasien)->get();
+ 
+        // mengirim data jabatan ke view index
+        // return view('admin.DataPegawai.index',['jabatan' => $DataPegawai]);
+        return view('petugas.petugasPendaftaran.dataPasien.kartu_pasien', compact('DataPasien'));
+ 
+    }
+
+    public function index_data_tujuan()
+    {
+
+        // get data
+        $DataTujuan = vw_pemeriksaan::get();
+ 
+        // mengirim data jabatan ke view index
+        // return view('admin.DataPegawai.index',['jabatan' => $DataPegawai]);
+        return view('petugas.petugasPendaftaran.dataPasien.view_tujuan', compact('DataTujuan'));
  
     }
 
@@ -161,6 +248,34 @@ class PetugasPendaftaranController extends Controller
             'updated_at' => now()
         ]);
 
+        return redirect('/dataPasienPendaftaran')->with('message', 'Data Berhasil diubah!');
+ 
+    }
+
+    public function edit_data_tujuan($id_pasien)
+    {
+
+        $DataPasien = m_pasien::where('id_pasien', $id_pasien)->get();
+        $DataRegistrasi = registrasi_pasien::where('id_pasien', $id_pasien)->get();
+        $DataPoli = m_poli::orderBy("nama_poli", "asc")->get();
+        // passing data jabatan yang didapat ke view edit.blade.php
+        return view('petugas.petugasPendaftaran.dataPasien.edit_tujuan', compact('DataPasien','DataRegistrasi','DataPoli'));
+ 
+    }
+
+    public function update_data_tujuan(Request $request)
+    {
+
+        m_pasien::where('id_pasien', $request->id_pasien)->update([
+            'nama_pasien' => $request->nama_pasien,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'umur' => $request->umur,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'no_telp' => $request->no_telp,
+            'alamat' => $request->alamat,
+            'updated_at' => now()
+        ]);
+
         registrasi_pasien::where('id_pasien', $request->id_pasien)->update([
             'id_poli' => $request->id_poli,
             'keluhan' => $request->keluhan,
@@ -168,7 +283,7 @@ class PetugasPendaftaranController extends Controller
             'updated_at' => now()
         ]);
 
-        return redirect('/dataPasienPendaftaran')->with('message', 'Data Berhasil diubah!');
+        return redirect('/dataTujuanPoliklinik')->with('message', 'Data Berhasil diubah!');
  
     }
 

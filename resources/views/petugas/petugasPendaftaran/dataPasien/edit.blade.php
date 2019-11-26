@@ -112,73 +112,37 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-md-2 control-label">No Telp</label>
-                                                <div class="col-md-7">
-                                                    <input type="number" class="form-control" name="no_telp" value="{{$dob->no_telp }}" autocomplete="off">
-
-                                                    @if($errors->has('no_telp'))
-                                                        <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
-                                                            {{ $errors->first('no_telp')}}
-                                                        </div>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
                                                 <label class="col-md-2 control-label">Alamat</label>
                                                 <div class="col-md-7">
-                                                    <textarea class="form-control" rows="3" id="alamat" name="alamat">{{$dob->alamat}}</textarea>
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                            <textarea class="form-control" rows="3" id="alamat" name="alamat">{{$dob->alamat}}</textarea>
 
-                                                    @if($errors->has('alamat'))
-                                                        <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
-                                                            {{ $errors->first('alamat')}}
+                                                            @if($errors->has('alamat'))
+                                                                <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
+                                                                    {{ $errors->first('alamat')}}
+                                                                </div>
+                                                            @endif
                                                         </div>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            @foreach($DataRegistrasi as $dor)
-                                            <h4><i class="fa fa-stethoscope" style="margin-right: 5px;"></i>Data Keluhan</h4>
-                                            <hr />
-                                            <div class="form-group">
-                                                <label class="col-md-2 control-label">Poli Tujuan</label>
-                                                <div class="col-md-7">
-                                                    <select class="form-control" id="id_poli" name="id_poli">
-                                                        @foreach($DataPoli as $index => $dpo)
-                                                            <option value="{{$dpo->id_poli}}" {{ $dpo->id_poli == $dor->id_poli ? 'selected' : '' }}>{{$dpo->nama_poli}}</option>
-                                                        @endforeach
-                                                    </select>
-
-                                                    @if($errors->has('id_poli'))
-                                                        <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
-                                                            {{ $errors->first('id_poli')}}
-                                                        </div>
-                                                    @endif
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-md-2 control-label">Keluhan</label>
+                                                <label class="col-md-2 control-label">No Telp</label>
                                                 <div class="col-md-7">
-                                                    <textarea class="form-control" rows="4" id="keluhan" name="keluhan">{{$dor->keluhan}}</textarea>
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                            <input type="number" class="form-control" name="no_telp" value="{{$dob->no_telp }}" autocomplete="off">
 
-                                                    @if($errors->has('keluhan'))
-                                                        <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
-                                                            {{ $errors->first('keluhan')}}
+                                                            @if($errors->has('no_telp'))
+                                                                <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
+                                                                    {{ $errors->first('no_telp')}}
+                                                                </div>
+                                                            @endif
                                                         </div>
-                                                    @endif
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="col-md-2 control-label">Biaya Registrasi</label>
-                                                <div class="col-md-7">
-                                                    <input type="number" class="form-control" name="biaya_registrasi" autocomplete="off" value="25000" readonly>
-
-                                                    @if($errors->has('biaya_registrasi'))
-                                                        <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
-                                                            {{ $errors->first('biaya_registrasi')}}
-                                                        </div>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            @endforeach
                                             <hr />
                                             <div style="float:left;">
                                                 <button type="submit" class="btn btn-success waves-effect waves-light">Simpan</button>

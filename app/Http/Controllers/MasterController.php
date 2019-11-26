@@ -108,6 +108,7 @@ class MasterController extends Controller
         $DataObat = new m_obat;
         $DataObat->id_obat = $id_obat;
         $DataObat->nama_obat = request('nama_obat');
+        $DataObat->tipe = request('tipe');
         $DataObat->harga_obat = request('harga_obat');
         $DataObat->status_obat = request('status_obat');
         $DataObat->save();
@@ -131,6 +132,7 @@ class MasterController extends Controller
 
         m_obat::where('id_obat', $request->id_obat)->update([
             'nama_obat' => $request->nama_obat,
+            'tipe' => $request->tipe,
             'harga_obat' => $request->harga_obat,
             'status_obat' => $request->status_obat,
             'updated_at' => now()

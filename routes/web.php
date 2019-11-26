@@ -108,7 +108,9 @@ Route::group(['middleware' => ['auth', 'checkRole:6']], function(){
 
 	// Pasien
 	Route::get('/RegistrasiPasien','PetugasPendaftaranController@index_pasien');
+	Route::get('/RegistrasiPasienLama','PetugasPendaftaranController@index_pasien_lama');
 	Route::post('/RegistrasiPasien/create','PetugasPendaftaranController@create_pasien');
+	Route::post('/RegistrasiPasienLama/create','PetugasPendaftaranController@create_pasien_lama');
 	Route::get('/RegistrasiPasien/edit/{id_pasien}','PetugasPendaftaranController@edit_pasien');
 	Route::post('/RegistrasiPasien/update/{id_pasien}','PetugasPendaftaranController@update_pasien');
 	Route::get('/RegistrasiPasien/delete/{id_pasien}','PetugasPendaftaranController@delete_pasien');
@@ -159,6 +161,12 @@ Route::group(['middleware' => ['auth', 'checkRole:1,6']], function(){
 	Route::get('/dataPasienPendaftaran','PetugasPendaftaranController@index_data_pasien');
 	Route::get('/dataPasienPendaftaran/edit/{id_pasien}','PetugasPendaftaranController@edit_data_pasien');
 	Route::post('/dataPasienPendaftaran/update/{id_pasien}','PetugasPendaftaranController@update_data_pasien');
+	Route::get('/dataPasienPendaftaran/cetak/{id_pasien}','PetugasPendaftaranController@cetak_data_pasien');
+
+	// Tujuan Poliklinik
+	Route::get('/dataTujuanPoliklinik','PetugasPendaftaranController@index_data_tujuan');
+	Route::get('/dataTujuanPoliklinik/edit/{id_pasien}','PetugasPendaftaranController@edit_data_tujuan');
+	Route::post('/dataTujuanPoliklinik/update/{id_pasien}','PetugasPendaftaranController@update_data_tujuan');
 
 });
 

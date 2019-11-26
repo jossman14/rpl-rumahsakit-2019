@@ -16,7 +16,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title" style="color: #32AC63;">Data Pasien</h3>
+                        <h3 class="panel-title" style="color: #32AC63;">Data Tujuan Poliklinik</h3>
                     </div>
                     <!-- <div> 
                         <a type="button" class="btn btn-success btn-sm" style="float: left;margin:20px;" href="/RegistrasiPasien">
@@ -30,25 +30,25 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>No Rekam Medis</th>
-                                            <th>Nama</th>
+                                            <th width="150px;">No Rekam Medis</th>
+                                            <th width="200px;">Nama</th>
                                             <th>Umur</th>
-                                            <th>Tanggal Lahir</th>
+                                            <!-- <th 150px;">Tanggal Lahir</th> -->
                                             <!-- <th>Alamat</th> -->
                                             <th>Gender</th>
-                                            <!-- <th width="85px;">No Telp</th> -->
+                                            <th>Poliklinik</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        @foreach($DataPasien as $index => $dps)
+                                        @foreach($DataTujuan as $index => $dps)
                                         <tr>
                                             <td>{{$index +1}}</td>
                                             <td style="text-transform: uppercase;">{{$dps->no_rekam_medis}}</td>
                                             <td>{{$dps->nama_pasien}}</td>
                                             <td>{{$dps->umur}} Tahun</td>
-                                            <td>{{Carbon\Carbon::parse($dps->tanggal_lahir)->formatLocalized('%d %B %Y')}}</td>
+                                            <!-- <td>{{Carbon\Carbon::parse($dps->tanggal_lahir)->formatLocalized('%d %B %Y')}}</td> -->
                                             <!-- <td>{{$dps->alamat}}</td> -->
                                             @if($dps->jenis_kelamin == 1)
                                             <td>
@@ -61,12 +61,12 @@
                                                 </span>
                                             </td>
                                             @endif
-                                            <!-- <td>{{$dps->no_telp}}</td> -->
+                                            <td>{{$dps->nama_poli}}</td>
                                             <td>
+                                                <!-- <a href="/dataTujuanPoliklinik/cetak/{{ $dps->id_pasien }}" class="btn btn-warning btn-sm"><i class="fa fa-print"></i> Cetak</a> -->
 
-                                                <a href="/dataPasienPendaftaran/edit/{{ $dps->id_pasien }}" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i> Edit</a>
+                                                <a href="/dataTujuanPoliklinik/edit/{{ $dps->id_pasien }}" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i> Edit</a>
 
-                                                <a href="/dataPasienPendaftaran/cetak/{{ $dps->id_pasien }}" class="btn btn-warning btn-sm"><i class="fa fa-print"></i> Cetak</a>
                                                 <!-- <a href="/dataPasien/delete/{{ $dps->id_pasien }}" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin hapus data ini?')"><i class="fa fa-trash"></i> Delete</a> -->
                                             </td>
                                         </tr>

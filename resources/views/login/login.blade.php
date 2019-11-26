@@ -83,6 +83,10 @@
                             </div>
                         </div>
                     </form> 
+                    <!-- <hr /> -->
+                    <div style="border: 1px solid white;">
+                        <p style="font-size: 13px;color: darkgrey;padding: 10px;text-align: center;">Hubungi admin untuk pendaftaran akun pegawai <br> <span style="font-weight: bold;">RSIA Bahagia</span></p>
+                    </div>
                 </div>                                 
                 
             </div>
