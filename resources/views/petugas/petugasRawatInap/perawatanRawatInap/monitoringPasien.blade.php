@@ -1,6 +1,16 @@
         @extends('layouts.master')
 
         @section('content')
+        @if(session()->has('message'))
+        <div class="alert alert-success">
+            {{ session()->get('message') }}
+        </div>
+        @endif
+        @if(session()->has('message_delete'))
+        <div class="alert alert-danger">
+            {{ session()->get('message_delete') }}
+        </div>
+        @endif
 
         <div class="row">
             <div class="col-md-12">
@@ -62,7 +72,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <table id="data-pasien" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                <table id="data-pasien" class="table table-striped dt-responsive nowrap" cellspacing="0" width="100%">
                                     <thead>
                                         <tr>
                                             <!-- <th style="font-weight: lighter;">No</th> -->
@@ -88,7 +98,7 @@
                                             <!-- <td>{{$dps->alamat}}</td> -->
                                             <td>{{$dps->tindakan}}</td>
                                             <td>
-                                                <a href="/monitoringPasien/edit/{{$dps->id}}" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i> Edit</a>
+                                                <a href="/dataRawatInap/monitoringPasien/edit/{{$dps->id}}" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i> Ubah</a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -104,8 +114,9 @@
 
         <div id="tambah-monitoring" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="tambah-monitoring" aria-hidden="true" style="display: none">
             <div class="modal-dialog modal-lg"> 
-                <form action="/dataRawatInap/monitoringPasien/create" method="post" autocomplete="off">
-                   {{csrf_field()}}
+            @foreach($DataPasien as $index => $dps)
+                <form action="/dataRawatInap/monitoringPasien" method="post" autocomplete="off">
+                {{csrf_field()}}
                 <div class="modal-content"> 
                 <div class="modal-header">
                     <h4 class="modal-title">Monitoring Pasien</h4>
@@ -118,7 +129,14 @@
                         <div class="col-md-8"> 
                             <div class="form-group">
                                 <!-- <input type="text" class="form-control" id="keluhan_pasien" name="keluhan_pasien" autocomplete="off">  -->
+                                <input type="text" class="form-control" id="no_rekam_medis" name="no_rekam_medis" value="{{$dps->no_rekam_medis}}" autocomplete="off" style="display: none;"> 
                                 <textarea class="form-control" rows="3" id="keluhan_pasien" name="keluhan_pasien"></textarea>
+
+                                @if($errors->has('keluhan_pasien'))
+                                    <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
+                                        {{ $errors->first('keluhan_pasien')}}
+                                    </div>
+                                @endif
                             </div> 
                         </div> 
                     </div>
@@ -129,6 +147,12 @@
                         <div class="col-md-8"> 
                             <div class="form-group">
                                 <input type="text" class="form-control" id="tensi" name="tensi" autocomplete="off"> 
+
+                                @if($errors->has('tensi'))
+                                    <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
+                                        {{ $errors->first('tensi')}}
+                                    </div>
+                                @endif
                             </div> 
                         </div> 
                     </div> 
@@ -139,6 +163,12 @@
                         <div class="col-md-8"> 
                             <div class="form-group">
                                 <input type="text" class="form-control" id="frekuensi_pernapasan" name="frekuensi_pernapasan" autocomplete="off"> 
+
+                                @if($errors->has('frekuensi_pernapasan'))
+                                    <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
+                                        {{ $errors->first('frekuensi_pernapasan')}}
+                                    </div>
+                                @endif
                             </div> 
                         </div> 
                     </div>
@@ -149,6 +179,12 @@
                         <div class="col-md-8"> 
                             <div class="form-group">
                                 <input type="text" class="form-control" id="nadi" name="nadi" autocomplete="off"> 
+
+                                @if($errors->has('nadi'))
+                                    <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
+                                        {{ $errors->first('nadi')}}
+                                    </div>
+                                @endif
                             </div> 
                         </div> 
                     </div>
@@ -159,6 +195,12 @@
                         <div class="col-md-8"> 
                             <div class="form-group">
                                 <input type="text" class="form-control" id="suhu" name="suhu" autocomplete="off"> 
+
+                                @if($errors->has('suhu'))
+                                    <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
+                                        {{ $errors->first('suhu')}}
+                                    </div>
+                                @endif
                             </div> 
                         </div> 
                     </div>
@@ -170,6 +212,11 @@
                             <div class="form-group">
                                 <!-- <input type="text" class="form-control" id="tindakan" name="tindakan" autocomplete="off">  -->
                                 <textarea class="form-control" rows="3" id="tindakan" name="tindakan"></textarea>
+                                @if($errors->has('tindakan'))
+                                    <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">
+                                        {{ $errors->first('tindakan')}}
+                                    </div>
+                                @endif
                             </div> 
                         </div> 
                     </div>
@@ -179,6 +226,7 @@
                     <button type="submit" class="btn btn-info waves-effect waves-light">Simpan Data</button> 
                 </div> 
             </form>
+            @endforeach
         </div> 
 
     </div>

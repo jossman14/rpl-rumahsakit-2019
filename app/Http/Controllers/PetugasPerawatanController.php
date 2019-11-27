@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Input;
+use Redirect;
 
 use App\Models\vw_pemeriksaan;
 use App\Models\hasil_pemeriksaan;
@@ -200,6 +201,93 @@ class PetugasPerawatanController extends Controller
         // return view('admin.dataJabatan.index',['jabatan' => $DataJabatan]);
         return view('petugas.petugasRawatInap.perawatanRawatInap.monitoringPasien', compact('DataPasien', 'DataMonitoring'));
     }
+
+    public function tambah_monitoring_rawat_inap(Request $request){
+
+        $rules = [
+            'keluhan_pasien' => 'required',
+            'tensi' => 'required',
+            'frekuensi_pernapasan' => 'required',
+            'nadi' => 'required',
+            'suhu' => 'required',
+            'tindakan' => 'required',
+        ];
+
+        $validasi = [
+            'keluhan_pasien.required' => 'Keluhan Pasien harus diisi!',
+            'tensi.required'  => 'Tensi Pasien harus diisi!',
+            'frekuensi_pernapasan.required' => 'Frekuensi Pernapasan Pasien harus diisi!',
+            'nadi.required'  => 'Kondisi nadi harus diisi!',
+            'suhu.required'  => 'Suhu harus diisi!',
+            'tindakan.required'  => 'Tindakan harus diisi!',
+         ];
+
+        $this->validate($request, $rules, $validasi);
+        
+        $MonitoringPasien = new monitoring_pasien;
+        $MonitoringPasien->no_rekam_medis = request('no_rekam_medis');
+        $MonitoringPasien->waktu = now();
+        $MonitoringPasien->keluhan_pasien = request('keluhan_pasien');
+        $MonitoringPasien->tensi = request('tensi');
+        $MonitoringPasien->frekuensi_pernapasan = request('frekuensi_pernapasan');
+        $MonitoringPasien->nadi = request('nadi');
+        $MonitoringPasien->suhu = request('suhu');
+        $MonitoringPasien->tindakan = request('tindakan');
+        $MonitoringPasien->created_at = now();
+        $MonitoringPasien->save();
+
+        // return redirect('/dataRawatInap')->with('message', 'Data perawatan berhasil diinput!');
+        // return \Redirect::route('dataRawatInap/monitoringPasien', $no_rekam_medis)->with('message', 'Data perawatan berhasil diinput!');
+        // return redirect()->route('/dataRawatInap/monitoringPasien/', [$no_rekam_medis])->with('message', 'Data perawatan berhasil diinput!');
+        // Redirect::to('dataRawatInap/monitoringPasien/'.$no_rekam_medis);
+        return redirect('/dataRawatInap/monitoringPasien/'.request('no_rekam_medis'))->with('message', 'Data monitoring berhasil diinput!');
+
+    }
+
+    public function edit_monitoring_rawat_inap($id_monitoring)
+    {
+        $DataMonitoring = monitoring_pasien::where('id', $id_monitoring)->get();
+        // passing data jabatan yang didapat ke view edit.blade.php
+        return view('petugas.petugasRawatInap.perawatanRawatInap.editMonitoringPasien', compact('DataMonitoring'));
+    }
+
+    public function update_monitoring_rawat_inap(Request $request)
+    {
+
+        // $this->validate($request, m_obat::$rules);
+
+        $rules = [
+            'keluhan_pasien' => 'required',
+            'tensi' => 'required',
+            'frekuensi_pernapasan' => 'required',
+            'nadi' => 'required',
+            'suhu' => 'required',
+            'tindakan' => 'required',
+        ];
+
+        $validasi = [
+            'keluhan_pasien.required' => 'Keluhan Pasien harus diisi!',
+            'tensi.required'  => 'Tensi Pasien harus diisi!',
+            'frekuensi_pernapasan.required' => 'Frekuensi Pernapasan Pasien harus diisi!',
+            'nadi.required'  => 'Kondisi nadi harus diisi!',
+            'suhu.required'  => 'Suhu harus diisi!',
+            'tindakan.required'  => 'Tindakan harus diisi!',
+         ];
+
+        $this->validate($request, $rules, $validasi);
+
+        monitoring_pasien::where('id', $request->id_monitoring)->update([
+            'keluhan_pasien' => $request->keluhan_pasien,
+            'tensi' => $request->tensi,
+            'frekuensi_pernapasan' => $request->frekuensi_pernapasan,
+            'nadi' => $request->nadi,
+            'suhu' => $request->suhu,
+            'tindakan' => $request->tindakan,
+            'updated_at' => now()
+        ]);
+
+        return redirect('/dataRawatInap/monitoringPasien/'.$request->no_rekam_medis)->with('message', 'Data monitoring berhasil diubah!');
+    }    
 
     public function index_ruangan(){
         

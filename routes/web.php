@@ -136,8 +136,10 @@ Route::group(['middleware' => ['auth', 'checkRole:7']], function(){
 	Route::get('/dataRawatInap/edit/{id_rawat_inap}','PetugasPerawatanController@edit_rawat_inap');
 	Route::post('/dataRawatInap/update/{id_rawat_inap}','PetugasPerawatanController@update_rawat_inap');
 	Route::get('/dataRawatInap/perawatanSelesai/{id_rawat_inap}/{id_ruang}','PetugasPerawatanController@delete_rawat_inap');
-	Route::get('/dataRawatInap/monitoringPasien/{id_rekam_medis}','PetugasPerawatanController@monitoring_rawat_inap');
-	Route::get('/dataRawatInap/monitoringPasien/create','PetugasPerawatanController@tambah_monitoring_rawat_inap');
+	Route::get('/dataRawatInap/monitoringPasien/{no_rekam_medis}','PetugasPerawatanController@monitoring_rawat_inap');
+	Route::post('/dataRawatInap/monitoringPasien','PetugasPerawatanController@tambah_monitoring_rawat_inap');
+	Route::get('/dataRawatInap/monitoringPasien/edit/{id_monitoring}','PetugasPerawatanController@edit_monitoring_rawat_inap');
+	Route::post('/dataRawatInap/monitoringPasien/update/{id_monitoring}','PetugasPerawatanController@update_monitoring_rawat_inap');
 
 	// Informasi Ruangan
 	Route::get('/ketersediaanRuangan','PetugasPerawatanController@index_ruangan');
