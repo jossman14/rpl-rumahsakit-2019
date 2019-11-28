@@ -85,15 +85,20 @@ Route::group(['middleware' => ['auth', 'checkRole:1']], function(){
 Route::group(['middleware' => ['auth', 'checkRole:2']], function(){
 
 	// Pemeriksaan
+	Route::get('/hasilPemeriksaanPasien','DokterController@index_hasil_pemeriksaan');
 	Route::get('/pemeriksaanPasien','DokterController@index_pemeriksaan');
 	Route::post('/pemeriksaanPasien/create','DokterController@create_pemeriksaan');
 	Route::get('/pemeriksaanPasien/pemeriksaan/{id_pemeriksaan}','DokterController@buat_pemeriksaan');
 	Route::get('/pemeriksaanPasien/editPemeriksaan/{id_pemeriksaan}','DokterController@ubah_pemeriksaan');
-	Route::get('/pemeriksaanPasien/rujukan/{id_pemeriksaan}','DokterController@buat_rujukan');
 	Route::post('/pemeriksaanPasien/update/{id_pemeriksaan}','DokterController@update_pemeriksaan');
 	Route::get('/pemeriksaanPasien/delete/{id_pemeriksaan}','DokterController@delete_pemeriksaan');
 	// Route::post('/pemeriksaanPasien/update/{id_pemeriksaan}','DokterController@update_pemeriksaan');
 	// Route::get('/pemeriksaanPasien/delete/{id_pemeriksaan}','DokterController@delete_pemeriksaan');
+
+	Route::get('/pemeriksaanPasien/rujukan/{id_pemeriksaan}','DokterController@buat_rujukan');
+	Route::post('/rujukan/create','DokterController@create_rujukan');
+	Route::get('/pemeriksaanPasien/editRujukan/{id_pemeriksaan}','DokterController@ubah_rujukan');
+	Route::post('/rujukan/update/{id_pemeriksaan}','DokterController@update_rujukan');
 
 	// Pemeriksaan Penunjang
 	Route::get('/pemeriksaanPenunjang','DokterController@index_pemeriksaan_penunjang');
@@ -101,6 +106,31 @@ Route::group(['middleware' => ['auth', 'checkRole:2']], function(){
 	Route::get('/pemeriksaanPenunjang/edit/{id_pemeriksaan}','DokterController@edit_pemeriksaan_penunjang');
 	// Route::post('/pemeriksaanPenunjang/update/{id_pemeriksaan}','DokterController@update_pemeriksaan_penunjang');
 	// Route::get('/pemeriksaanPenunjang/delete/{id_pemeriksaan}','DokterController@delete_pemeriksaan_penunjang');
+
+});
+
+Route::group(['middleware' => ['auth', 'checkRole:3']], function(){
+
+	// Obat
+	Route::get('/dataObatApoteker','ApotekerController@index_obat');
+	Route::post('/dataObatApoteker/create','ApotekerController@create_obat');
+	Route::get('/dataObatApoteker/edit/{id_obat}','ApotekerController@edit_obat');
+	Route::post('/dataObatApoteker/update/{id_obat}','ApotekerController@update_obat');
+	Route::get('/dataObatApoteker/delete/{id_obat}','ApotekerController@delete_obat');
+
+});
+
+Route::group(['middleware' => ['auth', 'checkRole:5']], function(){
+
+	// Pemeriksaan Penunjang
+	Route::get('/pemeriksaanPetugasPenunjang','PetugasMedisPenunjangController@index_pemeriksaan_penunjang');
+	Route::post('/pemeriksaanPetugasPenunjang/create','PetugasMedisPenunjangController@create_pemeriksaan_penunjang');
+	Route::get('/pemeriksaanPetugasPenunjang/edit/{id_pemeriksaan}','PetugasMedisPenunjangController@edit_pemeriksaan_penunjang');
+	// Route::post('/pemeriksaanPenunjang/update/{id_pemeriksaan}','DokterController@update_pemeriksaan_penunjang');
+	// Route::get('/pemeriksaanPenunjang/delete/{id_pemeriksaan}','DokterController@delete_pemeriksaan_penunjang');
+
+	Route::get('/suratRujukanMP','MedisPenunjangController@index_rujukan');
+	Route::get('/suratRujukanMP/lihat/{id_surat}','MedisPenunjangController@lihat_rujukan');
 
 });
 
@@ -147,6 +177,16 @@ Route::group(['middleware' => ['auth', 'checkRole:7']], function(){
 	Route::get('/ketersediaanRuangan/edit/{id_ruang}','PetugasPerawatanController@edit_ruangan');
 	Route::post('/ketersediaanRuangan/update/{id_ruang}','PetugasPerawatanController@update_ruangan');
 	Route::get('/ketersediaanRuangan/delete/{id_ruang}','PetugasPerawatanController@delete_ruangan');
+
+});
+
+Route::group(['middleware' => ['auth', 'checkRole:8']], function(){
+
+	Route::get('/suratRujukanRM','RekamMedisController@index_rujukan');
+	Route::post('/suratRujukanRM/create','RekamMedisController@create_rujukan');
+	Route::get('/suratRujukanRM/edit/{id_surat}','RekamMedisController@edit_rujukan');
+	Route::post('/suratRujukanRM/update/{id_surat}','RekamMedisController@update_rujukan');
+	Route::get('/suratRujukanRM/cetak/{id_surat}','RekamMedisController@cetak_rujukan');
 
 });
 

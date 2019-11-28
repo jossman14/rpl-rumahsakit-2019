@@ -92,7 +92,8 @@
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">Tindakan</label>
                                                 <div class="col-md-7">
-                                                    <input type="text" class="form-control" name="tindakan" value="{{$dob->tindakan}}" autocomplete="off">
+                                                    <textarea class="form-control" rows="3" id="tindakan" name="tindakan">{{$dob->tindakan}}</textarea>
+                                                    <!-- <input type="text" class="form-control" name="tindakan" value="{{$dob->tindakan}}" autocomplete="off"> -->
 
                                                     @if($errors->has('tindakan'))
                                                         <div class="text-danger" style="border: 1px solid #eeeeee; padding: 5px;">

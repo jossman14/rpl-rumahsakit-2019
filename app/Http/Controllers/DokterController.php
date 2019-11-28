@@ -14,11 +14,109 @@ use App\Models\rawat_inap;
 use App\Models\rawat_jalan;
 use App\Models\registrasi_pasien;
 
+use App\Models\surat;
+
 use App\Models\m_ruang;
 use App\Models\m_obat;
 
 class DokterController extends Controller
 {
+
+    // Rujukan
+    public function buat_rujukan($id_hasil_pemeriksaan)
+    {
+        $dataHasilPemeriksaan = hasil_pemeriksaan::where('id_hasil_pemeriksaan', $id_hasil_pemeriksaan)->get();
+        // passing data jabatan yang didapat ke view edit.blade.php
+        return view('dokter.dataPemeriksaan.buatRujukan', compact('dataHasilPemeriksaan'));
+    }
+
+    public function create_rujukan(Request $request)
+    {
+
+        $prefix = 'SR';
+        $get_last_kode = surat::orderBy('id_surat','desc')->first();
+        $last_kode = ($get_last_kode) ? (int) substr($get_last_kode->id_surat, strlen($prefix), 2)+1 : 1;
+        $digit = 2;
+        $id_surat = $prefix.str_repeat("0", $digit-strlen($last_kode)).$last_kode;
+
+        $rules = [
+            'jenis' => 'required',
+        ];
+
+        $validasi = [
+            'jenis.required'  => 'Jenis Surat harus diisi!',
+        ];
+
+        $this->validate($request, $rules, $validasi);
+
+        $prefix = '00';
+        $get_last_kode = surat::orderBy('no_surat','desc')->first();
+        $last_kode = ($get_last_kode) ? (int) substr($get_last_kode->no_surat, strlen($prefix), 2)+1 : 1;
+        $digit = 2;
+        $no_surat = $prefix.str_repeat("0", $digit-strlen($last_kode)).$last_kode;
+
+        $DataSuratRujukan = new surat;
+        $DataSuratRujukan->id_surat = $id_surat;
+        $DataSuratRujukan->id_hasil_pemeriksaan = request('id_hasil_pemeriksaan');
+        $DataSuratRujukan->no_surat = $no_surat;
+        $DataSuratRujukan->tanggal = now();
+        $DataSuratRujukan->jenis = request('jenis');
+        $DataSuratRujukan->created_at = now();
+        $DataSuratRujukan->save();
+
+        hasil_pemeriksaan::where('id_hasil_pemeriksaan', request('id_hasil_pemeriksaan'))->update([
+            'id_surat' => $id_surat
+        ]);
+
+        return redirect('/hasilPemeriksaanPasien')->with('message', 'Data rujukan berhasil diinput!');
+
+    }
+
+    public function ubah_rujukan($id_hasil_pemeriksaan)
+    {
+        $dataSurat = surat::where('id_hasil_pemeriksaan', $id_hasil_pemeriksaan)->get();
+
+        // passing data jabatan yang didapat ke view edit.blade.php
+        return view('dokter.dataPemeriksaan.editRujukan', compact('dataSurat'));
+    }
+
+    public function update_rujukan(Request $request)
+    {
+
+        surat::where('id_hasil_pemeriksaan', $request->id_hasil_pemeriksaan)->update([
+            'tanggal' => now(),
+            'jenis' => $request->jenis,
+            'updated_at' => now()
+        ]);
+
+        return redirect('/hasilPemeriksaanPasien')->with('message', 'Data rujukan berhasil diubah!');
+    }
+
+    // Data Pemeriksaan
+    public function index_hasil_pemeriksaan()
+    {
+
+        // $dokter = request('id_poli');
+        // var_dump($dokter);
+
+        // get data
+        $tujuan_poli = Auth::user()->id_poli;
+        // $DataPasien = vw_pemeriksaan::where('id_poli', $tujuan_poli)->orderBy("jam_registrasi", "asc")->orderBy("status", "asc")->get();
+
+        $DataHasilPemeriksaan = DB::table('hasil_pemeriksaan')
+            ->join('vw_pemeriksaan', 'hasil_pemeriksaan.id_registrasi', '=', 'vw_pemeriksaan.id_registrasi')
+            ->select('hasil_pemeriksaan.*', 'vw_pemeriksaan.*')
+            ->where('vw_pemeriksaan.id_poli', $tujuan_poli)
+            ->where('vw_pemeriksaan.status', 1)
+            ->orderBy('hasil_pemeriksaan.tanggal_waktu', 'asc')
+            ->get();
+ 
+        // mengirim data jabatan ke view index
+        // return view('admin.DataPegawai.index',['jabatan' => $DataPegawai]);
+        return view('dokter.dataPemeriksaan.hasilPemeriksaan', compact('DataHasilPemeriksaan'));
+ 
+    }
+
     // Data Pemeriksaan
     public function index_pemeriksaan()
     {
@@ -28,7 +126,15 @@ class DokterController extends Controller
 
         // get data
         $tujuan_poli = Auth::user()->id_poli;
-        $DataPasien = vw_pemeriksaan::where('id_poli', $tujuan_poli)->orderBy("jam_registrasi", "asc")->orderBy("status", "asc")->get();
+        $DataPasien = vw_pemeriksaan::where('id_poli', $tujuan_poli)->where('status', 0)->orderBy("jam_registrasi", "asc")->orderBy("status", "asc")->get();
+
+        // $DataPasien = DB::table('vw_pemeriksaan')
+        //     ->join('hasil_pemeriksaan', 'vw_pemeriksaan.id_registrasi', '=', 'hasil_pemeriksaan.id_registrasi')
+        //     ->select('vw_pemeriksaan.*', 'hasil_pemeriksaan.id_hasil_pemeriksaan')
+        //     ->where('vw_pemeriksaan.id_poli', $tujuan_poli)
+        //     ->orderBy('vw_pemeriksaan.jam_registrasi', 'asc')
+        //     ->orderBy('vw_pemeriksaan.status', 'asc')
+        //     ->get();
  
         // mengirim data jabatan ke view index
         // return view('admin.DataPegawai.index',['jabatan' => $DataPegawai]);
@@ -180,7 +286,7 @@ class DokterController extends Controller
         //     'status' => 1
         // ]);
 
-        return redirect('/pemeriksaanPasien')->with('message', 'Data pemeriksaan berhasil diinput!');
+        return redirect('/hasilPemeriksaanPasien')->with('message', 'Data pemeriksaan berhasil diinput!');
 
     }
 

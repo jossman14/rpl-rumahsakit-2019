@@ -216,7 +216,7 @@
                                             <!-- @endforeach -->
                                             <hr />
                                             <div style="float:right;">
-                                                <a href={{url('/pemeriksaanPasien')}} class="btn btn-primary waves-effect waves-light">Kembali</a>
+                                                <a href={{url('/hasilPemeriksaanPasien')}} class="btn btn-primary waves-effect waves-light">Kembali</a>
                                                 <button type="submit" class="btn btn-success waves-effect waves-light">Simpan</button>
                                             </div>
                                         </form>

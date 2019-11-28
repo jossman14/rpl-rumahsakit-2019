@@ -76,13 +76,13 @@
                                     <thead>
                                         <tr>
                                             <!-- <th style="font-weight: lighter;">No</th> -->
-                                            <th style="font-weight: lighter;">Tanggal</th>
-                                            <th style="font-weight: lighter;">Keluhan dan Pemeriksaan Fisik</th>
-                                            <th style="font-weight: lighter;">Tanda Vital</th>
+                                            <th style="font-weight: bold;">Tanggal</th>
+                                            <th style="font-weight: bold;">Keluhan dan Pemeriksaan Fisik</th>
+                                            <th style="font-weight: bold;">Tanda Vital</th>
                                             <!-- <th>Tanggal Lahir</th> -->
                                             <!-- <th>Alamat</th> -->
-                                            <th style="font-weight: lighter;">Pengobatan dan Tindakan</th>
-                                            <th style="font-weight: lighter;">Aksi</th>
+                                            <th style="font-weight: bold;">Pengobatan dan Tindakan</th>
+                                            <th style="font-weight: bold;">Aksi</th>
                                         </tr>
                                     </thead>
 
@@ -123,7 +123,7 @@
                 </div> 
                 <div class="modal-body"> 
                     <div class="row"> 
-                        <div class="col-md-3" style="margin-top: 5px;"> 
+                        <div class="col-md-4" style="margin-top: 5px;"> 
                             <label for="keluhan_pasien" class="control-label">Keluhan dan <br>Pemeriksaan Fisik</label>
                         </div> 
                         <div class="col-md-8"> 
@@ -141,7 +141,7 @@
                         </div> 
                     </div>
                     <div class="row"> 
-                        <div class="col-md-3" style="margin-top: 5px;"> 
+                        <div class="col-md-4" style="margin-top: 5px;"> 
                             <label for="tensi" class="control-label">Tensi</label>
                         </div> 
                         <div class="col-md-8"> 
@@ -157,7 +157,7 @@
                         </div> 
                     </div> 
                     <div class="row"> 
-                        <div class="col-md-3" style="margin-top: 5px;"> 
+                        <div class="col-md-4" style="margin-top: 5px;"> 
                             <label for="frekuensi_pernapasan" class="control-label">Frekuensi Pernapasan</label>
                         </div> 
                         <div class="col-md-8"> 
@@ -173,7 +173,7 @@
                         </div> 
                     </div>
                     <div class="row"> 
-                        <div class="col-md-3" style="margin-top: 5px;"> 
+                        <div class="col-md-4" style="margin-top: 5px;"> 
                             <label for="nadi" class="control-label">Denyut Nadi</label>
                         </div> 
                         <div class="col-md-8"> 
@@ -189,7 +189,7 @@
                         </div> 
                     </div>
                     <div class="row"> 
-                        <div class="col-md-3" style="margin-top: 5px;"> 
+                        <div class="col-md-4" style="margin-top: 5px;"> 
                             <label for="suhu" class="control-label">Suhu Badan</label>
                         </div> 
                         <div class="col-md-8"> 
@@ -205,7 +205,7 @@
                         </div> 
                     </div>
                     <div class="row"> 
-                        <div class="col-md-3" style="margin-top: 5px;"> 
+                        <div class="col-md-4" style="margin-top: 5px;"> 
                             <label for="tindakan" class="control-label">Pengobatan dan Tindakan</label>
                         </div> 
                         <div class="col-md-8"> 

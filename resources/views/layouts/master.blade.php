@@ -126,6 +126,7 @@
         <!-- <script src="{{asset('admin/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script> -->
         <script src="{{asset('admin/assets/plugins/air-datepicker/js/datepicker.min.js')}}"></script>
         <script src="{{asset('admin/assets/plugins/air-datepicker/js/i18n/datepicker.en.js')}}"></script>
+        <script src="{{asset('admin/assets/plugins/bootstrap-inputmask/bootstrap-inputmask.min.js')}}"></script>
 
         <!-- Datatable init js -->
         <script src="{{asset('admin/assets/pages/datatables.init.js')}}"></script>
@@ -233,6 +234,7 @@
             // Set value tanggal
             // document.getElementById("tanggal").value = today;
             $("#tanggal_masuk_jalan").val(today);
+            $("#tanggal_surat").val(today);
 
             // const oneDay = 24 * 60 * 60 * 1000;
             // const tgl_masuk = $('#tanggal_masuk').val();

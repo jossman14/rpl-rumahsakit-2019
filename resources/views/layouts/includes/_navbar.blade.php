@@ -114,17 +114,20 @@
                             <li class="{{ (request()->is('pemeriksaanPasien')) ? 'active' : '' }}">
                                 <a href="{{url('/pemeriksaanPasien')}}"><i class="fa fa-stethoscope"></i> <span> Pemeriksaan Pasien </span> </a>
                             </li>
+                            <li class="{{ (request()->is('hasilPemeriksaanPasien')) ? 'active' : '' }}">
+                                <a href="{{url('/hasilPemeriksaanPasien')}}"><i class="fa fa-eye"></i> <span> Hasil Pemeriksaan </span> </a>
+                            </li>
                             <li class="{{ (request()->is('pemeriksaanPenunjang')) ? 'active' : '' }}">
                                 <a href="{{url('/pemeriksaanPenunjang')}}"><i class="fa fa-stethoscope"></i> <span> Pemeriksaan Penunjang </span> </a>
                             </li>
-                            <li class="{{ (request()->is('Rujukan')) ? 'active' : '' }}">
+                            <!-- <li class="{{ (request()->is('Rujukan')) ? 'active' : '' }}">
                                 <a href="{{url('/Rujukan')}}"><i class="md md-email"></i> <span> Rujukan </span> </a>
-                            </li>
+                            </li> -->
                             @endif
 
                             @if(auth()->user()->role == '3')
-                            <li class="{{ (request()->is('oli')) ? 'active' : '' }}">
-                                <a href="{{url('/oli')}}"><i class="md md-accessibility"></i> <span> Data Obat </span> </a>
+                            <li class="{{ (request()->is('dataObatApoteker')) ? 'active' : '' }}">
+                                <a href="{{url('/dataObatApoteker')}}"><i class="md md-accessibility"></i> <span> Data Obat </span> </a>
                             </li>
                             @endif
 
@@ -135,8 +138,11 @@
                             @endif
 
                             @if(auth()->user()->role == '5')
-                            <li class="{{ (request()->is('oli')) ? 'active' : '' }}">
-                                <a href="{{url('/oli')}}"><i class="fa fa-stethoscope"></i> <span> Pemeriksaan Penunjang </span> </a>
+                            <li class="{{ (request()->is('suratRujukanMP')) ? 'active' : '' }}">
+                                <a href="{{url('/suratRujukanMP')}}"><i class="md md-email"></i> <span> Surat Rujukan </span> </a>
+                            </li>
+                            <li class="{{ (request()->is('pemeriksaanPetugasPenunjang')) ? 'active' : '' }}">
+                                <a href="{{url('/pemeriksaanPetugasPenunjang')}}"><i class="fa fa-stethoscope"></i> <span> Pemeriksaan Penunjang </span> </a>
                             </li>
                             @endif
 
@@ -175,14 +181,25 @@
                             @endif
 
                             @if(auth()->user()->role == '8')
-                            <li class="{{ (request()->is('oli')) ? 'active' : '' }}">
-                                <a href="{{url('/oli')}}"><i class="fa fa-stethoscope"></i> <span> Data Dokter </span> </a>
+                            <!-- <li class="{{ (request()->is('oli')) ? 'active' : '' }}">
+                                <a href="{{url('/oli')}}"><i class="fa fa-stethoscope"></i> <span> Jadwal Dokter </span> </a>
+                            </li> -->
+                            <li class="{{ (request()->is('suratRujukanRM')) ? 'active' : '' }}">
+                                <a href="{{url('/suratRujukanRM')}}"><i class="md md-email"></i> <span> Surat Rujukan </span> </a>
                             </li>
-                            <li class="{{ (request()->is('oli')) ? 'active' : '' }}">
-                                <a href="{{url('/oli')}}"><i class="fa fa-stethoscope"></i> <span> Data Perawat </span> </a>
+                            <li class="has-submenu">
+                                <a href="#"><i class="ion ion-gear-a"></i><span> Laporan Perawatan </span></a>
+                                <ul class="submenu">
+                                    <li><a href="{{url('/laporanRawatInap')}}">Rawat Inap</a></li>
+                                    <li><a href="{{url('/laporanRawatJalan')}}">Rawat Jalan</a></li>
+                                </ul>
                             </li>
-                            <li class="{{ (request()->is('oli')) ? 'active' : '' }}">
-                                <a href="{{url('/oli')}}"><i class="fa fa-stethoscope"></i> <span> Data Pasien </span> </a>
+                            <li class="has-submenu">
+                                <a href="#"><i class="ion ion-gear-a"></i><span> Laporan Pasien </span></a>
+                                <ul class="submenu">
+                                    <li><a href="{{url('/laporanRekamMedis')}}">Rekam Medis</a></li>
+                                    <li><a href="{{url('/laporanMonitoring')}}">Monitoring Pasien</a></li>
+                                </ul>
                             </li>
                             @endif
                             

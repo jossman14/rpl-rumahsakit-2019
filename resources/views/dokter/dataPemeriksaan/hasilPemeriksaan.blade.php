@@ -16,7 +16,7 @@
                             <div class="col-md-12">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title" style="color: #32AC63;">Data Buat Pemeriksaan</h3>
+                                        <h3 class="panel-title" style="color: #32AC63;">Data Hasil Pemeriksaan</h3>
                                     </div>
                                     <div class="panel-body">
                                         <div class="row">
@@ -27,47 +27,59 @@
                                                             <th>No</th>
                                                             <th>No Rekam Medis</th>
                                                             <th>Nama</th>
-                                                            <th>Umur</th>
-                                                            <!-- <th>Jam Registrasi</th> -->
-                                                            <th>Poliklinik</th>
-                                                            <th>Keluhan</th>
-                                                            <th>Pemeriksaan</th>
+                                                            <!-- <th>Umur</th> -->
+                                                            <th>Rawat</th>
+                                                            <th>Diagnosis</th>
+                                                            <th>Medis Penunjang</th>
                                                             <th>Aksi</th>
+                                                            <th>Rujukan</th>
                                                         </tr>
                                                     </thead>
 
                                                     <tbody>
-                                                        @foreach($DataPasien as $index => $pas)
+                                                        @foreach($DataHasilPemeriksaan as $index => $pas)
                                                         <tr>
                                                             <td>{{$index +1}}</td>
                                                             <td style="text-transform: uppercase;">{{$pas->no_rekam_medis}}</td>
                                                             <td>{{$pas->nama_pasien}}</td>
-                                                            <td>{{$pas->umur}} Tahun</td>
+                                                            <!-- <td>{{$pas->umur}} Tahun</td> -->
                                                             <!-- <td>{{$pas->jam_registrasi}}</td> -->
                                                             <!-- <td>{{Carbon\Carbon::parse($pas->jam_registrasi)->format('g:i:s A')}}</td> -->
-                                                            <td>{{$pas->nama_poli}}</td>
-                                                            <td>{{$pas->keluhan}}</td>
-                                                            @if($pas->status == 0)
+                                                            @if($pas->jenis_perawatan == 1)
                                                             <td>
-                                                                <span style="text-transform: capitalize;" class="badge badge-danger">Belum
+                                                                <span style="text-transform: capitalize;" class="badge badge-info">Rawat Inap
                                                                 </span>
                                                             </td>
-                                                            @elseif($pas->status == 1)
+                                                            @elseif($pas->jenis_perawatan == 2)
                                                             <td>
-                                                                <span style="text-transform: capitalize;" class="badge badge-info">Sudah
+                                                                <span style="text-transform: capitalize;" class="badge badge-info">Rawat Jalan
+                                                                </span>
+                                                            </td>
+                                                            @endif
+                                                            <td>{{$pas->diagnosis}}</td>
+                                                            @if($pas->medis_penunjang == 0)
+                                                            <td>
+                                                                <span style="text-transform: capitalize;" class="badge badge-danger">Tidak perlu
+                                                                </span>
+                                                            </td>
+                                                            @elseif($pas->medis_penunjang == 1)
+                                                            <td>
+                                                                <span style="text-transform: capitalize;" class="badge badge-info">Perlu
                                                                 </span>
                                                             </td>
                                                             @endif
                                                             <td>
-                                                                <!-- @if($pas->status == 0)
-                                                                <a href="/pemeriksaanPasien/pemeriksaan/{{ $pas->id_registrasi }}" class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Buat</a>
-                                                                @elseif($pas->status == 1)
                                                                 <a href="/pemeriksaanPasien/editPemeriksaan/{{ $pas->id_registrasi }}" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i> Edit</a>
-                                                                @endif -->
-                                                                <a href="/pemeriksaanPasien/pemeriksaan/{{ $pas->id_registrasi }}" class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Buat</a>
-
-                                                                <a href="/pemeriksaanPasien/delete/{{ $pas->id_registrasi }}" class="btn btn-danger btn-sm"><i class="fa fa-undo"></i> Reset</a>
                                                             </td>
+                                                            @if($pas->id_surat == null)
+                                                            <td>
+                                                                <a href="/pemeriksaanPasien/rujukan/{{ $pas->id_hasil_pemeriksaan }}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Rujukan</a>
+                                                            </td>
+                                                            @else
+                                                            <td>
+                                                                <a href="/pemeriksaanPasien/editRujukan/{{ $pas->id_hasil_pemeriksaan }}" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i> Rujukan</a>
+                                                            </td>
+                                                            @endif
                                                         </tr>
                                                         @endforeach
                                                     </tbody>
