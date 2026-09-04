@@ -17,6 +17,26 @@ $app = new Illuminate\Foundation\Application(
 
 /*
 |--------------------------------------------------------------------------
+| PHP 8.4 Compatibility Shim
+|--------------------------------------------------------------------------
+|
+| This app targets PHP 7.2/8.0 but is being run on PHP 8.4. Laravel's
+| HandleExceptions bootstrapper calls error_reporting(-1) which turns
+| PHP 8 E_DEPRECATED notices (fired deep inside the framework's own
+| container/reflection code) into ErrorExceptions. Reporting that
+| ErrorException itself triggers another deprecated notice while the
+| framework resolves the exception handler, causing recursive crashes
+| with no error output. We narrow error_reporting back down right after
+| that bootstrapper runs so deprecations are ignored instead of thrown.
+|
+*/
+
+$app->afterBootstrapping(Illuminate\Foundation\Bootstrap\HandleExceptions::class, function () {
+    error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
+});
+
+/*
+|--------------------------------------------------------------------------
 | Bind Important Interfaces
 |--------------------------------------------------------------------------
 |
